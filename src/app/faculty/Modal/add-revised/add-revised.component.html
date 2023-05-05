@@ -1,0 +1,20 @@
+<div class="upload_revision_container" >
+    <div class="upload_revision">
+      <form #reviseForm=ngForm (ngSubmit)="onSubmit()">
+      <h3>Upload Revision</h3>
+      <h4>{{capsuleId?.title}}</h4>
+      <label>Description</label>
+      <textarea placeholder="Description Here" [(ngModel)]="form.description"></textarea>
+      <div class="pdf-button">
+        <mat-icon>add_box</mat-icon>
+        <p class="filename">Upload PDF</p>
+      </div>
+      <div class="submit_cancel">
+      <button class="submit_rev" type="submit">Submit Revision</button>
+      <button class="cancel_rev" type="button" mat-dialog-close>Cancel Revision</button>
+    </div>
+    </form>
+
+    </div>
+
+  </div>

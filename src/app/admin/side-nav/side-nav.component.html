@@ -1,0 +1,37 @@
+<div class="overlay"></div>
+
+<div class="side-nav" [ngClass]="[generalService.showSideNav ? '' : 'sidenav-collapsed', theme+'-side-nav']">
+  <ul>
+    <li>
+        <a href="#" class="logo"></a>
+        <img [src]="image.sideNav" alt="">
+    </li>
+    <div class="text">
+      <li [routerLinkActive]="'active'">
+          <mat-icon>home</mat-icon>
+          <a [routerLink]="['/admin/home']" [ngClass]="theme+'-text'">Home</a>
+      </li>
+      <li [routerLinkActive]="'active'">
+          <mat-icon>hourglass_empty</mat-icon>
+          <a [routerLink]="['/admin/capsule']" [ngClass]="theme+'-text'">Capsules</a>
+      </li>
+      <li [routerLinkActive]="'active'">
+        <mat-icon>how_to_reg</mat-icon>
+        <a [routerLink]="['/admin/faculty']" [ngClass]="theme+'-text'">Verified Faculty</a>
+      </li>
+      <li [routerLinkActive]="'active'">
+        <mat-icon>person</mat-icon>
+        <a [routerLink]="['/admin/verify_faculty']" [ngClass]="theme+'-text'">Unverified Faculty</a>
+      </li>
+      <li [routerLinkActive]="'active'">
+          <mat-icon>build</mat-icon>
+          <a [routerLink]="['/admin/content-management']" [ngClass]="theme+'-text'">Content Management</a>
+      </li>
+      <li [routerLinkActive]="'active'">
+        <mat-icon>assignment</mat-icon>
+        <a [routerLink]="['/admin/rubrics']" [ngClass]="theme+'-text'">Rubrics</a>
+      </li>
+    </div>
+  </ul>
+</div>
+

@@ -1,0 +1,32 @@
+<!-- <div class="dia-overlay" (click)="generalService.showDialog = false"></div> -->
+<div class="container">
+  <div class="dia-header">
+    <div class="d-div-s">
+      <mat-icon class="d-s-icon">search</mat-icon>
+      <input type="text" class="form-control d-custom-input" placeholder="Search for a Capsule">
+    </div>
+  </div>
+
+  <form #assignReviewer=ngForm (ngSubmit)="onSubmit()">
+    <div class="dia-content">
+
+      <!-- <div class="alert alert-danger" [hidden]="isValid"> -->
+      <div class="alert alert-danger" [ngClass]="!isValid ? 'alert-visible' : 'alert-disable'">
+        You can only select 3 Faculty.
+      </div>
+      <div class="faculty-col" *ngFor="let faculty of filteredFaculty; let i = index">
+        <div class="single-faculty" *ngIf="faculty.id != data.capsuleData.author_id">
+          <p>{{faculty.fname}} {{faculty.mname}} {{faculty.lname}}</p>
+          <input type="checkbox" name="{{faculty.id}}" [value]="faculty.id"
+            (change)="getFacultyId($event, faculty.id)">
+        </div>
+      </div>
+    </div>
+
+    <div class="dia-actions">
+      <button class="cancel" mat-dialog-close>Cancel</button>
+      <button class="btn submit" type="submit" [disabled]="!isValid" *ngIf="!loading">Submit</button>
+      <button class="submit" style="padding: 5px 30px;" *ngIf="loading"><app-loader-button></app-loader-button></button>
+    </div>
+  </form>
+</div>

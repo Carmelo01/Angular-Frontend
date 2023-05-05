@@ -1,0 +1,23 @@
+<!-- <div class="dia-overlay"></div> -->
+<form #editForm=ngForm (ngSubmit)="onSubmit()">
+<div class="container">
+  <div class="dia-header">
+    <div class="d-div-s">
+      <h3>Edit Rubrics Title</h3>
+    </div>
+  </div>
+
+  <div class="dia-content">
+    <input type="text" name="title" class="form-control d-custom-input"
+      [(ngModel)]="form.title" required>
+  </div>
+
+  <div class="dia-actions">
+    <button class="cancel" mat-dialog-close>Cancel</button>
+    <button class="btn submit" type="submit" [disabled]="!editForm.valid" *ngIf="!loading">Submit</button>
+    <button class="btn submit" style="padding: 5px 20px;" *ngIf="loading"><app-loader-button></app-loader-button></button>
+  </div>
+</div>
+</form>
+
+

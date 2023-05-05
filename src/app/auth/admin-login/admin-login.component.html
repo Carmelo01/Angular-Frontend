@@ -1,0 +1,39 @@
+<div class="con">
+  <div class="loader"><app-loader *ngIf="loading"></app-loader></div>
+  <div class="loader-bg" *ngIf="loading"></div>
+    <div class="row">
+      <div class="col-md-7 al-left-div order-2 order-md-1">
+        <h3 class="al-header">COLLEGE OF INFORMATION AND COMMUNICATIONS TECHNOLOGY</h3>
+        <p class="al-title">Research Capsule</p>
+        <div class="container">
+          <form #loginForm=ngForm (ngSubmit)="onSubmit()">
+            <div class="alert alert-danger" [hidden]="!error">
+              {{error}}
+            </div>
+            <div class="mb-3">
+              <label for="usr">Email or Username:</label>
+              <input type="text" name="email" class="form-control" id="usr" placeholder="Enter email"
+               [(ngModel)]="form.email" required>
+            </div>
+            <div class="mb-5">
+              <label for="password">Password:</label>
+              <input type="password" name="password" class="form-control" id="password"
+                placeholder="Enter password" [(ngModel)]="form.password" required>
+            </div>
+            <div class="mb-3 al-center">
+              <button class="btn orange-button" type="submit" [disabled]="!loginForm.valid"
+                >Login</button>
+            
+            </div>
+            <div class="al-center">
+              <a class="al-title al-li">Forgot Password?</a>
+            </div>
+          </form>
+        </div>
+      </div>
+      <div class="col-md-5 al-img-div order-1 order-md-2">
+        <div class="overlay"></div>
+        <img src="../../../assets/bulsu.jpg" alt="" class="al-side-img">
+      </div>
+    </div>
+</div>

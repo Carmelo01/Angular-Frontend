@@ -1,0 +1,58 @@
+
+<div class="d-container">
+  <div class="d-header">
+      <h3>Rubrics</h3>
+  </div>
+  <div class="card" [ngClass]="theme+'-card'">
+    <div class="d-content">
+      <div class="d-table-header">
+          <h3>List of Rubrics Title</h3>
+          <button class="btn orange-button" (click)="exportService.exportRubric(listData.data)">Export CSV File</button>
+      </div>
+      <div class="d-impro-hr"></div>
+    </div>
+
+    <div class="d-body">
+      <div class="all-title-con" [ngClass]="theme+'-all-title-con'" *ngFor="let item of listData.data; let i = index">
+        <div class="single-title-container">
+          <div class="data-con">
+            <div class="data-card title-card" >
+              <div class="left-side" >
+                <mat-icon *ngIf="!showRubrics[i]" (click)="toggleRubrics( i)">keyboard_arrow_down</mat-icon>
+                <mat-icon *ngIf="showRubrics[i]" (click)="toggleRubrics( i)">keyboard_arrow_up</mat-icon>
+                <p>{{item.title}}</p>
+              </div>
+              <div class="right-side">
+                <a [routerLink]="['/admin/rubrics/add', item.id]" class="orange-button">Add Rubrics</a>
+                <button class="editbtn" (click)="openEditTitleDialog(item)"><mat-icon>edit</mat-icon></button>
+              </div>
+            </div>
+            <div class="deleteDiv">
+              <button class="deletebtn" (click)="openDeleteTitleDialog(item)"><mat-icon>delete_outline</mat-icon></button>
+            </div>
+          </div>
+          <div class="forDiv" *ngFor="let r of item.rubric">
+            <div class="all-rubrics-con" *ngIf="showRubrics[i]">
+              <div class="data-con">
+                <div class="data-card rubrics-card" [ngClass]="theme+'-rubrics-card'">
+                  <p>{{r.rubric}}</p>
+                  <button class="editbtn" (click)="openEditRubricDialog(r, i)"><mat-icon>edit</mat-icon></button>
+                </div>
+                <div class="deleteDiv">
+                  <button class="deletebtn" (click)="openDeleteRubricDialog(r, i)"><mat-icon>delete_outline</mat-icon></button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="d-footer">
+      <button class="addbtn" (click)="openAddTitleDialog()"><mat-icon [inline]="true">add</mat-icon></button>
+    </div>
+
+  </div>
+</div>
+
+

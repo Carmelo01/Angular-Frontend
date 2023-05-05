@@ -1,0 +1,170 @@
+<app-dialog *ngIf="generalService.showDialog"></app-dialog>
+<div class="d-container" >
+
+    <div class="card" [ngClass]="theme+'-faculty-card'">
+      <div class="d-content">
+        <a [routerLink]="['/faculty/my-capsule']" class="d-content-head">
+          <mat-icon>keyboard_arrow_left</mat-icon>Back
+        </a>
+      </div>
+
+      <div class="d-content-body" *ngFor="let capsule of selectedCapsuleData; let i = index">
+        <div class="left-body">
+          <div class="upper">
+            <h3>{{capsule?.title}}</h3>
+            <span class="label">{{formatReqDate(capsule?.created_at)}}</span>
+          </div>
+          <div class="lower">
+            <span class="label">Description</span>
+            <p>{{capsule?.description}}</p>
+            <span class="label">Uploaded materials</span>
+            <div class="pdf-button" (click)="openPdf(capsule)" [ngClass]="theme+'-faculty-status'">
+              <mat-icon>insert_drive_file</mat-icon>
+              <p class="filename">{{capsule?.title}}.pdf</p>
+            </div>
+
+            <span class="label">Assigned Reviewers</span>
+            <div class="pdf-button" *ngFor="let r of capsule.assigncapsule; let i = index" >
+              <div class="left-div" [ngClass]="theme+'-faculty-status'">
+                <img src="../../../assets/default-userpng.png" alt="" width="50px" height="50px" class="logo-header">
+                <p class="filename">Reviewer {{i+1}}</p>
+                <!-- <img src="../../../assets/default-userpng.png" alt="" width="50px" height="50px" class="logo-header" *ngIf="r.user.profilePic == null">
+                <img src="{{urlService.url}}{{r.user.profilePic}}" alt="" width="50px" height="50px" class="logo-header" *ngIf="r.user.profilePic != null">
+                <p class="filename">{{r.user.fname}} {{r.user.lname}}</p> -->
+              </div>
+              <div class="right-div" *ngIf="r.grade != null">
+                <button class="btn orange-button" (click)="exportToService(r.user.id)">Export CSV</button>
+              </div>
+            </div>
+          </div>
+          <div class="comment-section">
+            <button (click)="toggleComment()" *ngIf="showComment" class="orange-button">Hide all comments</button>
+            <button (click)="toggleComment()" *ngIf="!showComment" class="orange-button">See all comments</button>
+            <div class="all-comment-container" *ngIf="showComment" >
+              <a class="hideOrAll" *ngIf="!showAllComment" (click)="toggleAllComment()">Show all comments</a>
+              <a class="hideOrAll" *ngIf="showAllComment" (click)="toggleAllComment()">Hide most comments</a>
+              <div class="forDiv" *ngFor="let comment of comments | slice:(showAllComment ? 0 : comments.length - 3):comments.length" [ngClass]="theme+'-faculty-status'">
+                <div class="comment-container" *ngIf="comment.user != null">
+                  <img src="../../../assets/default-userpng.png" alt="" width="50px" height="50px" class="logo-header" *ngIf="selectedCapsuleData[0].user.id != comment.user.id">
+
+                  <img [src]="selectedCapsuleData[0].user.profilePic" alt="" width="50px" height="50px" class="logo-header" *ngIf="selectedCapsuleData[0].user.id == comment.user.id && selectedCapsuleData[0].user.profilePic != null">
+                  <!-- <img src="../../../assets/default-userpng.png" alt="" width="50px" height="50px" class="logo-header" *ngIf="comment.user.profilePic == null">
+                  <img [src]="comment.user.profilePic" alt="" width="50px" height="50px" class="logo-header" *ngIf="comment.user.profilePic != null"> -->
+                  <div class="comment-card" >
+                    <ng-container *ngFor="let num of usernum">
+                      <p class="comment-author" *ngIf="num.id == comment.user.id && selectedCapsuleData[0].user.id != comment.user.id">Reviewer {{num.number}}</p>
+                      <p class="comment-author" *ngIf="num.id == comment.user.id && selectedCapsuleData[0].user.id == comment.user.id">{{selectedCapsuleData[0].user.fname}} {{selectedCapsuleData[0].user.lname}}</p>
+                    </ng-container>
+                    <p class="comment-text">{{comment.comment}}</p>
+                  </div>
+                </div>
+                <div class="comment-container" *ngIf="comment.admin != null">
+                  <img src="../../../assets/default-userpng.png" alt="" width="50px" height="50px" class="logo-header" *ngIf="comment.admin.profilePic == null">
+                  <img [src]="comment.admin.profilePic" alt="" width="50px" height="50px" class="logo-header" *ngIf="comment.admin.profilePic != null">
+                  <div class="comment-card">
+                    <p class="comment-author" *ngIf="comment.admin != null">{{comment.admin.fname}} {{comment.admin.mname}} {{comment.admin.lname}}</p>
+                    <p class="comment-text">{{comment.comment}}</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <form #commentForm=ngForm (ngSubmit)="onSubmit()" class="form-comment">
+              <input type="text" class="form-control" id="comment" name="comment"
+              [(ngModel)]="form.comment" placeholder="Comment here" required>
+              <button type="submit" class="btn send-btn" [disabled]="!commentForm.valid" *ngIf="!loading"><mat-icon>send</mat-icon></button>
+              <button class="btn send-btn" style="padding: 5px;" *ngIf="loading"><app-loader-button></app-loader-button></button>
+            </form>
+          </div>
+        </div>
+        <div class="right-body">
+          <p>Status</p>
+          <div *ngIf="capsule?.status == '0'" class="con-unassign">
+            <button class="status unassigned">Unassigned</button>
+          </div>
+          <button class="orange-button" (click)="openAddRevisionDialog()" *ngIf="selectedCapsuleData[0].status == '3'"><mat-icon >add_box</mat-icon>Upload Revision</button>
+
+          <span class="label">Uploaded Revisions</span>
+          <div class="revisions-container" [ngClass]="theme+'-faculty-status'">
+            <div class="pdf-button-revised">
+              <div class="file">
+              <mat-icon>insert_drive_file</mat-icon>
+              <p class="filename">{{capsule?.title}}.pdf</p>
+              </div>
+              <div class="date">
+                <label>2023-7-01</label>
+              </div>
+            </div>
+            <div class="pdf-button-revised">
+              <div class="file">
+              <mat-icon>insert_drive_file</mat-icon>
+              <p class="filename">{{capsule?.title}}.pdf</p>
+              </div>
+              <div class="date">
+                <label>2023-7-01</label>
+              </div>
+            </div>
+            <div class="pdf-button-revised">
+              <div class="file">
+              <mat-icon>insert_drive_file</mat-icon>
+              <p class="filename">{{capsule?.title}}.pdf</p>
+              </div>
+              <div class="date">
+                <label>2023-7-01</label>
+              </div>
+            </div>
+            <div class="pdf-button-revised">
+              <div class="file">
+              <mat-icon>insert_drive_file</mat-icon>
+              <p class="filename">{{capsule?.title}}.pdf</p>
+              </div>
+              <div class="date">
+                <label>2023-7-01</label>
+              </div>
+            </div>
+            <div class="pdf-button-revised">
+              <div class="file">
+              <mat-icon>insert_drive_file</mat-icon>
+              <p class="filename">{{capsule?.title}}.pdf</p>
+              </div>
+              <div class="date">
+                <label>2023-7-01</label>
+              </div>
+            </div>
+            <div class="pdf-button-revised">
+              <div class="file">
+              <mat-icon>insert_drive_file</mat-icon>
+              <p class="filename">{{capsule?.title}}.pdf</p>
+              </div>
+              <div class="date">
+                <label>2023-7-01</label>
+              </div>
+            </div>
+            <div class="pdf-button-revised">
+              <div class="file">
+              <mat-icon>insert_drive_file</mat-icon>
+              <p class="filename">{{capsule?.title}}.pdf</p>
+              </div>
+              <div class="date">
+                <label>2023-7-01</label>
+              </div>
+            </div>
+            <div class="pdf-button-revised">
+              <div class="file">
+              <mat-icon>insert_drive_file</mat-icon>
+              <p class="filename">{{capsule?.title}}.pdf</p>
+              </div>
+              <div class="date">
+                <label>2023-7-01</label>
+              </div>
+            </div>
+
+
+          </div>
+          <button *ngIf="capsule?.status == '1'" class="status assigned">Under Review</button>
+          <!-- <button *ngIf="capsule?.status == '2'" class="status assigned">Assigned</button> -->
+        </div>
+
+      </div>
+    </div>
+
+  </div>

@@ -1,0 +1,32 @@
+<form #addCapsule=ngForm (ngSubmit)="onSubmit()">
+  <div class="container">
+    <div class="dia-header">
+      <div class="d-div-s">
+        <h3>Add Capsule Title</h3>
+      </div>
+    </div>
+
+    <div class="dia-content">
+      Capsule Title:
+      <input type="text" class="form-control d-custom-input"
+      name="title" [(ngModel)]="form.title"
+      placeholder="Enter Capsule Title" required>
+      <br>
+      Capsule Description:
+      <textarea class="form-control d-custom-input"
+      name="description" [(ngModel)]="form.description"
+      placeholder="Enter Capsule Description" required></textarea>
+      <br>
+      Capsule File:
+      <input type="file" class="form-control d-custom-input" (change)="getFile($event)" required>
+    </div>
+
+    <div class="dia-actions">
+      <button class="cancel" mat-dialog-close>Cancel</button>
+      <button class="btn submit" type="submit" [disabled]="!addCapsule.valid" *ngIf="!loading">Submit</button>
+      <button class="btn submit" style="padding: 5px 20px;" *ngIf="loading"><app-loader-button></app-loader-button></button>
+    </div>
+  </div>
+</form>
+
+

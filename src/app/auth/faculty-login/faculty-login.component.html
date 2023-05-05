@@ -1,0 +1,43 @@
+<div class="container">
+    <div class="loader"><app-loader *ngIf="loading"></app-loader></div>
+    <div class="loader-bg" *ngIf="loading"></div>
+    <div class="context-container">
+         <!-- PANG HOSTINGER -->
+        <!-- <img class="logo" src="../../../assets/CICT.png"> -->
+         <!-- PANG SLARENAS -->
+        <img class="logo" src="assets/CICT.png">
+        <h2 class="Title">Research Capsule</h2>
+    </div>
+    <div class="form-container">
+        <h1>Faculty Login</h1>
+        <p class="new-user">New User? <a [routerLink]="['/faculty/register']" class="signup-link">Create an Account</a></p>
+        <form #myForm="ngForm" (ngSubmit)="onSubmit()">
+          <div class="alert alert-danger" [hidden]="!error">
+            {{error}}
+          </div>
+          <div class="email-field">
+              <mat-icon class="icon">
+                  <span class="material-symbols-outlined">
+                  mail
+                  </span>
+              </mat-icon>
+              <input type="email" name="email" placeholder="Email"
+               [(ngModel)]="myModel.email" required>
+          </div>
+          <div class="password-field">
+              <mat-icon class="icon">
+                  <span class="material-symbols-outlined">
+                  lock
+                  </span>
+              </mat-icon>
+              <input type="password" name="password" placeholder="Password"
+              [(ngModel)]="myModel.password" required>
+          </div>
+          <p class="forgot-password"><a href="#" class="frgt-pw-link">Forgot Password?</a></p>
+          <div class="login">
+              <!-- <a href="#" class="login-button">Log In</a> -->
+              <button class="login-button" type="submit" [disabled]="!myForm.valid">Login</button>
+          </div>
+        </form>
+    </div>
+</div>

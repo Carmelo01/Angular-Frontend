@@ -1,0 +1,102 @@
+<div class="d-container" [ngClass]="theme+'-faculty-d-container'">
+    <div class="d-wrapper" >
+      <div class="button-div" *ngIf="noCapsule">
+        <h4>No existing capsule.</h4>
+        <button (click)="openAddTitleDialog()"><mat-icon>add</mat-icon></button>
+        <h5>Add Now</h5>
+      </div>
+      <div class="card" *ngIf="!noCapsule" [ngClass]="theme+'-faculty-card'">
+        <div class="d-content">
+          <div class="d-table-header">
+              <h3>My Capsules</h3>
+              <div class="btn-div">
+                <button class="btn orange-button" (click)="exportService.exportCapsule(capsules.data, 'My Capsule List', 'my-capsule-list')">Export CSV File</button>
+                <button class="btn orange-button" (click)="openAddTitleDialog()">Create New Capsule</button>
+              </div>
+          </div>
+          <div class="d-impro-hr"></div>
+        </div>
+
+        <form>
+          <div class="d-input-parent">
+            <div class="d-div-s">
+              <mat-icon class="d-s-icon">search</mat-icon>
+              <input type="text" class="d-custom-input" placeholder="Search a Capsule">
+            </div>
+            <div class="d-div-select">
+              <select class="d-custom-select" id="inputGroupSelect01">
+                <option selected>Filter by</option>
+                <option value="1">All</option>
+                <option value="2">Unassigned</option>
+                <option value="3">Assigned</option>
+                <option value="4">Under Revision</option>
+                <option value="5">Published</option>
+              </select>
+
+              <select class="d-custom-select" id="inputGroupSelect01">
+                <option selected>Sort by</option>
+                <option value="1">Date</option>
+                <option value="2"></option>
+                <option value="3">Three</option>
+              </select>
+            </div>
+          </div>
+        </form>
+
+        <table class="d-table-capsule" id="d-table" [ngClass]="theme+'-faculty-d-table-capsule'">
+          <thead>
+            <th>CAPSULE ID</th>
+            <th>TITLE</th>
+            <th>DATE SUBMITTED</th>
+            <th>FILE</th>
+            <!-- <th>PERCENTAGE</th> -->
+            <th>STATUS</th>
+            <th>ACTION</th>
+          </thead>
+          <tbody *ngFor="let capsule of capsules.data; let i = index" >
+            <tr [ngClass]="theme+'-faculty-tr'">
+              <td data-label="CAPSULE ID">{{capsule.id}}</td>
+              <td data-label="TITLE">{{capsule.title}}</td>
+              <td data-label="DATE SUBMITTED">{{exportService.formatReqDate(capsule.created_at)}}</td>
+              <td>{{capsule.title}}.pdf</td>
+              <!-- <td>{{capsule.Percentage}}</td> -->
+              <td data-label="Status">{{exportService.getStatus(capsule.status)}}</td>
+              <td data-label="Action"><button class="btn orange-button" (click)="seeDetails(capsule.id)">Details</button></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="right-side" id="details" *ngIf="showdetails" [ngClass]="theme+'-faculty-right-side'">
+        <div class="d-content-body" *ngFor="let c of userSelected; let i = index">
+          <div class="upper">
+            <div class="title-x">
+              <h3>{{c.title}}</h3>
+              <mat-icon class="d-s-icon" id="close-button" (click)="closeDetails()">clear</mat-icon>
+            </div>
+            <span class="label">{{exportService.formatReqDate(c.created_at)}}</span>
+            <span class="status" [ngClass]="theme+'-faculty-status'">{{exportService.getStatus(c.status)}}</span>
+          </div>
+          <div class="lower">
+            <span class="label">Description</span>
+            <p>{{c.description}}</p>
+            <!-- <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p> -->
+            <span class="label" [ngClass]="theme+'-faculty-status'">Uploaded materials</span>
+            <div class="pdf-button" (click)="openPdf(c)" [ngClass]="theme+'-faculty-status'">
+              <mat-icon>insert_drive_file</mat-icon>
+              <p class="filename" [ngClass]="theme+'-faculty-status'">{{c.title}}.pdf</p>
+            </div>
+          </div>
+          <div class="buttons-container">
+            <div class="d-bottom-actions">
+                <button class="btn orange-button" (click)="openEditCapsuleDialog()">Edit</button>
+                <button class="btn red-button" (click)="openDeleteCapsuleDialog()">Delete</button>
+              </div>
+              <button class="button-newtab" ><a [routerLink]="['/faculty/my-capsule/', c.id]">Open in New Tab</a>  </button>
+           </div>
+        </div>
+
+        </div>
+      </div>
+      <!-- <app-loader></app-loader> -->
+    </div>

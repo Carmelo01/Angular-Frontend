@@ -1,0 +1,67 @@
+
+<div class="d-container" [ngClass]="theme+'-d-container'">
+    <div class="d-header">
+      <h3>Dashboard</h3>
+    </div>
+    <div class="card" [ngClass]="theme+'-card'">
+      <div class="d-content">
+        <div class="d-graph-container">
+          <div class="d-graph">
+            <div class="pie" id="pieChart"></div>
+          </div>
+          <div class="d-graph">
+            <app-line-chart></app-line-chart>
+          </div>
+      </div>
+        <div class="d-table-header">
+            <h3>Capsules</h3>
+            <button class="btn orange-button" (click)="exportService.exportCapsule(capsules.data, 'Capsule List', 'capsule-list')">Export CSV File</button>
+        </div>
+        <div class="d-impro-hr"></div>
+      </div>
+
+      <form>
+        <div class="d-input-parent">
+            <div class="d-div-s">
+                <mat-icon class="d-s-icon">search</mat-icon>
+                <input type="text" class="d-custom-input" placeholder="Search for a Capsule">
+            </div>
+            <div class="d-div-select">
+                <select class="d-custom-select" id="inputGroupSelect01">
+                    <option selected>Filter by</option>
+                    <option value="1">One</option>
+                    <option value="2">Two</option>
+                    <option value="3">Three</option>
+                </select>
+
+                <select class="d-custom-select" id="inputGroupSelect01">
+                    <option selected>Sort by</option>
+                    <option value="1">One</option>
+                    <option value="2">Two</option>
+                    <option value="3">Three</option>
+                </select>
+            </div>
+        </div>
+      </form>
+
+      <table class="d-table-capsule" id="{{theme}}-d-table">
+        <thead>
+            <th>Number</th>
+            <th>Title</th>
+            <th>Author</th>
+            <th>Status</th>
+            <th>Date Published</th>
+        </thead>
+        <tbody *ngFor="let capsule of capsules.data; let i = index">
+          <tr>
+            <td data-label="Number">{{i+1}}</td>
+            <td data-label="Title">{{capsule.title}}</td>
+            <td data-label="Author">{{capsule.user.fname}} {{capsule.user.lname}}</td>
+            <td data-label="Status">{{exportService.getStatus(capsule.status)}}</td>
+            <td data-label="Date Published">{{formatReqDate(capsule.created_at)}}</td>
+          </tr>
+        </tbody>
+      </table>
+
+    </div>
+</div>

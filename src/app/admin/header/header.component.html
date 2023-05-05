@@ -1,0 +1,32 @@
+<header [ngClass]="theme+'-header'">
+    <div class="head">
+      <div class="logo-banner">
+        <button class="menubtn" (click)="generalService.toggleSideNav()">
+          <mat-icon>menu</mat-icon>
+        </button>
+        <div class="cict">
+            <img [src]="image.cictLogo" alt="" width="60px" height="60px" class="logo-header" >
+        </div>
+        <div class="banner">
+          <h3 class="al-header">COLLEGE OF INFORMATION AND COMMUNICATIONS TECHNOLOGY</h3>
+          <p class="al-title">Research Capsule</p>
+        </div>
+      </div>
+      <div class="dropdown" style="float:right;">
+         <!-- PANG SLARENAS -->
+        <img src="assets/default-userpng.png" class="logo-header"
+            alt="" width="50px" height="50px" *ngIf="currentUser.profilePic == null">
+             <!-- PANG HOSTINGER -->
+        <!-- <img src="../../../assets/default-userpng.png" class="logo-header"
+            alt="" width="50px" height="50px" *ngIf="currentUser.profilePic == null"> -->
+          <img [src]="currentUser.profilePic" class="logo-header"
+            alt="" width="50px" height="50px" *ngIf="currentUser.profilePic != null">
+        <div class="dropdown-content">
+            <a [routerLink]="['/admin/edit/profile']" routerLinkActive="active" >Edit Profile</a>
+            <a class="logout" (click)="openLogoutDialog()">Logout</a>
+        </div>
+      </div>
+  </div>
+</header>
+
+

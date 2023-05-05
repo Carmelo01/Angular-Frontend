@@ -1,0 +1,50 @@
+<div class="page-container">
+    <div class="left-side">
+        <div class="pdf-viewer">
+          <!-- <ngx-extended-pdf-viewer [src]="'assets/C2.pdf'"></ngx-extended-pdf-viewer> -->
+          <ngx-extended-pdf-viewer [src]="urlmain" [textLayer]="true"></ngx-extended-pdf-viewer>
+          <button class="open-in-new-tab" (click)="openPdf()"><mat-icon>add_box</mat-icon><label>Open in New Tab</label></button>
+        </div>
+    </div>
+    <div class="right-side">
+        <!-- <div class="rubrics-container"> -->
+          <div class="rubrics-con">
+            <div class="rubrics-header">
+              <h4>Capsule Grading Sheet</h4>
+            </div>
+            <form #gradecapsule=ngForm (ngSubmit)="onSubmit()">
+            <table>
+              
+              <tbody *ngFor="let category of categories; let i = index">
+                <tr class="t-head">
+                  <th class="t-cat">{{category.title}}</th>
+                  <td>1</td>
+                  <td>2</td>
+                  <td>3</td>
+                  <td>4</td>
+                  <td>5</td>
+                </tr>
+                <tr *ngFor="let subcat of category.rubric;let j = index" [ngClass]="j % 2 === 0 ? 'even-row' : 'odd-row'">
+                  <th class="t-subcat"><h6 class="t-subcat-text">{{subcat.rubric}}</h6></th>
+                  <td><input type="radio" name='{{subcat.rubric}}' value="1" (change)="updateValue(subcat.id, subcat.rubric, 1)" id="rb1">{{selectedOption}}</td>
+                  <td><input type="radio" name='{{subcat.rubric}}' value="2" (change)="updateValue(subcat.id, subcat.rubric, 2)" id="rb2"></td>
+                  <td><input type="radio" name='{{subcat.rubric}}' value="3" (change)="updateValue(subcat.id, subcat.rubric, 3)" id="rb3"></td>
+                  <td><input type="radio" name='{{subcat.rubric}}' value="4" (change)="updateValue(subcat.id, subcat.rubric, 4)" id="rb4"></td>
+                  <td><input type="radio" name='{{subcat.rubric}}' value="5" (change)="updateValue(subcat.id, subcat.rubric, 5)" id="rb5"></td>
+                </tr>
+                </tbody>
+
+            </table>
+            <div class="comment-box-container">
+              <h5 class="comment-box-text">Comment Box:</h5>
+              <textarea class="grade-capsule-textarea" name="comment" id="commentbox" rows="4" [(ngModel)]="commentRubrics" placeholder="Input your comment here:"></textarea>
+            </div>
+            <button class="btn submit" role="button" type="submit">Submit Grade</button>
+
+
+          </form>
+          </div>         
+        </div>
+</div>
+
+<!-- [src]="'assets/C2.pdf'" -->

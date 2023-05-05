@@ -1,0 +1,62 @@
+<div class="container">
+  <div class="card" [ngClass]="theme+'-card'">
+    <form #editForm=ngForm (ngSubmit)="onSubmit()">
+      <div class="ep-header mb-3">
+        <div class="ep-img" *ngIf="!disabledForms">
+          <image-cropper [imageChangedEvent]="imgChangeEvt"
+          [maintainAspectRatio]="true" [roundCropper]="true"
+          (imageCropped)="cropImg($event)"></image-cropper>
+          <input type="file" (change)="onFileChange($event)" maxSize="3000000" required>
+        </div>
+        <div class="ep-img" *ngIf="disabledForms">
+          <img src="../../../assets/default-userpng.png"
+            alt="" width="50px" height="50px" *ngIf="currentUser.profilePic == null">
+          <img [src]="currentUser.profilePic"
+            alt="" width="50px" height="50px" *ngIf="currentUser.profilePic != null">
+        </div>
+        <div class="ep-name">
+          <h3>{{form.fname}} {{form.mname}} {{form.lname}}</h3>
+        </div>
+      </div>
+      <div class="ep-body" >
+        <div class="wrapper">
+          <div class="ep-impro-hr"></div>
+          <div class="input-container">
+            <label for="fname">First Name:</label>
+            <input type="text"
+              class="form-control" id="fname" placeholder="First Name" name="fname"
+              [(ngModel)]="form.fname" [disabled]="disabledForms" [ngClass]="{disabledForm: disabledForms}" >
+          </div>
+          <div class="ep-impro-hr"></div>
+          <div class="input-container">
+            <label for="mname">Middle Name:</label>
+            <input type="text"
+              class="form-control" id="mname" placeholder="Middle Name" name="mname"
+              [(ngModel)]="form.mname" [disabled]="disabledForms" [ngClass]="{disabledForm: disabledForms}">
+          </div>
+          <div class="ep-impro-hr"></div>
+          <div class="input-container">
+            <label for="lname">Last Name:</label>
+            <input type="text"
+              class="form-control" id="lname" placeholder="Last Name" name="lname"
+              [(ngModel)]="form.lname" [disabled]="disabledForms" [ngClass]="{disabledForm: disabledForms}">
+          </div>
+          <div class="ep-impro-hr"></div>
+          <div class="input-container">
+            <label for="email">Email:</label>
+            <input type="email"
+            class="form-control" id="email" placeholder="Email" name="email"
+            [(ngModel)]="form.email" [disabled]="disabledForms" [ngClass]="{disabledForm: disabledForms}">
+          </div>
+        </div>
+        <div class="ep-btn-edit">
+          <button *ngIf="disabledForms" type="button" class="btn orange-button" (click)="editProfile()">Edit Profile</button>
+        </div>
+        <div class="ep-btn-save">
+          <button *ngIf="!disabledForms" type="button" class="btn orange-button" (click)="editProfile()">Cancel</button>
+          <button *ngIf="!disabledForms" type="submit" class="btn orange-button" >Submit</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

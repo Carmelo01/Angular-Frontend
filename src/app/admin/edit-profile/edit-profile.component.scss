@@ -1,0 +1,117 @@
+.ep-impro-hr {
+    content: " ";
+    display: block;
+    border-top: 2px solid #000000;
+}
+
+image-cropper{
+  width: 150px !important;
+}
+
+.container{
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+}
+
+.card{
+  padding: 20px;
+  margin-top: 40px;
+  width: 70%;
+}
+
+.ep-header{
+  display: flex;
+  flex-direction: column;
+  // background-color: aquamarine;
+  width: 100%;
+}
+
+.ep-img{
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction:  column;
+}
+
+.ep-img img{
+  width: 150px;
+  height: 150px;
+  margin-bottom: 20px;
+  border-radius: 50%;
+}
+
+.ep-name{
+  text-align: center;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+}
+
+.ep-name h3{
+  font-size: 3.0em;
+  margin-bottom: 0;
+}
+
+.ep-name p {
+  font-size: 1.4em;
+}
+
+.input-container{
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.input-container input{
+  width: 70%;
+  margin-top: 20px;
+  margin-bottom: 5px;
+  transition: .5s;
+}
+
+.disabledForm{
+  border: none !important;
+  background-color: transparent !important;
+  transition: .5s;
+  margin-bottom: 0 !important;
+}
+
+.ep-btn-edit{
+  text-align: center;
+  margin-top: 30px;
+}
+
+.ep-btn-save{
+  text-align: center;
+  margin-top: 30px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+
+.orange-button{
+  background-color: rgb(245, 120, 28);
+  border-radius: 10px;
+  color: white;
+  padding: 5px 50px;
+  font-weight: bold;
+  transition: 0.8 ease-out;
+}
+
+.orange-button:hover{
+  opacity: 0.5;
+}
+
+@media only screen and (max-width: 970px){
+  .ep-header{
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 100%;
+  }
+}

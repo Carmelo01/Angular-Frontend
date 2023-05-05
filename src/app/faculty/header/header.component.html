@@ -1,0 +1,57 @@
+  <header  [ngClass]="theme+'-faculty-header'">
+  <div class="head">
+    <div class="logo-banner">
+      <div class="cict">
+         <!-- PANG HOSTINGER -->
+          <!-- <img src="../../../assets/CICT.png" alt="" width="60px" height="60px" > -->
+           <!-- PANG SLARENAS -->
+          <img src="assets/CICT.png" alt="" width="60px" height="60px" >
+      </div>
+      <div class="banner">
+        <h3 class="al-header">COLLEGE OF INFORMATION AND COMMUNICATIONS TECHNOLOGY</h3>
+        <p class="al-title">Research Capsule</p>
+      </div>
+    </div>
+
+    <div class="centerbtn" [ngClass]="showNav ? 'mobile-menu' : '' ">
+      <ul>
+        <li>
+          <a [routerLinkActive]="'active'"
+          [routerLink]="['/faculty/my-capsule']"
+          (click)="hideOnClick()">My Capsule</a>
+        </li>
+        <li>
+          <a [routerLinkActive]="'active'"
+          [routerLink]="['/faculty/review/capsule']"
+          (click)="hideOnClick()"
+          >Review Capsule</a>
+        </li>
+        
+      </ul>
+    </div>
+    <div class="menubtn" (click)="toggleNav()" [ngClass]="showNav ? 'menubg' : '' ">
+      <mat-icon>menu</mat-icon>
+    </div>
+
+
+    <div class="user">
+      <div class="dropdown" style="float:right;">
+         <!-- PANG SLARENAS -->
+        <img src="assets/default-userpng.png" class="logo-header"
+        alt="" width="50px" height="50px" *ngIf="currentUser.profilePic == null">
+
+        <!-- PANG HOSTINGER -->
+        <!-- <img src="../../../assets/default-userpng.png" class="logo-header"
+        alt="" width="50px" height="50px" *ngIf="currentUser.profilePic == null"> -->
+        <img [src]="currentUser.profilePic" class="logo-header"
+          alt="" width="50px" height="50px" *ngIf="currentUser.profilePic != null">
+        <div class="dropdown-content">
+            <h6>{{currentUser.fname}} {{currentUser.lname}}</h6>
+            <a
+            [routerLink]="['/faculty/edit_profile']">Edit Profile</a>
+            <a class="logout" (click)="openLogoutDialog()">Logout</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>

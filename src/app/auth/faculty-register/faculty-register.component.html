@@ -1,0 +1,62 @@
+<div class="container">
+    <div class="form-container">
+        <h1>Register Faculty</h1>
+        <p class="new-user">Already Have an Account? <a [routerLink]="['/faculty/login']"class="signup-link">Login</a></p>
+        <form #myForm="ngForm" (ngSubmit)="onSubmit()">
+            <div class="alert alert-danger" [hidden]="!error">
+              {{error}}
+            </div>
+            <div class="full-name">
+                <div class="last-name">
+                    <input type="text" name="last-name" placeholder="Surname"
+                    [(ngModel)]="myModel.lname" required>
+                </div>
+                <div class="first-name">
+                    <input type="text" name="first-name" placeholder="First Name"
+                    [(ngModel)]="myModel.fname" required>
+                </div>
+                <div class="middle-name">
+                    <input type="text" name="middle-name" placeholder="Middle Initial"
+                    [(ngModel)]="myModel.mname">
+                </div>
+            </div>
+            <div class="contact-field">
+                <mat-icon class="icon">
+                    <span class="material-symbols-outlined">
+                    call
+                    </span>
+                </mat-icon>
+                <input type="text" name="contact" placeholder="Contact Number"
+                [(ngModel)]="myModel.contact" required>
+            </div>
+                <div class="email-field">
+                    <mat-icon class="icon">
+                        <span class="material-symbols-outlined">
+                        mail
+                        </span>
+                    </mat-icon>
+                    <input type="email" name="email" placeholder="Email"
+                    [(ngModel)]="myModel.email" required>
+                </div>
+                <div class="password-field">
+                    <mat-icon class="icon">
+                        <span class="material-symbols-outlined">
+                        lock
+                        </span>
+                    </mat-icon>
+                    <input type="password" name="password" placeholder="Password" [(ngModel)]="myModel.password" required>
+                </div>
+                <p class="forgot-password"><a href="#" class="frgt-pw-link">Forgot Password?</a></p>
+                <div class="login">
+                  <button class="login-button" type="submit" [disabled]="!myForm.valid">Register</button>
+                </div>
+        </form>
+    </div>
+    <div class="context-container">
+         <!-- PANG HOSTINGER -->
+        <!-- <img class="logo" src="../../../assets/CICT.png"> -->
+         <!-- PANG SLARENAS -->
+        <img class="logo" src="assets/CICT.png">
+        <h2 class="Title">Research Capsule</h2>
+    </div>
+</div>

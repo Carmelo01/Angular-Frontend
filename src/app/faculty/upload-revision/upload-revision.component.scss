@@ -1,0 +1,105 @@
+.page-container{
+    height: 100vh;
+    width: 100%;
+    padding-left: 7%;
+    padding-top: 150px;
+    background-image: linear-gradient(to bottom, rgba(255, 145, 0, 0.4), rgba(100, 32, 0, 0.5)), url('../../../assets/CICTBuilding.png');
+    background-size: cover;
+    background-position: center;
+
+}
+
+.main-container{
+    width: 65%;
+    height: fit-content;
+    padding: 70px 55px;
+    background-color: rgba(235, 235, 235, 0.849);
+    border: 1px solid rgb(180, 177, 177);
+    border-radius: 15px;
+    box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.281);
+}
+
+.upload-container{
+    display: flex;
+    flex-direction: column;
+}
+
+.upload-container textarea{
+    width: 50%;
+    resize: none;
+    height: 140px;
+    border-radius: 0 15px 15px 0 ;
+    padding-left: 0.8rem;
+    padding-top: 0.8rem;
+    border: solid 1px #a0a0a0;
+    box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.137);
+}
+
+.button-3 {
+  appearance: none;
+  background-color: #2ea44f;
+  border: 1px solid rgba(27, 31, 35, .15);
+  border-radius: 6px;
+  box-shadow: rgba(27, 31, 35, .1) 0 1px 0;
+  box-sizing: border-box;
+  color: #fff;
+  cursor: pointer;
+  display: inline-block;
+  font-family: -apple-system,system-ui,"Segoe UI",Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji";
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 20px;
+  padding: 3px 16px;
+  height: 40px;
+  position: relative;
+  text-align: center;
+  text-decoration: none;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  vertical-align: middle;
+  white-space: nowrap;
+}
+
+.button-3:focus:not(:focus-visible):not(.focus-visible) {
+  box-shadow: none;
+  outline: none;
+}
+
+.button-3:hover {
+  background-color: #2c974b;
+}
+
+.button-3:focus {
+  box-shadow: rgba(46, 164, 79, .4) 0 0 0 3px;
+  outline: none;
+}
+
+.button-3:disabled {
+  background-color: #94d3a2;
+  border-color: rgba(27, 31, 35, .1);
+  color: rgba(255, 255, 255, .8);
+  cursor: default;
+}
+
+.button-3:active {
+  background-color: #298e46;
+  box-shadow: rgba(20, 70, 32, .2) 0 1px 0 inset;
+}
+
+.title-submit{
+    display: flex;
+    justify-content: space-between;
+}
+
+.upload-file{
+    display: flex;
+    margin: 15px 0;
+    background-color: rgb(235, 235, 235);
+    border: 1px solid rgb(180, 177, 177);
+    border-radius: 5px;
+    align-items: center;
+    padding: 8px 10px;
+    width: 25%;
+    justify-content: space-evenly;
+}

@@ -1,0 +1,133 @@
+header{
+  display: flex;
+  width: 100%;
+  position: fixed;
+  z-index: 6;
+  height: 94px;
+}
+
+.head{
+    display: flex;
+    width: 100%;
+    align-items: center;
+    padding: 10px 20px;
+    justify-content: space-between;
+}
+.logout{ cursor: pointer;}
+.cict{
+    margin-right: 2%;
+    img{
+      border-radius: 50%;
+    }
+}
+
+.logo-banner{
+  display: flex;
+  align-items: center;
+  width: 90%;
+  .banner{
+    width: 100%;
+  }
+  mat-icon{
+    color: white;
+    margin-right: 1%;
+  }
+}
+.menubtn{
+  border: none;
+  background-color: transparent;
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 5px;
+  margin-right: 1%;
+  &:hover{
+    background-color: rgba(206, 203, 203, 0.4);
+  }
+}
+
+
+
+.al-header{
+  font-family: 'Century gothic', sans-serif;
+  font-size: 20px;
+  width: 100%;
+  color: white;
+  margin: 0;
+  padding-top: 10px;
+
+}
+
+.al-title{
+  font-family: 'Poppins', sans-serif;
+  color: white;
+}
+
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    right: 0;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 4;
+}
+
+.logo-header{
+  border-radius: 50%;
+}
+
+.dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+.dropdown-content a:hover {background-color: #ddd;}
+
+.dropdown:hover .dropdown-content {display: block;}
+
+.dropdown:hover .dropbtn {background-color: #3e8e41;}
+
+@media only screen and (max-width: 790px) {
+  .al-header{
+    font-size: 12px;
+  }
+  .al-title{
+    font-size: 10px;
+  }
+}
+
+@media only screen and (max-height: 600px) {
+  .al-header{
+    font-size: 12px;
+  }
+  .al-title{
+    font-size: 10px;
+  }
+  .logo-header{
+    width: 40px;
+    height: 40px;
+  }
+  .logo-banner{
+    button{
+      width: 30px;
+      height: 30px;
+    }
+  }
+  header{
+    height: 60px;
+    .cict{
+      margin-right: 1%;
+    }
+    .head{
+      padding: 5px 10px;
+    }
+  }
+}

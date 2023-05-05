@@ -1,0 +1,227 @@
+//loading
+.loader{
+  display: flex;
+  top: 42%;
+  left: 45%;
+  position: absolute;
+  z-index: 2000;
+}
+
+.loader-bg{
+  width: 100%;
+  height: 100%;
+  margin-top: -94px;
+  margin-left: -200px;
+  // background-color: aquamarine;
+  backdrop-filter: blur(5px);
+  position: fixed;
+  z-index: 1999;
+}
+
+.d-container{
+  margin: 10px 20px;
+}
+.d-header {
+    display: flex;
+    align-items: center;
+}
+.d-header h3{
+    margin: 0;
+}
+
+.card{
+  display: flex;
+  flex-direction: column;
+  border-radius: 15px;
+  box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.336);
+  padding: 30px;
+  margin-top: 20px;
+  max-height: 600px;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+.d-table-header{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 40px;
+    margin-bottom: 10px;
+}
+.d-table-header h3{
+    margin: 0;
+}
+.d-impro-hr {
+    content: " ";
+    display: block;
+    border-top: 2px solid #000000;
+}
+.orange-button{
+  background-color: rgb(245, 120, 28);
+  border-radius: 20px;
+  color: white;
+  padding: 5px 20px;
+  border: none;
+}
+.orange-button:hover{
+  transition: .5s;
+  background-color: rgb(172, 75, 5);
+}
+.d-footer{
+  position: fixed;
+  bottom: 3%;
+  right: 3%;
+  mat-icon{
+    transform: scale(2.5);
+  }
+  .addbtn{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgb(245, 120, 28);
+    border-radius: 20px;
+    color: white;
+    padding: 20px 25px;
+    border: none;
+    &:hover {background-color: rgb(172, 75, 5);}
+  }
+}
+//rubrics body
+.d-body{
+  width: 100%;
+  height: 100%;
+  margin-top: 20px;
+}
+.all-title-con{
+  display: flex;
+  flex-direction: column;
+}
+.single-title-container{
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 20px;
+}
+.data-con{
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+}
+.data-card{
+  width: calc(95% - 10px);
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #e4dede;
+  border-radius: 10px;
+  padding: 10px 20px;
+  .right-side a{
+    text-decoration: none;
+    cursor: pointer;
+  }
+  .left-side, .right-side{
+    display: flex;
+    flex-direction: row;
+  }
+  .left-side{
+    gap: 15px;
+    p{ margin: 0;}
+    mat-icon{
+      border-radius: 50%;
+      transition: 0.4s;
+      cursor: pointer;
+      &:hover{ background-color: rgb(73, 70, 70, .3);}
+    }
+  }
+  .right-side{
+    gap: 15px;
+  }
+}
+.all-rubrics-con{
+  width: 100%;
+  margin-top: 10px;
+  display: flex;
+  flex-direction: column;
+  margin-left: 5%;
+  .rubrics-card{
+    width: 85% !important;
+    p{margin: 0;}
+  }
+}
+
+.editbtn{
+  background-color: transparent;
+  border: none;
+  display: flex;
+  align-items: center;
+  border-radius: 50%;
+  transition: 0.5s;
+  height: 34px;
+  &:hover{background-color: white;}
+}
+.deleteDiv{
+  width: 5%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  .deletebtn{
+    background-color: transparent;
+    padding: 10px;
+    border: none;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: 0.5s;
+    &:hover{
+      background-color: red;
+      mat-icon{ color: white }
+    }
+  }
+}
+
+
+@media only screen and (max-width: 790px) {
+  .loader-bg{
+    margin-top: -55px !important;
+    margin-left: 0px !important;
+  }
+}
+
+@media only screen and (max-width: 970px) {
+  .title-card{
+    display: flex;
+    flex-direction: column-reverse;
+    background-color: transparent;
+    gap: 10px;
+    padding: 0;
+    .right-side{
+      width: 100%;
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      .editbtn{
+        &:hover{background-color: rgb(73, 70, 70, .3);}
+      }
+    }
+    .left-side{
+      background-color: #e4dede;
+      border-radius: 10px;
+      width: 100%;
+      padding: 5px 20px;
+    }
+  }
+
+}
+
+@media only screen and (max-width: 320px) {
+  .card{
+    padding: 10px;
+  }
+}
+
+
+
+
+

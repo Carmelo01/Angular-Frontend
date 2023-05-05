@@ -1,0 +1,67 @@
+<div class="loader" ><app-loader *ngIf="loading"></app-loader></div>
+<div class="loader-bg" *ngIf="loading"></div>
+<div class="d-container">
+    <div class="d-header">
+        <h3>Unverified Faculty List</h3>
+    </div>
+    <div class="card" [ngClass]="theme+'-card'">
+      <div class="d-content">
+        <div class="d-table-header">
+            <h3>Faculty</h3>
+            <button class="btn orange-button" (click)="exportService.exportFaculty(faculties.msg, 'Unverified Faculty List', 'unverified-faculty-list')">Export CSV File</button>
+        </div>
+        <div class="d-impro-hr"></div>
+    </div>
+
+    <form>
+        <div class="d-input-parent">
+            <div class="d-div-s">
+                <mat-icon class="d-s-icon">search</mat-icon>
+                <input type="text" class="d-custom-input" placeholder="Search for a Faculty">
+            </div>
+            <div class="d-div-select">
+                <select class="d-custom-select" id="inputGroupSelect01">
+                    <option selected>Filter by</option>
+                    <option value="1">One</option>
+                    <option value="2">Two</option>
+                    <option value="3">Three</option>
+                </select>
+
+                <select class="d-custom-select" id="inputGroupSelect01">
+                    <option selected>Sort by</option>
+                    <option value="1">One</option>
+                    <option value="2">Two</option>
+                    <option value="3">Three</option>
+                </select>
+            </div>
+        </div>
+    </form>
+
+    <table class="d-table-capsule" id="{{theme}}-d-table">
+        <thead>
+            <th>#</th>
+            <th>First Name</th>
+            <th>Middle Name</th>
+            <th>Last Name</th>
+            <th>Email</th>
+            <th>Contacts</th> <!-- change to status -->
+            <th>Action</th>
+        </thead>
+        <tbody *ngFor="let faculty of faculties.msg; let i = index">
+          <tr>
+            <td data-label="#">{{i + 1}}</td>
+            <td data-label="First Name">{{faculty.fname}}</td>
+            <td data-label="Middle Name">{{faculty.mname}}</td>
+            <td data-label="Last Name">{{faculty.lname}}</td>
+            <td data-label="Email">{{faculty.email}}</td>
+            <td data-label="Contacts">{{faculty.contact}}</td>
+            <td data-label="Action">
+              <button class="btn orange-button" (click)="openConfirmVerifyDialog(faculty)">Verify</button>
+            </td>
+          </tr>
+        </tbody>
+    </table>
+    </div>
+</div>
+
+

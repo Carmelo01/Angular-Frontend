@@ -1,0 +1,41 @@
+<div class="d-container">
+  <div class="d-header">
+      <h3>Rubrics</h3>
+  </div>
+  <div class="card" >
+    <div class="d-content">
+      <a [routerLink]="['/admin/rubrics']" class="d-content-head">
+        <mat-icon>keyboard_arrow_left</mat-icon>Back
+      </a>
+      <div class="d-table-header">
+        <h3>Add Rubrics to Category {{selectedTitle.title}}</h3>
+      </div>
+      <div class="d-impro-hr"></div>
+    </div>
+
+    <div class="form-container">
+      <form #addForm=ngForm (ngSubmit)="onSubmit()">
+        <div class="form-card">
+          <div class="forDiv" *ngFor="let value of values; let i = index">
+            <div class="inputDiv">
+              <input type="text" class="form-control" [(ngModel)]="value.value" #name="ngModel"
+              name="value{{i}}" placeholder="Enter Rubrics*" required>
+            </div>
+            <div class="deleteDiv">
+              <button class="deletebtn" (click)="removeValue(i)"><mat-icon>delete_outline</mat-icon></button>
+            </div>
+          </div>
+          <div class="btnDiv">
+            <button class="orange-button" type="button" (click)="addValue()">Add More Rubrics</button>
+          </div>
+          <div class="submitDiv">
+            <button class="orange-button" type="submit" [disabled]="!addForm.valid" *ngIf="!loading">Submit</button>
+            <button class="orange-button" style="padding: 5px 20px;" *ngIf="loading"><app-loader-button></app-loader-button></button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+

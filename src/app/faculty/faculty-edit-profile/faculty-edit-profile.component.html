@@ -1,0 +1,90 @@
+<div class="main-container" [ngClass]="theme+'-faculty-main-container'">
+  <div class="edit-container" [ngClass]="theme+'-edit-container'">
+    <form #editForm=ngForm (ngSubmit)="onSubmit()">
+      <div class="img-container">
+        <div class="ep-img mb-3" *ngIf="!disabledForms">
+          <image-cropper [imageChangedEvent]="imgChangeEvt"
+          [maintainAspectRatio]="true" [roundCropper]="true"
+          (imageCropped)="cropImg($event)" *ngIf="isShow"></image-cropper>
+          <label class="custom-file-upload">
+            <mat-icon >add_box</mat-icon>
+            Add Image
+            <input class="inputfile" type="file" (change)="onFileChange($event)" required>
+        </label>
+
+
+        </div>
+        <div class="ep-img mb-3" *ngIf="disabledForms">
+          <img src="../../../assets/default-userpng.png"
+            alt="" width="50px" height="50px" *ngIf="currentUser.profilePic == null">
+          <img [src]="currentUser.profilePic"
+            alt="" width="50px" height="50px" *ngIf="currentUser.profilePic != null">
+        </div>
+        <h4>{{form.fname}} {{form.mname}} {{form.lname}}</h4>
+      </div>
+      <div class="details-container">
+        <div class="fm-name">
+          <div class="input-container">
+            <label for="fname">First Name:</label>
+            <input type="text"
+            class="form-control" id="fname" placeholder="First Name" name="fname"
+            [(ngModel)]="form.fname" [disabled]="disabledForms" [ngClass]="{disabledForm: disabledForms}">
+          </div>
+
+          <div class="input-container">
+            <label for="mname">Middle Name:</label>
+            <input type="text"
+            class="form-control" id="mname" placeholder="Middle Name" name="mname"
+            [(ngModel)]="form.mname" [disabled]="disabledForms" [ngClass]="{disabledForm: disabledForms}">
+          </div>
+        </div>
+        <div class="lname-contact">
+          <div class="input-container">
+            <label for="lname">Last Name:</label>
+            <input type="text"
+            class="form-control" id="lname" placeholder="Last Name" name="lname"
+            [(ngModel)]="form.lname" [disabled]="disabledForms" [ngClass]="{disabledForm: disabledForms}">
+          </div>
+
+          <div class="input-container">
+            <label for="contact">Contact:</label>
+            <input type="text"
+            class="form-control" id="contact" placeholder="Contacts" name="contact"
+            [(ngModel)]="form.contact" [disabled]="disabledForms" [ngClass]="{disabledForm: disabledForms}">
+          </div>
+        </div>
+        <div class="email">
+          <div class="input-container">
+            <label for="email">Email:</label>
+            <input type="text"
+            class="form-control" id="email" placeholder="Email" name="email"
+            [(ngModel)]="form.email" [disabled]="disabledForms" [ngClass]="{disabledForm: disabledForms}">
+          </div>
+        </div>
+
+        <div class="ep-btn-edit">
+          <button *ngIf="disabledForms" type="button" class="btn orange-button" (click)="editProfile()">Edit Profile</button>
+        </div>
+        <div class="ep-btn-save" *ngIf="!disabledForms">
+          <button type="button" class="btn orange-button" (click)="editProfile()">Cancel</button>
+          <button type="submit" class="btn orange-button" *ngIf="!loading">Submit</button>
+          <button class="btn orange-button" style="padding: 5px 30px;" *ngIf="loading"><app-loader-button></app-loader-button></button>
+        </div>
+      </div>
+    </form>
+    <h5 class="change-theme"> - Change Theme - </h5>
+        <div class="edit-theme">
+
+            <div class="orange-theme" (click)="openThemeDialog('light')">
+                <h6>Classic Theme</h6>
+            </div>
+            <div class="red-theme" (click)="openThemeDialog('red')">
+                <h6>Red Theme</h6>
+            </div>
+            <div class="dark-mode" (click)="openThemeDialog('dark')">
+                <h6>Dark Mode</h6>
+            </div>
+        </div>
+  </div>
+
+</div>

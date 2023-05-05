@@ -1,0 +1,17 @@
+<div class="container">
+    <div class="dia-header">
+      <div class="d-div-s">
+        <h3>Change Theme</h3>
+      </div>
+    </div>
+
+    <div class="dia-content">
+      <p>Change to {{result.theme}} theme?</p>
+    </div>
+
+    <div class="dia-actions">
+      <button class="cancel" mat-dialog-close>Cancel</button>
+      <button class="submit" (click)="onSubmit()" *ngIf="!loading">Confirm</button>
+      <button class="btn submit" style="padding: 5px 20px;" *ngIf="loading"><app-loader-button></app-loader-button></button>
+    </div>
+  </div>

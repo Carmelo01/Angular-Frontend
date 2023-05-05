@@ -1,0 +1,134 @@
+.d-container{
+  margin: 10px 20px;
+}
+.d-header {
+    display: flex;
+    align-items: center;
+}
+.d-header h3{
+    margin: 0;
+}
+
+.card{
+  display: flex;
+  flex-direction: column;
+  border-radius: 15px;
+  box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.336);
+  padding: 30px;
+  margin-top: 20px;
+}
+
+.d-table-header{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 40px;
+    margin-bottom: 10px;
+}
+.d-table-header h3{
+    margin: 0;
+}
+.d-impro-hr {
+    content: " ";
+    display: block;
+    border-top: 2px solid #000000;
+}
+.d-content-head{
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  font-size: 17px;
+  cursor: pointer;
+  width: fit-content;
+}
+.orange-button{
+  background-color: rgb(245, 120, 28);
+  border-radius: 20px;
+  color: white;
+  padding: 5px 20px;
+  border: none;
+  width: fit-content;
+}
+.orange-button:disabled{
+  background-color: gray;
+  &:hover{
+    background-color: gray;
+    cursor: not-allowed;
+  }
+}
+.orange-button:hover{
+  transition: .5s;
+  background-color: rgb(172, 75, 5);
+}
+.form-container{
+  width: 100%;
+  height: 100%;
+}
+.form-card{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  .btnDiv{
+    display: flex;
+    justify-content: center;
+  }
+}
+.forDiv{
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+  border-radius: 10px;
+  padding: 10px 0px;
+  .inputDiv{
+    width: 50%;
+  }
+  .deleteDiv{
+    width: 5%;
+  }
+
+}
+
+.deletebtn{
+  padding: 8px;
+  background-color: transparent;
+  border: none;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: 0.5s;
+  &:hover{
+    background-color: red;
+    mat-icon{ color: white }
+  }
+}
+
+.submitDiv{
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 70px;
+  button{
+    padding: 5px 40px !important;
+  }
+}
+
+.btnDiv{
+  margin-top: 20px;
+}
+
+@media only screen and (max-width: 600px) {
+  .inputDiv{
+    width: 85% !important;
+    input{
+      width: 100%;
+    }
+  }
+  .deleteDiv{
+    width: 10% !important;
+  }
+}
+

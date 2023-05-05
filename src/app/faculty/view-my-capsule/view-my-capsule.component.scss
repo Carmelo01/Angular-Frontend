@@ -1,0 +1,233 @@
+
+.d-container{
+    margin: 10px 20px;
+  }
+  .card{
+    display: flex;
+    font-family: Poppins;
+    flex-direction: column;
+    border-radius: 15px;
+    box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.336);
+    padding: 30px;
+    margin-top: 145px;
+  }
+  .d-header {
+    display: flex;
+    align-items: center;
+  }
+  .d-header h3{
+    margin: 0;
+  }
+  .d-content{
+    margin-bottom: 30px;
+  }
+  .d-content-head{
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    font-size: 17px;
+    cursor: pointer;
+    width: fit-content;
+  }
+  .d-content-body{
+    display: flex;
+    justify-content: space-between;
+  }
+  td{
+    padding: 10px 0;
+  }
+  .left-body{
+    width: 60%;
+  }
+  .right-body{
+    width: 40%;
+
+  }
+  .upper h3{
+    margin-bottom: 0;
+  }
+  .upper{
+    margin-bottom: 20px;
+  }
+  .label{
+    font-weight: 580;
+    color: gray;
+  }
+  .pdf-button{
+    display: flex;
+    justify-content: space-between;
+    margin: 5px 0;
+    background-color: rgb(235, 235, 235);
+    border: 1px solid rgb(180, 177, 177);
+    border-radius: 5px;
+    align-items: center;
+    padding: 8px 10px;
+    cursor: pointer;
+    transition: 0.5s;
+    &:hover{background-color: rgb(197, 194, 194);}
+  }
+  .filename{
+    margin-bottom: 0;
+    padding-left: 15px;
+  }
+  .orange-button{
+    background-color: rgb(245, 120, 28);
+    border-radius: 20px;
+    color: white;
+    padding: 5px 20px;
+    border: none;
+    margin: 10px 0;
+  }
+
+  .form-comment{
+    display: flex;
+    flex-direction: row;
+    input{
+      margin-right: 10px;
+      width: calc(100% - 46px) !important;
+    }
+    .send-btn{
+      border: none;
+      background: rgb(245, 120, 28);
+      border-radius: 5px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 36px;
+      height: 38px;
+      padding: 0;
+      mat-icon{
+        color: white;
+      }
+      &:hover{ opacity: 0.5; }
+    }
+  }
+  .hideOrAll{
+    cursor: pointer;
+  }
+
+  .left-div{
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    align-items: center;
+  }
+
+
+  .comment-container{
+    display: flex;
+    margin-bottom: 20px;
+  }
+  .comment-card{
+    background-color: rgb(235, 235, 235);
+    border-radius: 20px;
+    padding: 5px 10px;
+    margin-left: 10px;
+  }
+  .comment-card p{
+    margin-bottom: 0;
+  }
+  .comment-author{
+    font-weight: 500;
+  }
+  .right-body p{
+    margin-bottom: 0;
+  }
+
+  .right-body .orange-button{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .status{
+    background-color: #e4dede;
+    border-radius: 20px;
+    padding: 5px 10px;
+  }
+  .con-unassign{
+    display: flex;
+    flex-direction: column;
+    button{
+      width: fit-content;
+      transition: 0.5s;
+    }
+    .orange-button:hover{
+      opacity: 0.5;
+    }
+    .unassigned{
+      border: 2px solid red;
+      &:hover{
+        background: red;
+        color: white;
+      }
+    }
+  }
+  .assigned{
+    border: 1px solid green;
+    transition: 0.5s;
+  }
+  .assigned:hover{
+    background-color: green;
+    color: white;
+  }
+  .under-revision{
+    border: 1px solid yellow;
+    transition: 0.5s;
+  }
+  .under-revision:hover{
+    background-color: yellow;
+  }
+
+
+  .revisions-container{
+    width: 90%;
+    margin-left: 15px;
+    margin-top: 10px;
+    height: 190px;
+    overflow-y: scroll;
+    padding-right: 10px;
+  }
+
+  .pdf-button-revised{
+    display: flex;
+    justify-content: space-between;
+    margin: 5px 0;
+    background-color: rgb(235, 235, 235);
+    border: 1px solid rgb(180, 177, 177);
+    border-radius: 5px;
+    align-items: center;
+    cursor: pointer;
+  }
+  .pdf-button-revised:hover{
+    background-color: rgb(156, 156, 156);
+    transition: .3s;
+  }
+
+  .file{
+    display: flex;
+    padding: 8px 10px;
+  }
+
+  .pdf-button-revised .date{
+    height: 100%;
+    background-color: #a5a5a5;
+    padding: 10px;
+
+  }
+
+  .label{
+    padding-left: 10px;
+  }
+  
+  @media only screen and (max-width: 500px) {
+    .d-content-body{
+      flex-direction: column-reverse;
+    }
+    .left-body, .right-body{
+      width: 100%;
+    }
+    .d-content{
+      margin-bottom: 20px;
+    }
+  }
+  

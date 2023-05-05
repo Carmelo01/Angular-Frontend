@@ -1,0 +1,19 @@
+<div class="container">
+  <div class="dia-header">
+    <div class="d-div-s">
+      <h3>Remove Reviewer</h3>
+    </div>
+  </div>
+
+  <div class="dia-content">
+    <p>Are you sure you want to remove {{result.reviewerData.fname}} {{result.reviewerData.lname}} as a reviewer?</p>
+  </div>
+
+  <div class="dia-actions">
+    <button class="cancel" mat-dialog-close>Cancel</button>
+    <button class="submit" (click)="removeReviewer()" *ngIf="!loading">Remove</button>
+    <button class="submit" style="padding: 5px 30px;" *ngIf="loading"><app-loader-button></app-loader-button></button>
+  </div>
+</div>
+
+

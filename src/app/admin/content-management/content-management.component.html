@@ -1,0 +1,43 @@
+<div class="page-container">
+   <div class="card" [ngClass]="theme+'-card'">
+        <div class="edit-logo">
+            <div class="logo-con">
+                <img [src]="content.cictLogo" alt="CICT Logo" width="100px" height="100px">
+            </div>
+            <div class="logo-title">
+                <h5> Header CICT Logo </h5>
+            </div>
+            <div class="butt-container">
+              <button class="edit-button" (click)="openEditImageDialog(content, 'logo')">Edit</button>
+            </div>
+        </div>
+
+        <div class="edit-banner">
+            <div class="logo-con">
+                <img [src]="content.sideNav" alt="Bulsu" width="150px">
+            </div>
+            <div class="logo-title">
+                <h5> Side Nav Image </h5>
+            </div>
+            <div class="butt-container">
+              <button class="edit-button" (click)="openEditImageDialog(content, 'sideNav')">Edit</button>
+            </div>
+        </div>
+        <h5 class="change-theme"> Change Theme </h5>
+        <div class="edit-theme">
+
+            <div class="orange-theme" (click)="openThemeDialog('light')">
+                <h4>Classic Theme</h4>
+            </div>
+            <div class="red-theme" (click)="openThemeDialog('red')">
+                <h4>Red Theme</h4>
+            </div>
+            <div class="dark-mode" (click)="openThemeDialog('dark')">
+                <h4>Dark Mode</h4>
+            </div>
+        </div>
+
+
+
+   </div>
+</div>

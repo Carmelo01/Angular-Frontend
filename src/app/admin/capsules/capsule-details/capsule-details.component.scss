@@ -243,6 +243,47 @@ td{
   &:hover{ background-color: green; color: white}
 }
 
+
+.revisions-container{
+  width: 90%;
+  margin-left: 15px;
+  margin-top: 10px;
+  height: 260px;
+  overflow-y: scroll;
+  padding-right: 10px;
+}
+
+.pdf-button-revised{
+  display: flex;
+  justify-content: space-between;
+  margin: 5px 0;
+  background-color: rgb(235, 235, 235);
+  border: 1px solid rgb(180, 177, 177);
+  border-radius: 5px;
+  align-items: center;
+  cursor: pointer;
+}
+.pdf-button-revised:hover{
+  background-color: rgb(156, 156, 156);
+  transition: .3s;
+}
+
+.file{
+  display: flex;
+  padding: 8px 10px;
+}
+
+.pdf-button-revised .date{
+  height: 100%;
+  background-color: #a5a5a5;
+  padding: 10px;
+
+}
+
+.label{
+  padding-left: 10px;
+}
+
 @media only screen and (max-width: 790px) {
   .loader-bg{
     margin-top: -55px !important;

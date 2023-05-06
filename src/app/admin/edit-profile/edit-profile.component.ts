@@ -94,9 +94,13 @@ export class EditProfileComponent implements OnInit{
   }
 
   handleError(error: any){
-    this.toastr.warning("Please try again. Make sure the image size is below 3mb.");
+    // this.toastr.warning("Please try again. Make sure the image size is below 3mb.");
+    if(error.status == 422){
+      this.toastr.warning(error.error.msg);
+    } else {
+      this.toastr.warning("Please try again. Make sure the image size is below 3mb.");
+    }
     this.loading = false;
-    console.log(error)
     this.getCurrentUser();
   }
 

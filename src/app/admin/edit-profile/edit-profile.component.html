@@ -6,7 +6,7 @@
           <image-cropper [imageChangedEvent]="imgChangeEvt"
           [maintainAspectRatio]="true" [roundCropper]="true"
           (imageCropped)="cropImg($event)"></image-cropper>
-          <input type="file" (change)="onFileChange($event)" maxSize="3000000" required>
+          <input type="file" (change)="onFileChange($event)" required>
         </div>
         <div class="ep-img" *ngIf="disabledForms">
           <img src="../../../assets/default-userpng.png"
@@ -52,9 +52,10 @@
         <div class="ep-btn-edit">
           <button *ngIf="disabledForms" type="button" class="btn orange-button" (click)="editProfile()">Edit Profile</button>
         </div>
-        <div class="ep-btn-save">
-          <button *ngIf="!disabledForms" type="button" class="btn orange-button" (click)="editProfile()">Cancel</button>
-          <button *ngIf="!disabledForms" type="submit" class="btn orange-button" >Submit</button>
+        <div class="ep-btn-save" *ngIf="!disabledForms">
+          <button type="button" class="btn orange-button" (click)="editProfile()">Cancel</button>
+          <button *ngIf="!loading" type="submit" class="btn orange-button" >Submit</button>
+          <button class="btn submit" style="padding: 5px 20px;" *ngIf="loading"><app-loader-button></app-loader-button></button>
         </div>
       </div>
     </form>

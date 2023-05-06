@@ -144,7 +144,7 @@ export class ReviewSpecificCapsuleComponent {
 
 
   openPdf(data: any) {
-    this.capsuleService.getFile(data.file_path).subscribe(data=>{
+    this.capsuleService.getFile(data).subscribe(data=>{
        // Create a blob object from the ArrayBuffer data
       const blob = new Blob([data], { type: 'application/pdf' });
 

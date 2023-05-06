@@ -13,7 +13,7 @@ export class ReviseService {
     private tokenService: TokenService,
     public urlService: UrlService) { }
 
-      addCapsuleRevision(data: any, id: any){
+  addCapsuleRevision(data: any, id: any){
     let header = this.tokenService.getHeader()
     return this.http.post(this.urlService.url + `api/revise/capsule/upload/${id}`, data, {headers: header})
   }

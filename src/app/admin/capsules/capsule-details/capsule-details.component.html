@@ -20,7 +20,7 @@
           <span class="label">Description</span>
           <p>{{capsule?.description}}</p>
           <span class="label">Uploaded materials</span>
-          <div class="pdf-button" (click)="openPdf(capsule)">
+          <div class="pdf-button" (click)="openPdf(capsule.file_path)">
             <mat-icon>insert_drive_file</mat-icon>
             <p class="filename">{{capsule?.title}}.pdf</p>
           </div>
@@ -94,6 +94,21 @@
         </div>
         <button *ngIf="capsule?.status == '4'" class="status reject">Rejected</button>
         <button *ngIf="capsule?.status == '5'" class="status approve">Approved</button>
+
+        <div class="revisions-container" [ngClass]="theme+'-faculty-status'">
+          <span class="label">Uploaded Revisions</span>
+
+          <div class="pdf-button-revised" *ngFor="let revision of capsule.revision">
+            <div class="file" (click)="openPdf(revision.file_location)">
+            <mat-icon>insert_drive_file</mat-icon>
+            <p class="filename">{{revision?.title}}.pdf</p>
+            </div>
+            <div class="date">
+              <!-- <label>2023-7-01</label> -->
+              <label>{{exportService.formatReqDate(revision.created_at)}}</label>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>

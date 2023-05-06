@@ -1,20 +1,30 @@
 <div class="upload_revision_container" >
-    <div class="upload_revision">
-      <form #reviseForm=ngForm (ngSubmit)="onSubmit()">
-      <h3>Upload Revision</h3>
-      <h4>{{capsuleId?.title}}</h4>
-      <label>Description</label>
-      <textarea placeholder="Description Here" [(ngModel)]="form.description"></textarea>
-      <div class="pdf-button">
-        <mat-icon>add_box</mat-icon>
-        <p class="filename">Upload PDF</p>
-      </div>
-      <div class="submit_cancel">
-      <button class="submit_rev" type="submit">Submit Revision</button>
-      <button class="cancel_rev" type="button" mat-dialog-close>Cancel Revision</button>
+  <div class="upload_revision">
+    <form #reviseForm=ngForm (ngSubmit)="onSubmit()">
+    <h3>Upload Revision</h3>
+    <h4>{{capsuleId?.title}}</h4>
+    <label>Title</label>
+    <input type="text" class="form-control d-custom-input" name="title" placeholder="Title Here" [(ngModel)]="form.title">
+    <label>Description</label>
+    <textarea placeholder="Description Here" name="description" [(ngModel)]="form.description"></textarea>
+    <!-- <div class="pdf-button">
+      <mat-icon>add_box</mat-icon>
+      <input type="file" class="filename" id="file-input" (change)="getFile($event)" required><span>Upload PDF</span>
+    </div> -->
+    <div class="file-input-wrapper pdf-button">
+      <mat-icon>add_box</mat-icon>
+      <p class="filename" *ngIf="file == null">Upload PDF</p>
+      <p class="filename" *ngIf="file != null">{{file.name}}</p>
+      <!-- <label for="file-input">Choose a file:</label> -->
+      <input type="file" id="file-input" name="file-input" (change)="getFile($event)" required>
     </div>
-    </form>
-
-    </div>
+    <div class="submit_cancel">
+    <button class="submit_rev" type="submit" *ngIf="!loading">Submit Revision</button>
+    <button class="submit_rev" style="padding: 10px 30px;" *ngIf="loading"><app-loader-button></app-loader-button></button>
+    <button class="cancel_rev" type="button" mat-dialog-close>Cancel Revision</button>
+  </div>
+  </form>
 
   </div>
+
+</div>

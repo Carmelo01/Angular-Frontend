@@ -148,18 +148,19 @@ export class ViewMyCapsuleComponent implements OnInit{
     this.dialogRef.open(AddRevisedComponent, {
     enterAnimationDuration: '400ms',
     exitAnimationDuration: '400ms',
-    // data: {
-    //   oninit: () => {
-    //     this.capsules = this.capsuleService.getUserCapsules().subscribe(capsule => {
-    //       this.capsules = capsule;
-    //     })
-    //   }
-    // }
+    data: {
+      capsuleId: this.capsuleId,
+      oninit: () => {
+        this.capsuleService.getOneCapsule(this.capsuleId).subscribe(capsule => {
+          this.selectedCapsuleData = capsule.data;
+        })
+      }
+    }
   })
   }
 
   openPdf(data: any) {
-    this.capsuleService.getFile(data.file_path).subscribe(data=>{
+    this.capsuleService.getFile(data).subscribe(data=>{
        // Create a blob object from the ArrayBuffer data
       const blob = new Blob([data], { type: 'application/pdf' });
 

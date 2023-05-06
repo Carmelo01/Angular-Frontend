@@ -139,6 +139,8 @@
     justify-content: center;
     align-items: center;
   }
+
+
   .status{
     background-color: #e4dede;
     border-radius: 20px;
@@ -163,19 +165,37 @@
     }
   }
   .assigned{
-    border: 1px solid green;
+    border: 2px solid rgb(206, 206, 243);
     transition: 0.5s;
   }
   .assigned:hover{
-    background-color: green;
-    color: white;
+    background-color: rgb(206, 206, 243);
+    // color: white;
   }
-  .under-revision{
-    border: 1px solid yellow;
+  .graded{
+    border: 2px solid orange;
+    transition: 0.5s;
+    &:hover{ background-color: orange; color: white}
+  }
+  .revision{
+    border: 2px solid yellow;
     transition: 0.5s;
   }
-  .under-revision:hover{
+  .revision:hover{
     background-color: yellow;
+  }
+  .reject{
+    border: 2px solid black;
+    transition: 0.5s;
+    &:hover{
+      background: black;
+      color: white;
+    }
+  }
+  .approve{
+    border: 2px solid green;
+    transition: 0.5s;
+    &:hover{ background-color: green; color: white}
   }
 
 
@@ -218,7 +238,7 @@
   .label{
     padding-left: 10px;
   }
-  
+
   @media only screen and (max-width: 500px) {
     .d-content-body{
       flex-direction: column-reverse;
@@ -230,4 +250,3 @@
       margin-bottom: 20px;
     }
   }
-  

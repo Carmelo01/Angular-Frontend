@@ -6,6 +6,7 @@ import { ToastrService } from 'ngx-toastr';
 import { CapsuleService } from 'src/app/services/capsule.service';
 import { ExportService } from 'src/app/services/export.service';
 import { RubricService } from 'src/app/services/rubric.service';
+import { ThemeService } from 'src/app/services/theme.service';
 import { TokenService } from 'src/app/services/token.service';
 import { UrlService } from 'src/app/services/url.service';
 import { fade } from 'src/app/shared/animations/fade.animation';
@@ -28,7 +29,7 @@ export class CapsuleDetailsComponent implements OnInit{
   selectedCapsuleData: any = null;
   loading: boolean = false;
   comments: any[] = []
-
+  theme: any;
   public form = {
     comment: null,
     role: '',
@@ -43,7 +44,8 @@ export class CapsuleDetailsComponent implements OnInit{
     private toastr: ToastrService,
     public exportService: ExportService,
     private rubricService: RubricService,
-    public urlService: UrlService) {
+    public urlService: UrlService,
+    private themeService: ThemeService) {
       this.selectedCapsuleData =  this.activatedRoute.snapshot.data['capsule'].data;
     }
 
@@ -56,6 +58,7 @@ export class CapsuleDetailsComponent implements OnInit{
       this.form.role = "admin"
       this.form.user_id = admin.id
     })
+    this.theme = this.themeService.getTheme()
   }
 
   getData(){
@@ -157,7 +160,7 @@ export class CapsuleDetailsComponent implements OnInit{
   }
 
   openPdf(data: any) {
-    this.capsuleService.getFile(data.file_path).subscribe(data=>{
+    this.capsuleService.getFile(data).subscribe(data=>{
        // Create a blob object from the ArrayBuffer data
       const blob = new Blob([data], { type: 'application/pdf' });
 

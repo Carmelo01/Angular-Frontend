@@ -1,4 +1,4 @@
-import { Component, Inject } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { ActivatedRoute } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
@@ -14,7 +14,7 @@ import { GeneralService } from 'src/app/shared/services/general.service';
   styleUrls: ['./add-revised.component.scss']
 })
 
-export class AddRevisedComponent {
+export class AddRevisedComponent implements OnInit{
   result: any;
   showComment:boolean = false;
   status: string = '0';
@@ -22,10 +22,11 @@ export class AddRevisedComponent {
   selectedCapsuleData: any = null;
   showDiv = false;
   holderObs : any;
-  
+
   loading: boolean = false
   public form = {
     description: '',
+    title: ''
   }
 
   file: any;
@@ -40,14 +41,24 @@ export class AddRevisedComponent {
     private reviseService: ReviseService,
     private toastr: ToastrService,
   ){}
-  
-  
-  onSubmit(){
-    let formData = new FormData();
-    formData.append("description", this.form.description);
-    formData.append("file_path", this.file);
 
-    this.holderObs=this.reviseService.addCapsuleRevision(formData, this.capsuleId).subscribe({
+  ngOnInit(): void {
+    this.result = this.data;
+  }
+
+  getFile(event: any){
+    //this.result = this.data;
+    this.file = event.target.files[0];
+  }
+
+  onSubmit(){
+    this.loading = true;
+    let formData = new FormData();
+    formData.append("title", this.form.title);
+    formData.append("description", this.form.description);
+    formData.append("file_location", this.file);
+
+    this.holderObs=this.reviseService.addCapsuleRevision(formData, this.result.capsuleId).subscribe({
       next: data => this.handleResponse(data),
       error: error => this.handleError(error)
     })

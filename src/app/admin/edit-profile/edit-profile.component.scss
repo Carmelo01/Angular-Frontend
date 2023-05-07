@@ -107,6 +107,43 @@ image-cropper{
   opacity: 0.5;
 }
 
+.inputfile {
+  font-size: 1.25em;
+  font-weight: 700;
+  color: white;
+  background-color: black;
+  display: flex;
+  flex-direction: column;
+  
+}
+
+input[type="file"]{
+display: none;
+}
+
+.custom-file-upload {
+border: 3px solid #ffffff;
+color: white;
+display: flex;
+flex-direction: column;
+padding: 40px 30px;
+border-radius: 100px;
+cursor: pointer;
+opacity: .7;
+border-style: dashed;
+justify-content: center;
+align-items: center;
+margin-left: 90px;
+margin-right: 90px;
+width: fit-content;
+white-space: nowrap;
+}
+
+label mat-icon{
+scale: 1.5;
+
+}
+
 @media only screen and (max-width: 970px){
   .ep-header{
     justify-content: center;

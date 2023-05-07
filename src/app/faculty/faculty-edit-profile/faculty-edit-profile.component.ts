@@ -22,6 +22,8 @@ export class FacultyEditProfileComponent implements OnInit{
   isShow: boolean = false;
   showLabel = true;
 
+  imageSelected: boolean = false;
+
 
   public form = {
     fname: null,
@@ -49,6 +51,7 @@ export class FacultyEditProfileComponent implements OnInit{
 
   editProfile(): void {
     this.disabledForms = !this.disabledForms
+    this.me()
   }
 
   me(){
@@ -87,6 +90,7 @@ export class FacultyEditProfileComponent implements OnInit{
   onFileChange(event: any){
     this.isShow = true;
     this.imgChangeEvt = event;
+    this.imageSelected = true;
   }
 
   cropImg(e: ImageCroppedEvent){

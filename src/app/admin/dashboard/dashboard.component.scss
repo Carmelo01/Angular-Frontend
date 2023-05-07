@@ -1,5 +1,10 @@
+// *{
+//   height: fit-content;
+// }
+
 .d-container{
     margin: 10px 20px;
+    height: inherit;
 }
 .d-header {
     display: flex;
@@ -10,7 +15,20 @@
 }
 
 .card{
-  max-height: 750px;
+  // max-height: fit-content;
+  // overflow-y: auto;
+  // overflow-x: hidden;
+  // background-color: rgba(255, 255, 255, 0.656);
+  // padding: 15px 15px 30% 15px;
+  // height: fit-content!important;
+
+  display: flex;
+  flex-direction: column;
+  border-radius: 15px;
+  box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.336);
+  padding: 30px;
+  margin-top: 20px;
+  // max-height: 750px;
   overflow-y: auto;
   overflow-x: hidden;
 }
@@ -181,4 +199,9 @@ mat-icon{
     width: 100%;
 
   }
+  // .card{
+  //   height: fit-content!important;
+    
+  // }
+
 }

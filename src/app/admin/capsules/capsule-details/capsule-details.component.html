@@ -3,7 +3,7 @@
   <div class="d-header">
     <h3>Capsule</h3>
   </div>
-  <div class="card">
+  <div class="card" [ngClass]="theme+'-card'">
     <div class="d-content">
       <a [routerLink]="['/admin/capsule']" class="d-content-head">
         <mat-icon>keyboard_arrow_left</mat-icon>Back
@@ -14,17 +14,17 @@
       <div class="left-body">
         <div class="upper">
           <h3>{{capsule?.title}}</h3>
-          <span class="label">{{formatReqDate(capsule?.created_at)}}</span>
+          <span class="label" [ngClass]="theme+'-sub-title'">{{formatReqDate(capsule?.created_at)}}</span>
         </div>
         <div class="lower">
-          <span class="label">Description</span>
+          <span class="label" [ngClass]="theme+'-sub-title'">Description</span>
           <p>{{capsule?.description}}</p>
-          <span class="label">Uploaded materials</span>
-          <div class="pdf-button" (click)="openPdf(capsule.file_path)">
+          <span class="label" [ngClass]="theme+'-sub-title'">Uploaded materials</span>
+          <div class="pdf-button" (click)="openPdf(capsule.file_path)" [ngClass]="theme+'-pdf-button'">
             <mat-icon>insert_drive_file</mat-icon>
             <p class="filename">{{capsule?.title}}.pdf</p>
           </div>
-          <span class="label" *ngIf="capsule.assigncapsule.length > 0">Assigned Reviewers</span>
+          <span class="label" *ngIf="capsule.assigncapsule.length > 0" [ngClass]="theme+'-sub-title'">Assigned Reviewers</span>
           <div class="reviewer-list" *ngFor="let r of capsule.assigncapsule">
             <div class="profile-div">
               <div class="left-div">
@@ -92,11 +92,16 @@
           <button class="status revision">Under Revision</button>
           <button class="approve-button" (click)="openConfirmationDialog('Approve Capsule', 'Approve')">Approve</button>
         </div>
-        <button *ngIf="capsule?.status == '4'" class="status reject">Rejected</button>
+        <div *ngIf="capsule?.status == '4'" class="con-recon">
+          <button  class="status reject">Reconsider</button>
+          <div class="reconsider">
+            <label class="admin comment">Comment of the admin</label>
+          </div>
+        </div>
         <button *ngIf="capsule?.status == '5'" class="status approve">Approved</button>
 
         <div class="revisions-container" [ngClass]="theme+'-faculty-status'">
-          <span class="label">Uploaded Revisions</span>
+          <span class="label" [ngClass]="theme+'-sub-title'">Uploaded Revisions</span>
 
           <div class="pdf-button-revised" *ngFor="let revision of capsule.revision">
             <div class="file" (click)="openPdf(revision.file_location)">

@@ -17,7 +17,7 @@
         <div class="d-input-parent">
           <div class="d-div-s">
             <mat-icon class="d-s-icon">search</mat-icon>
-            <input type="text" class="d-custom-input" placeholder="Search for a Faculty">
+            <input class="form-control" name="search" type="text" placeholder="Search for a Capsule" [(ngModel)]="searchCapsule">
           </div>
           <div class="d-div-select">
             <select class="d-custom-select" id="inputGroupSelect01">
@@ -40,17 +40,17 @@
       <table class="d-table-capsule" id="d-table" [ngClass]="theme+'-faculty-d-table-capsule'">
         <thead>
           <th>CAPSULE ID</th>
-          <th>AUTHOR</th>
           <th>TITLE</th>
+          <th>AUTHOR</th>
           <th>DATE SUBMITTED</th>
           <th>STATUS</th>
           <th>ACTION</th>
         </thead>
-        <tbody *ngFor="let capsule of capsules; let i = index">
+        <tbody *ngFor="let capsule of capsules | searchFaculty: searchCapsule; let i = index">
           <tr>
             <td data-label="CAPSULE ID">{{capsule.capsule.id}}</td>
-            <td data-label="TITLE">{{capsule.capsule.user.fname}} {{capsule.capsule.user.lname}}</td>
             <td data-label="TITLE">{{capsule.capsule.title}}</td>
+            <td data-label="AUTHOR">{{capsule.capsule.user.fname}} {{capsule.capsule.user.lname}}</td>
             <td data-label="DATE SUBMITTED">{{exportService.formatReqDate(capsule.capsule.created_at)}}</td>
             <td data-label="STATUS">{{exportService.getStatus(capsule.capsule.status)}}</td>
             <!-- <td data-label="Action"><button class="btn orange-button" (click)="seeDetails(capsule)" id="show-details-button">Details</button></td> -->

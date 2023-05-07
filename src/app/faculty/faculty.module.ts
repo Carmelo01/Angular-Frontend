@@ -29,6 +29,8 @@ import { MycapsuleResolver } from '../resolver/mycapsule.resolver';
 import { GetOneCapsuleResolver } from '../resolver/get-one-capsule.resolver';
 import { GetOneMycapsuleResolver } from '../resolver/get-one-mycapsule.resolver';
 import { UserEditProfileResolver } from '../resolver/user-edit-profile.resolver';
+import { SearchFacultyPipe } from '../pipes/search-faculty.pipe';
+import { ForgetPasswordComponent } from './Modal/forget-password/forget-password.component';
 
 @NgModule({
   declarations: [
@@ -46,6 +48,8 @@ import { UserEditProfileResolver } from '../resolver/user-edit-profile.resolver'
     DeleteCapsuleComponent,
     AddRevisedComponent,
     ReviewSpecificCapsuleComponent,
+    SearchFacultyPipe,
+    ForgetPasswordComponent
   ],
   imports: [
     CommonModule,

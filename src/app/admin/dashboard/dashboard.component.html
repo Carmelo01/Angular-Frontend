@@ -24,7 +24,7 @@
         <div class="d-input-parent">
             <div class="d-div-s">
                 <mat-icon class="d-s-icon">search</mat-icon>
-                <input type="text" class="d-custom-input" placeholder="Search for a Capsule">
+                <input class="form-control" name="search" type="text" placeholder="Search for a Capsule" [(ngModel)]="searchCapsule">
             </div>
             <div class="d-div-select">
                 <select class="d-custom-select" id="inputGroupSelect01">
@@ -52,7 +52,7 @@
             <th>Status</th>
             <th>Date Published</th>
         </thead>
-        <tbody *ngFor="let capsule of capsules.data; let i = index">
+        <tbody *ngFor="let capsule of capsules.data | search: searchCapsule ; let i = index">
           <tr>
             <td data-label="Number">{{i+1}}</td>
             <td data-label="Title">{{capsule.title}}</td>

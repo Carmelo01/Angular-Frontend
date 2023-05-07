@@ -16,7 +16,7 @@ export class VerifyFacultyComponent implements OnInit {
   faculties:any;
   loading: boolean = false
   theme: any;
-
+  searchFaculty = '';
   constructor(private facultyService: FacultyService,
     public url: UrlService,
     private dialogRef: MatDialog,

@@ -41,6 +41,8 @@ import { RubricsResolver } from '../resolver/rubrics.resolver';
 import { ThemeConfirmComponent } from './modal/theme-confirm/theme-confirm.component';
 import { GetOneCapsuleResolver } from '../resolver/get-one-capsule.resolver';
 import { EditProfileResolver } from '../resolver/edit-profile.resolver';
+import { SearchPipe } from '../pipes/search.pipe';
+import { AdminChangePassComponent } from './modal/admin-change-pass/admin-change-pass.component';
 
 
 @NgModule({
@@ -70,7 +72,8 @@ import { EditProfileResolver } from '../resolver/edit-profile.resolver';
     ConfirmationComponent,
     RemoveReviewerComponent,
     ThemeConfirmComponent,
-
+    SearchPipe,
+    AdminChangePassComponent
   ],
   imports: [
     CommonModule,

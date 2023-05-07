@@ -26,7 +26,8 @@ import {ChartModule} from 'angular-highcharts'
 // import { ImageCropperModule } from 'ngx-image-cropper';
 
 import { ImageCropperModule } from 'ngx-image-cropper';
-
+import { FacultyResetPasswordComponent } from './auth/faculty-reset-password/faculty-reset-password.component';
+import { ForgotPasswordFacultyComponent } from './auth/forgot-password-faculty/forgot-password-faculty.component';
 
 
 @NgModule({
@@ -36,8 +37,8 @@ import { ImageCropperModule } from 'ngx-image-cropper';
     FacultyLoginComponent,
     AdminForgotPasswordComponent,
     FacultyRegisterComponent,
-
-
+    FacultyResetPasswordComponent,
+    ForgotPasswordFacultyComponent,
   ],
   imports: [
     BrowserModule,
@@ -59,8 +60,10 @@ import { ImageCropperModule } from 'ngx-image-cropper';
       { path: 'admin', loadChildren: () => import('./admin/admin.module').then(m => m.AdminModule)},
       { path: 'faculty/login', component: FacultyLoginComponent, canActivate: [BeforeFacultyLoginGuard.canActivate] },
       { path: 'faculty/register', component: FacultyRegisterComponent},
+      { path: 'faculty/request/password/reset', component: FacultyResetPasswordComponent },
+      { path: 'faculty/change/password', component: ForgotPasswordFacultyComponent },
       { path: 'admin/login', component: AdminLoginComponent, canActivate: [BeforeAdminLoginGuard.canActivate] },
-      { path: 'faculty/forgot/password', component: AdminForgotPasswordComponent },
+      { path: 'admin/forgot/password', component: AdminForgotPasswordComponent },
       { path: '', redirectTo: 'faculty/login', pathMatch: 'full' },
       { path: '**', redirectTo: 'welcome', pathMatch: 'full' }
     ]),

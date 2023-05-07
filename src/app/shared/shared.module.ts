@@ -11,12 +11,12 @@ import { LoaderButtonComponent } from './components/loader-button/loader-button.
   declarations: [
     DialogComponent,
     LoaderComponent,
-    LoaderButtonComponent
+    LoaderButtonComponent,
   ],
   exports: [
     DialogComponent,
     LoaderComponent,
-    LoaderButtonComponent
+    LoaderButtonComponent,
   ],
   imports: [
     CommonModule,

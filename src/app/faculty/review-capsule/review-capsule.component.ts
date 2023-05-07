@@ -16,6 +16,7 @@ export class ReviewCapsuleComponent implements OnInit{
   origCapsule: any;
   valid:any;
   theme : any;
+  searchCapsule = ''
   constructor (public capsuleService: CapsuleService,
     private dialogRef: MatDialog,
     private facultyService: FacultyService,

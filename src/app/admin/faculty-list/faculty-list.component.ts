@@ -15,6 +15,7 @@ export class FacultyListComponent implements OnInit{
 
   faculties: any;
   theme: any;
+  searchFaculty = '';
   constructor(private facultyService: FacultyService,
     public url: UrlService,
     public exportService: ExportService,

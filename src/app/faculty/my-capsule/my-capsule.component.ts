@@ -25,7 +25,7 @@ export class MyCapsuleComponent implements OnInit {
   theme : any;
 
   capsules: any;
-
+  searchCapsule = '';
   userSelected: any;
 
   constructor(public capsuleService: CapsuleService,

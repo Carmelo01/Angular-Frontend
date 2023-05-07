@@ -38,4 +38,8 @@ export class FacultyService {
     return this.http.get<any>(this.urlService.url+`api/faculty/capsule/getAssigned`, {headers: header})
   }
 
+  changePassword(data:any){
+    let header = this.token.getHeader()
+    return this.http.post(this.urlService.url+`api/faculty/change/password`, data, {headers: header});
+  }
 }

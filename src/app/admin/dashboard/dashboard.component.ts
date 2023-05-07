@@ -22,6 +22,8 @@ export class DashboardComponent implements OnInit{
   faculty:any;
   dashboard: any;
   linechart: any;
+  searchQuery: any = '';
+  searchCapsule = '';
  // loading: boolean = false;
 
   donutChartOptions: any = {

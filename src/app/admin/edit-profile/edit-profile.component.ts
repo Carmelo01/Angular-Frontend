@@ -1,10 +1,12 @@
 import { Component, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute } from '@angular/router';
 import { ImageCroppedEvent } from 'ngx-image-cropper';
 import { ToastrService } from 'ngx-toastr';
 import { AuthAdminService } from 'src/app/services/auth-admin.service';
 import { ThemeService } from 'src/app/services/theme.service';
 import { TokenService } from 'src/app/services/token.service';
+import { AdminChangePassComponent } from '../modal/admin-change-pass/admin-change-pass.component';
 
 @Component({
   selector: 'app-edit-profile',
@@ -32,6 +34,7 @@ export class EditProfileComponent implements OnInit{
     private adminService: AuthAdminService,
     private themeService: ThemeService,
     private toastr: ToastrService,
+    private dialogRef: MatDialog,
     private activatedRoute: ActivatedRoute) {
       this.currentUser = this.activatedRoute.snapshot.data['profile'];
     }
@@ -50,15 +53,6 @@ export class EditProfileComponent implements OnInit{
   }
 
   getCurrentUser(){
-    // this.currentUser = this.tokenService.adminMe().subscribe(admin => {
-    //   this.currentUser = admin;
-    //   this.form.fname = admin.fname;
-    //   this.form.mname = admin.mname;
-    //   this.form.lname = admin.lname;
-    //   this.form.email = admin.email;
-    //   this.form.image = admin.profilePic;
-    //   this.cropImgPreview = admin.profilePic;
-    // })
     this.form.fname = this.currentUser.fname;
     this.form.mname = this.currentUser.mname;
     this.form.lname = this.currentUser.lname;
@@ -84,6 +78,12 @@ export class EditProfileComponent implements OnInit{
       error: error => this.handleError(error)
     })
   }
+
+  openChangePasswordDialog(){ // change this when build interface
+    this.dialogRef.open(AdminChangePassComponent, {
+    enterAnimationDuration: '400ms',
+    exitAnimationDuration: '400ms',
+  })}
 
   handleResponse(data: any){
     this.loading = false;

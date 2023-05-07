@@ -125,7 +125,10 @@
 
 .orange-theme,
 .red-theme,
-.dark-mode{
+.dark-mode,
+.blue-mode,
+.purp-mode,
+.green-yellow-mode{
     height: 100px;
     width: 25%;
     display: flex;
@@ -141,7 +144,10 @@
 
 .orange-theme:hover,
 .red-theme:hover,
-.dark-mode:hover{
+.dark-mode:hover,
+.blue-mode:hover,
+.purp-mode:hover,
+.green-yellow-mode:hover{
     width: 27%;
     height: 110px;
     transition: .4s;
@@ -164,6 +170,24 @@
     padding-top: 10px;
     background: rgb(103,97,97);
     background: linear-gradient(90deg, rgba(103,97,97,1) 0%, rgba(78,74,74,1) 35%, rgba(36,33,33,1) 100%);
+}
+
+.purp-mode{
+    padding-top: 10px;
+    background: #A100FF;
+  background: linear-gradient(90deg, #951dda 0%, #8412c6 35%, #4c0675 100%);
+}
+
+.blue-mode{
+    padding-top: 10px;
+    background: rgb(2,0,36);
+  background: linear-gradient(281deg, rgba(2,0,36,1) 0%, rgba(9,9,121,1) 35%, rgba(5,116,139,1) 100%);
+}
+
+.green-yellow-mode{
+    padding-top: 10px;
+    background: rgb(34,193,195);
+    background: linear-gradient(281deg, rgba(34,193,195,1) 0%, rgba(253,187,45,1) 100%);
 }
 
 

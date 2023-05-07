@@ -36,6 +36,7 @@ export class DashboardComponent implements OnInit{
     },
     plotOptions: {
         pie: {
+          
 
             innerSize: '85%',
             borderWidth: 2,

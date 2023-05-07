@@ -1,14 +1,19 @@
 <div class="container">
   <div class="card" [ngClass]="theme+'-card'">
     <form #editForm=ngForm (ngSubmit)="onSubmit()">
+      <div class="img-container" >
       <div class="ep-header mb-3">
         <div class="ep-img" *ngIf="!disabledForms">
           <image-cropper [imageChangedEvent]="imgChangeEvt"
           [maintainAspectRatio]="true" [roundCropper]="true"
-          (imageCropped)="cropImg($event)"></image-cropper>
+          (imageCropped)="cropImg($event)" *ngIf="isShow && imageSelected"></image-cropper>
+          <label class="custom-file-upload" *ngIf="!imageSelected">
+            <mat-icon >add_box</mat-icon>
+            Add Image
           <input type="file" (change)="onFileChange($event)" required>
+        </label>
         </div>
-        <div class="ep-img" *ngIf="disabledForms">
+        <div class="ep-img" *ngIf="disabledForms" >
           <img src="../../../assets/default-userpng.png"
             alt="" width="50px" height="50px" *ngIf="currentUser.profilePic == null">
           <img [src]="currentUser.profilePic"
@@ -18,14 +23,15 @@
           <h3>{{form.fname}} {{form.mname}} {{form.lname}}</h3>
         </div>
       </div>
+      </div>
       <div class="ep-body" >
-        <div class="wrapper">
+        <div class="wrapper" [ngClass]="theme+'-wrapper'">
           <div class="ep-impro-hr"></div>
           <div class="input-container">
             <label for="fname">First Name:</label>
             <input type="text"
               class="form-control" id="fname" placeholder="First Name" name="fname"
-              [(ngModel)]="form.fname" [disabled]="disabledForms" [ngClass]="{disabledForm: disabledForms}" >
+              [(ngModel)]="form.fname" [disabled]="disabledForms" [ngClass]="{disabledForm: disabledForms}">
           </div>
           <div class="ep-impro-hr"></div>
           <div class="input-container">

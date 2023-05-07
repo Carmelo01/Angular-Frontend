@@ -192,6 +192,7 @@ label mat-icon{
   height: fit-content;
   justify-content: space-evenly;
   align-items: center;
+  padding-top: 15px;
 }
 
 .orange-theme{
@@ -228,6 +229,48 @@ label mat-icon{
   width: 30%;
   background: rgb(103,97,97);
   background: linear-gradient(90deg, rgba(103,97,97,1) 0%, rgba(78,74,74,1) 35%, rgba(36,33,33,1) 100%);
+  text-align: center;
+  border-radius: 10px;
+  cursor: pointer;
+  &:hover{
+    opacity: .7;
+  }
+}
+
+.purp-theme{
+  min-height:40px;
+  padding: 8px;
+  width: 30%;
+  background: #A100FF;
+  background: linear-gradient(90deg, #50027e 0%, #610695 35%, #4c0675 100%);
+  text-align: center;
+  border-radius: 10px;
+  cursor: pointer;
+  &:hover{
+    opacity: .7;
+  }
+}
+
+.blue-theme{
+  min-height:40px;
+  padding: 8px;
+  width: 30%;
+  background: rgb(2,0,36);
+  background: linear-gradient(281deg, rgba(2,0,36,1) 0%, rgba(9,9,121,1) 35%, rgba(5,116,139,1) 100%);
+  text-align: center;
+  border-radius: 10px;
+  cursor: pointer;
+  &:hover{
+    opacity: .7;
+  }
+}
+
+.green-yellow-mode{
+  min-height:40px;
+  padding: 8px;
+  width: 30%;
+  background: rgb(34,193,195);
+  background: linear-gradient(281deg, rgba(34,193,195,1) 0%, rgba(253,187,45,1) 100%);
   text-align: center;
   border-radius: 10px;
   cursor: pointer;

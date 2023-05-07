@@ -1,5 +1,5 @@
 .con{
-  min-height: 100vh;
+  // min-height: 100vh;
   overflow-y: scroll;
 }
 
@@ -11,7 +11,7 @@
 }
 
 .overlay{
-  position: absolute;
+  position: fixed;
   top: 10;
   right: 0px;
   width: 100%;
@@ -32,9 +32,10 @@
   display: flex;
 }
 .header-title{
-  width: calc(100% - 200px);
-  height: calc(100vh - 10%);
+  width: 85%;
+  height: 100%;
   overflow: hidden;
+  // margin-left: 3%;
 
 }
 .header-title-collapse{
@@ -74,10 +75,15 @@
   z-index: 1000;
 }
 
-@media only screen and (max-height: 600px) {
-  .a-router{
-    margin-top: 60px;
-  }
-}
+// @media only screen and (max-width: 600px) {
+//   .a-router{
+//     margin-top: 60px;
+//   }
+
+//   .card{
+//     height: 100vh;
+//     padding-bottom: 55%;
+//   }
+// }
 
 

@@ -5,6 +5,10 @@ export const areaChartOptions: Options = {
         styledMode: true,
     },
     plotOptions: {
+        line: {
+            color: 'red',
+            // width: 2,
+          },
         series: {
             marker: {
                 enabled: false,
@@ -20,6 +24,7 @@ export const areaChartOptions: Options = {
     title: {
         text: 'Capsule Monthly Uploads'
     },
+    
     yAxis: {
         visible: true,
     },
@@ -30,12 +35,12 @@ export const areaChartOptions: Options = {
             'February',
             'March',
             'April',
-            'May',
-            'June',
-            'July',
-            'August',
-            'September',
-            'October',
+            // 'May',
+            // 'June',
+            // 'July',
+            // 'August',
+            // 'September',
+            // 'October',
             'November',
             'December',
         ]

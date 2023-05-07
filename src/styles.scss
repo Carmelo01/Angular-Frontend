@@ -60,8 +60,20 @@ $AngularProject-dark: mat.define-dark-theme((
   src: url('./assets/Century\ Gothic.ttf');
 }
 
-html, body { height: 100%;}
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+html, body { 
+  // height: fit-content;
+  // background: linear-gradient(to bottom, rgba(51, 51, 51, 0.4), rgba(0, 0, 0, 0.5)) !important;
+  // background: url('assets/CICTBuilding.png') !important;
+  // background-repeat: no-repeat;
+  // background-size: cover;
+
+  height: fit-content;
+  // width: 100%;
+  background: linear-gradient(to bottom, rgba(51, 51, 51, 0.4), rgba(0, 0, 0, 0.5)), url('assets/CICTBuilding.png') no-repeat center center fixed;
+  background-size: cover;
+}
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; 
+}
 
 .light-header-title{
   background-color: #e4dede;
@@ -70,8 +82,15 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
 .con{
   width: 100%;
-  height: fit-content;
+  padding-bottom: 100px!important;
+    // height: fit-content!important;
   overflow: hidden !important;
+  height: 100%;
+  // background: linear-gradient(to bottom, rgba(51, 51, 51, 0.4), rgba(0, 0, 0, 0.5)), url('assets/CICTBuilding.png')!important;
+}
+
+.faculty-d-container{
+  height: fit-content;
 }
 
 #gradient-0 stop {
@@ -106,7 +125,7 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
 // ---------------------DEFAULT MODE-------------------------------
 .con{
-  background-color: rgb(240, 240, 240);
+  // background-color: rgb(240, 240, 240);
   color: black;
 }
 
@@ -136,19 +155,19 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 }
 
 .light-page-container{
-background-image: linear-gradient(to bottom, rgba(255, 145, 0, 0.4), rgba(100, 32, 0, 0.5)), url('assets/CICTBuilding.png');
+// background-image: linear-gradient(to bottom, rgba(255, 145, 0, 0.4), rgba(100, 32, 0, 0.5)), url('assets/CICTBuilding.png');
 background-size:cover;
 
 }
 
 .right-side{
-  background: rgb(211, 211, 211);
+
   color: rgb(0, 0, 0);
   padding: 10px;
 }
 
 .light-right-side{
-  background: rgb(211, 211, 211);
+
   color: rgb(0, 0, 0);
   padding: 10px;
 }
@@ -167,15 +186,16 @@ color: black;
 
 .header-title{
   color: rgb(255, 255, 255);
-  background: linear-gradient(to bottom, rgb(51 51 51 / 40%), rgb(0 0 0 / 50%)), url('assets/CICTBuilding.png');
+  // background: linear-gradient(to bottom, rgb(51 51 51 / 40%), rgb(0 0 0 / 50%)), url('assets/CICTBuilding.png');
 background-size:cover;
 }
 
 .header-title-collapse{
-  background: linear-gradient(to bottom, rgb(51 51 51 / 40%), rgb(0 0 0 / 50%)), url('assets/CICTBuilding.png');
+  // background: linear-gradient(to bottom, rgb(51 51 51 / 40%), rgb(0 0 0 / 50%)), url('assets/CICTBuilding.png');
   background-size:cover;  
   width: calc(100% - 200px);
-  height: calc(100vh - 10%);
+  height: fit-content;
+  // height: calc(100vh - 10%);
   overflow: hidden;
   color: white;
 }
@@ -206,14 +226,32 @@ background-size:cover;
   color: rgb(255, 255, 255);
   padding: 10px;
 }
+.dark-pdf-button{
+  background: rgb(63, 63, 63);
+  color: rgb(255, 255, 255);
+  padding: 10px;
+}
 .dark-right-side{
   background: rgb(63, 63, 63);
   color: rgb(255, 255, 255);
   padding: 10px;
 }
 
+.dark-wrapper input[disabled]::placeholder {
+  color: #ccc;
+}
+
+.dark-wrapper input:disabled {
+  color: #ccc;
+  background-color: #f5f5f5;
+  border: 1px solid #ccc;
+}
+
+// .dark-wrapper input{
+//   color: white!important;
+// }
+
 .dark-all-title-con{
-  mat-icon,
   p{
     color: black;
   }
@@ -221,6 +259,14 @@ background-size:cover;
     color: white;
   }
 
+}
+
+@media only screen and (max-width: 970px) {
+  .dark-all-title-con{
+  mat-icon{
+    color: rgba(248,113,51,1);
+  }
+}
 }
 
 #dark-d-table tbody:nth-child(even){background-color: #696969;}
@@ -253,6 +299,10 @@ background-size:cover;
   padding: 10px;
 }
 
+.red-sub-title{
+  color: rgb(255, 95, 20)!important;
+}
+
 .red-all-title-con{
   mat-icon,
   p{
@@ -264,9 +314,315 @@ background-size:cover;
 
 }
 
+
+@media only screen and (max-width: 970px) {
+  .red-all-title-con{
+  mat-icon{
+    color: rgb(0, 0, 0);
+  }
+}
+}
 #red-d-table tbody:nth-child(even){background-color: #c56464;}
 
+.red-wrapper input[disabled]::placeholder {
+  color: #ccc;
+}
 
+.red-wrapper input:disabled {
+  color: #ccc;
+  background-color: #f5f5f5;
+  border: 1px solid #ccc;
+}
+
+// ---------------------PURPLE MODE-------------------------------
+
+.purp-con{
+  color: rgb(255, 255, 255);
+}
+
+.header-title{
+  color: rgb(255, 255, 255);
+  // background: linear-gradient(to bottom, rgb(51 51 51 / 40%), rgb(0 0 0 / 50%)), url('assets/CICTBuilding.png');
+background-size:cover;
+}
+
+.header-title-collapse{
+  // background: linear-gradient(to bottom, rgb(51 51 51 / 40%), rgb(0 0 0 / 50%)), url('assets/CICTBuilding.png');
+  background-size:cover;  
+  width: calc(100% - 200px);
+  height: fit-content;
+  // height: calc(100vh - 10%);
+  overflow: hidden;
+  color: white;
+}
+
+
+.purp-header{
+  background: #A100FF;
+  background: linear-gradient(90deg, #951dda 0%, #8412c6 35%, #4c0675 100%);
+}
+
+.purp-side-nav{
+  background: #A100FF;
+  background: linear-gradient(90deg, #50027e 0%, #610695 35%, #4c0675 100%);
+  color: rgb(255, 255, 255);
+}
+
+.purp-side-nav a:hover{
+  color: rgb(165, 165, 165);
+}
+
+
+.purp-text {
+  color: rgb(255, 255, 255);
+}
+
+.purp-card{
+  background: #A100FF;
+  background: linear-gradient(90deg, #951dda 0%, #8412c6 35%, #4c0675 100%);
+  color: rgb(255, 255, 255);
+  padding: 10px;
+}
+.purp-pdf-button{
+  background: #A100FF;
+  background: linear-gradient(90deg, #951dda 0%, #8412c6 35%, #4c0675 100%);
+  color: rgb(255, 255, 255);
+  padding: 10px;
+}
+.purp-right-side{
+  background: #A100FF;
+  background: linear-gradient(90deg, #951dda 0%, #8412c6 35%, #4c0675 100%);
+  color: rgb(255, 255, 255);
+  padding: 10px;
+}
+
+.purp-wrapper input[disabled]::placeholder {
+  color: #ccc;
+}
+
+.purp-wrapper input:disabled {
+  color: #ccc;
+  background-color: #f5f5f5;
+  border: 1px solid #ccc;
+}
+
+// .dark-wrapper input{
+//   color: white!important;
+// }
+
+.dark-all-title-con{
+  p{
+    color: black;
+  }
+  .deleteDiv mat-icon{
+    color: white;
+  }
+
+}
+
+@media only screen and (max-width: 970px) {
+  .dark-all-title-con{
+  mat-icon{
+    color: rgba(248,113,51,1);
+  }
+}
+}
+
+#purp-d-table tbody:nth-child(even){background-color: #790095;}
+
+
+// ---------------------BLUE MODE-------------------------------
+
+.blue-con{
+  color: rgb(255, 255, 255);
+}
+
+.header-title{
+  color: rgb(255, 255, 255);
+  // background: linear-gradient(to bottom, rgb(51 51 51 / 40%), rgb(0 0 0 / 50%)), url('assets/CICTBuilding.png');
+background-size:cover;
+}
+
+.header-title-collapse{
+  // background: linear-gradient(to bottom, rgb(51 51 51 / 40%), rgb(0 0 0 / 50%)), url('assets/CICTBuilding.png');
+  background-size:cover;  
+  width: calc(100% - 200px);
+  height: fit-content;
+  // height: calc(100vh - 10%);
+  overflow: hidden;
+  color: white;
+}
+
+
+.blue-header{
+  background: rgb(2,0,36);
+  background: linear-gradient(281deg, rgba(2,0,36,1) 0%, rgba(9,9,121,1) 35%, rgba(5,116,139,1) 100%);
+}
+
+.blue-side-nav{
+  background: rgb(2,0,36);
+  background: linear-gradient(281deg, rgba(2,0,36,1) 0%, rgba(9,9,121,1) 35%, rgba(5,116,139,1) 100%);
+  color: rgb(255, 255, 255);
+}
+
+.blue-side-nav a:hover{
+  color: rgb(165, 165, 165);
+}
+
+
+.blue-text {
+  color: rgb(255, 255, 255);
+}
+
+.blue-card{
+  background: rgb(2,0,36);
+  background: linear-gradient(281deg, rgba(2,0,36,1) 0%, rgba(9,9,121,1) 35%, rgba(5,116,139,1) 100%);
+  color: rgb(255, 255, 255);
+  padding: 10px;
+}
+.blue-pdf-button{
+  background: rgb(2,0,36);
+background: linear-gradient(281deg, rgba(2,0,36,1) 0%, rgba(9,9,121,1) 35%, rgba(5,116,139,1) 100%);
+  color: rgb(255, 255, 255);
+  padding: 10px;
+}
+.blue-right-side{
+  background: rgb(2,0,36);
+  background: linear-gradient(281deg, rgba(2,0,36,1) 0%, rgba(9,9,121,1) 35%, rgba(5,116,139,1) 100%);
+  color: rgb(255, 255, 255);
+  padding: 10px;
+}
+
+.blue-wrapper input[disabled]::placeholder {
+  color: #ccc;
+}
+
+.blue-wrapper input:disabled {
+  color: #ccc;
+  background-color: #f5f5f5;
+  border: 1px solid #ccc;
+}
+
+// .dark-wrapper input{
+//   color: white!important;
+// }
+
+.blue-all-title-con{
+  p{
+    color: black;
+  }
+  .deleteDiv mat-icon{
+    color: white;
+  }
+
+}
+
+@media only screen and (max-width: 970px) {
+  .blue-all-title-con{
+  mat-icon{
+    color: rgba(248,113,51,1);
+  }
+}
+}
+
+#blue-d-table tbody:nth-child(even){background-color: rgb(3, 0, 68);}
+
+// ---------------------GREEN- YELLOW MODE-------------------------------
+
+.green-yellow-con{
+  color: rgb(255, 255, 255);
+}
+
+.header-title{
+  color: rgb(255, 255, 255);
+  // background: linear-gradient(to bottom, rgb(51 51 51 / 40%), rgb(0 0 0 / 50%)), url('assets/CICTBuilding.png');
+background-size:cover;
+}
+
+.header-title-collapse{
+  // background: linear-gradient(to bottom, rgb(51 51 51 / 40%), rgb(0 0 0 / 50%)), url('assets/CICTBuilding.png');
+  background-size:cover;  
+  width: calc(100% - 200px);
+  height: fit-content;
+  // height: calc(100vh - 10%);
+  overflow: hidden;
+  color: white;
+}
+
+
+.green-yellow-header{
+  background: rgb(34,193,195);
+  background: linear-gradient(281deg, rgba(34,193,195,1) 0%, rgba(253,187,45,1) 100%);
+}
+
+.green-yellow-side-nav{
+  background: rgb(34,193,195);
+background: linear-gradient(281deg, rgba(34,193,195,1) 0%, rgba(253,187,45,1) 100%);
+  color: rgb(255, 255, 255);
+}
+
+.green-yellow-side-nav a:hover{
+  color: rgb(165, 165, 165);
+}
+
+
+.green-yellow-text {
+  color: rgb(255, 255, 255);
+}
+
+.green-yellow-card{
+  background: rgb(34,193,195);
+background: linear-gradient(281deg, rgba(34,193,195,1) 0%, rgba(253,187,45,1) 100%);
+  color: rgb(255, 255, 255);
+  padding: 10px;
+}
+.green-yellow-pdf-button{
+  background: rgb(34,193,195);
+background: linear-gradient(281deg, rgba(34,193,195,1) 0%, rgba(253,187,45,1) 100%);
+  color: rgb(255, 255, 255);
+  padding: 10px;
+}
+.green-yellow-right-side{
+  background: rgb(34,193,195);
+background: linear-gradient(281deg, rgba(34,193,195,1) 0%, rgba(253,187,45,1) 100%);
+  color: rgb(255, 255, 255);
+  padding: 10px;
+}
+
+.green-yellow-wrapper input[disabled]::placeholder {
+  color: #ccc;
+}
+
+.green-yellow-wrapper input:disabled {
+  color: #ccc;
+  background-color: #f5f5f5;
+  border: 1px solid #ccc;
+}
+
+// .dark-wrapper input{
+//   color: white!important;
+// }
+
+.green-yellow-all-title-con{
+  p{
+    color: black;
+  }
+  .deleteDiv mat-icon{
+    color: white;
+  }
+
+}
+
+@media only screen and (max-width: 970px) {
+  .green-yellow-all-title-con{
+  mat-icon{
+    color: rgba(248,113,51,1);
+  }
+}
+}
+
+#green-yellow-d-table tbody:nth-child(even){
+  background: rgb(34,193,195);}
 
 
 
@@ -279,19 +635,19 @@ background-size:cover;
 .dark-faculty-main-container{
   // background: rgb(63, 63, 63) ;
   // background: linear-gradient(90deg, rgb(101, 101, 101) 0%, rgb(50, 50, 50) 35%, rgb(8, 8, 8) 100%) ;
-  background-image: linear-gradient(to bottom, rgba(45, 45, 45, 0.4), rgba(18, 18, 18, 0.5)), url('assets/CICTBuilding.png');
+  // background-image: linear-gradient(to bottom, rgba(45, 45, 45, 0.4), rgba(18, 18, 18, 0.5)), url('assets/CICTBuilding.png');
   background-size:cover;
 }
 
 .dark-faculty-d-container{
   // background: rgb(63, 63, 63) ;
   // background: linear-gradient(90deg, rgb(101, 101, 101) 0%, rgb(50, 50, 50) 35%, rgb(8, 8, 8) 100%) ;
-  background-image: linear-gradient(to bottom, rgba(45, 45, 45, 0.4), rgba(18, 18, 18, 0.5)), url('assets/CICTBuilding.png');
+  // background-image: linear-gradient(to bottom, rgba(45, 45, 45, 0.4), rgba(18, 18, 18, 0.5)), url('assets/CICTBuilding.png');
   background-size:cover;
 }
 
 .dark-faculty-d-container{
-  background-image: linear-gradient(to bottom, rgba(45, 45, 45, 0.4), rgba(18, 18, 18, 0.5)), url('assets/CICTBuilding.png');
+  // background-image: linear-gradient(to bottom, rgba(45, 45, 45, 0.4), rgba(18, 18, 18, 0.5)), url('assets/CICTBuilding.png');
   background-size:cover;
   height: 88.5vh;
 }
@@ -330,21 +686,21 @@ background-size:cover;
 .light-faculty-main-container{
   // background: rgb(63, 63, 63) ;
   // background: linear-gradient(90deg, rgb(101, 101, 101) 0%, rgb(50, 50, 50) 35%, rgb(8, 8, 8) 100%) ;
-  background-image: linear-gradient(to bottom, rgba(240, 185, 114, 0.4), rgba(168, 120, 15, 0.5)), url('assets/CICTBuilding.png');
+  // background-image: linear-gradient(to bottom, rgba(240, 185, 114, 0.4), rgba(168, 120, 15, 0.5)), url('assets/CICTBuilding.png');
   background-size:cover;
 }
 
 .light-faculty-d-container{
   // background: rgb(63, 63, 63) ;
   // background: linear-gradient(90deg, rgb(101, 101, 101) 0%, rgb(50, 50, 50) 35%, rgb(8, 8, 8) 100%) ;
-  background-image: linear-gradient(to bottom, rgba(240, 185, 114, 0.4), rgba(168, 120, 15, 0.5)), url('assets/CICTBuilding.png');
+  // background-image: linear-gradient(to bottom, rgba(240, 185, 114, 0.4), rgba(168, 120, 15, 0.5)), url('assets/CICTBuilding.png');
   background-size:cover;
 }
 
 .light-faculty-d-container{
-  background-image: linear-gradient(to bottom, rgba(240, 185, 114, 0.4), rgba(168, 120, 15, 0.5)), url('assets/CICTBuilding.png');
+  // background-image: linear-gradient(to bottom, rgba(240, 185, 114, 0.4), rgba(168, 120, 15, 0.5)), url('assets/CICTBuilding.png');
   background-size:cover;
-  height: 88.5vh;
+  // height: 88.5vh;
 }
 
 .light-faculty-card{
@@ -360,19 +716,19 @@ background-size:cover;
 .red-faculty-main-container{
   // background: rgb(63, 63, 63) ;
   // background: linear-gradient(90deg, rgb(101, 101, 101) 0%, rgb(50, 50, 50) 35%, rgb(8, 8, 8) 100%) ;
-  background-image: linear-gradient(to bottom, rgba(219, 7, 0, 0.4), rgba(97, 0, 0, 0.5)), url('assets/CICTBuilding.png');
+  // background-image: linear-gradient(to bottom, rgba(219, 7, 0, 0.4), rgba(97, 0, 0, 0.5)), url('assets/CICTBuilding.png');
   background-size:cover;
 }
 
 .red-faculty-d-container{
   // background: rgb(63, 63, 63) ;
   // background: linear-gradient(90deg, rgb(101, 101, 101) 0%, rgb(50, 50, 50) 35%, rgb(8, 8, 8) 100%) ;
-  background-image: linear-gradient(to bottom, rgba(219, 7, 0, 0.4), rgba(97, 0, 0, 0.5)), url('assets/CICTBuilding.png');
+  // background-image: linear-gradient(to bottom, rgba(219, 7, 0, 0.4), rgba(97, 0, 0, 0.5)), url('assets/CICTBuilding.png');
   background-size:cover;
 }
 
 .red-faculty-d-container{
-  background-image: linear-gradient(to bottom, rgba(219, 7, 0, 0.4), rgba(97, 0, 0, 0.5)), url('assets/CICTBuilding.png');
+  // background-image: linear-gradient(to bottom, rgba(219, 7, 0, 0.4), rgba(97, 0, 0, 0.5)), url('assets/CICTBuilding.png');
   background-size:cover;
   height: 88.5vh;
 }
@@ -401,3 +757,124 @@ background-size:cover;
 
 .red-faculty-d-table-capsule tbody:nth-child(even){background-color: rgb(158, 4, 4);}
 
+
+//PURPLE MODE
+
+.purp-faculty-main-container{
+
+  background-size:cover;
+}
+
+.purp-faculty-d-container{
+  background-size:cover;
+}
+
+.purp-faculty-d-container{
+  background-size:cover;
+  height: 88.5vh;
+}
+
+.purp-faculty-header{
+  background: #A100FF;
+  background: linear-gradient(90deg, #50027e 0%, #610695 35%, #4c0675 100%);
+  
+}
+
+.purp-faculty-card{
+  background: #A100FF;
+  background: linear-gradient(90deg, #50027e 0%, #610695 35%, #4c0675 100%);
+  color: rgb(255, 255, 255);
+}
+
+.purp-faculty-right-side{
+  background: #A100FF;
+  background: linear-gradient(90deg, #50027e 0%, #610695 35%, #4c0675 100%);
+  color: rgb(255, 255, 255);
+}
+
+.purp-faculty-status{
+  color: black;
+}
+
+.purp-faculty-d-table-capsule tbody:nth-child(even){background-color: #790095;}
+
+//BLUE MODE
+
+.blue-faculty-main-container{
+
+  background-size:cover;
+}
+
+.blue-faculty-d-container{
+  background-size:cover;
+}
+
+.blue-faculty-d-container{
+  background-size:cover;
+  height: 88.5vh;
+}
+
+.blue-faculty-header{
+  background: rgb(2,0,36);
+  background: linear-gradient(281deg, rgba(2,0,36,1) 0%, rgba(9,9,121,1) 35%, rgba(5,116,139,1) 100%);
+  
+}
+
+.blue-faculty-card{
+  background: rgb(2,0,36);
+  background: linear-gradient(281deg, rgba(2,0,36,1) 0%, rgba(9,9,121,1) 35%, rgba(5,116,139,1) 100%);
+  color: rgb(255, 255, 255);
+}
+
+.blue-faculty-right-side{
+  background: rgb(2,0,36);
+  background: linear-gradient(281deg, rgba(2,0,36,1) 0%, rgba(9,9,121,1) 35%, rgba(5,116,139,1) 100%);
+  color: rgb(255, 255, 255);
+}
+
+.blue-faculty-status{
+  color: black;
+}
+
+.blue-faculty-d-table-capsule tbody:nth-child(even){background-color: rgb(3, 0, 68);}
+
+
+//GREEN & YELLOW MODE
+
+.green-yellow-faculty-main-container{
+
+  background-size:cover;
+}
+
+.green-yellow-faculty-d-container{
+  background-size:cover;
+}
+
+.green-yellow-faculty-d-container{
+  background-size:cover;
+  height: 88.5vh;
+}
+
+.green-yellow-faculty-header{
+  background: rgb(34,193,195);
+  background: linear-gradient(281deg, rgba(34,193,195,1) 0%, rgba(253,187,45,1) 100%);
+  
+}
+
+.green-yellow-faculty-card{
+  background: rgb(34,193,195);
+  background: linear-gradient(281deg, rgba(34,193,195,1) 0%, rgba(253,187,45,1) 100%);
+  color: rgb(255, 255, 255);
+}
+
+.green-yellow-faculty-right-side{
+  background: rgb(34,193,195);
+  background: linear-gradient(281deg, rgba(34,193,195,1) 0%, rgba(253,187,45,1) 100%);
+  color: rgb(255, 255, 255);
+}
+
+.green-yellow-faculty-status{
+  color: black;
+}
+
+.green-yellow-faculty-d-table-capsule tbody:nth-child(even){ background: rgb(34,193,195);}

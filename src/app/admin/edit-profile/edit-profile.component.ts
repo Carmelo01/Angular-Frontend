@@ -17,6 +17,10 @@ export class EditProfileComponent implements OnInit{
   theme:any;
   loading: boolean = false;
 
+  isShow: boolean = false;
+
+  imageSelected: boolean = false;
+
   imgChangeEvt:any='';
   cropImgPreview:any='';
 
@@ -39,10 +43,13 @@ export class EditProfileComponent implements OnInit{
   ngOnInit(): void {
     this.getCurrentUser();
     this.theme = this.themeService.getTheme()
+
   }
 
   onFileChange(event: any){
+    this.isShow = true;
     this.imgChangeEvt = event;
+    this.imageSelected = true;
   }
 
   cropImg(e: ImageCroppedEvent){
@@ -69,6 +76,8 @@ export class EditProfileComponent implements OnInit{
 
   editProfile(): void {
     this.disabledForms = !this.disabledForms
+    this.getCurrentUser();
+    
   }
 
   onSubmit(){

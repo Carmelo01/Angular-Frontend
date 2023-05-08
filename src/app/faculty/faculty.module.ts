@@ -31,6 +31,7 @@ import { GetOneMycapsuleResolver } from '../resolver/get-one-mycapsule.resolver'
 import { UserEditProfileResolver } from '../resolver/user-edit-profile.resolver';
 import { SearchFacultyPipe } from '../pipes/search-faculty.pipe';
 import { ForgetPasswordComponent } from './Modal/forget-password/forget-password.component';
+import { NgxPaginationModule } from 'ngx-pagination';
 
 @NgModule({
   declarations: [
@@ -57,6 +58,7 @@ import { ForgetPasswordComponent } from './Modal/forget-password/forget-password
     MaterialModule,
     SharedModule,
     FormsModule,
+    NgxPaginationModule,
     ImageCropperModule,
     RouterModule.forChild([
       { path: 'faculty', component: FacultyComponent, children: [

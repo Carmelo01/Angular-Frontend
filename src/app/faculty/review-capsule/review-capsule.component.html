@@ -20,18 +20,14 @@
             <input class="form-control" name="search" type="text" placeholder="Search for a Capsule" [(ngModel)]="searchCapsule">
           </div>
           <div class="d-div-select">
-            <select class="d-custom-select" id="inputGroupSelect01">
-              <option selected>Filter by</option>
-              <option value="1">One</option>
-              <option value="2">Two</option>
-              <option value="3">Three</option>
-            </select>
-
-            <select class="d-custom-select" id="inputGroupSelect01">
-              <option selected>Sort by</option>
-              <option value="1">One</option>
-              <option value="2">Two</option>
-              <option value="3">Three</option>
+            <select class="d-custom-select" id="inputGroupSelect01" name="filter" [(ngModel)]="selectedFilter">
+              <option value="-1">Filter by</option>
+              <option value="0">Unassigned</option>
+              <option value="1">Assigned</option>
+              <option value="2">Graded</option>
+              <option value="3">Under Revision</option>
+              <option value="4">Reconsider</option>
+              <option value="5">Approved</option>
             </select>
           </div>
         </div>
@@ -40,13 +36,13 @@
       <table class="d-table-capsule" id="d-table" [ngClass]="theme+'-faculty-d-table-capsule'">
         <thead>
           <th>CAPSULE ID</th>
-          <th>TITLE</th>
-          <th>AUTHOR</th>
-          <th>DATE SUBMITTED</th>
+          <th>TITLE <mat-icon (click)="paginate.review_sort('titleAsc', capsules)">arrow_upward</mat-icon><mat-icon (click)="paginate.review_sort('titleDesc', capsules)">arrow_downward</mat-icon></th>
+          <th>AUTHOR <mat-icon (click)="paginate.review_sort('authorAsc', capsules)">arrow_upward</mat-icon><mat-icon (click)="paginate.review_sort('authorDesc', capsules)">arrow_downward</mat-icon></th>
+          <th>DATE SUBMITTED <mat-icon (click)="paginate.review_sort('datePublsihedAsc', capsules)">arrow_upward</mat-icon><mat-icon (click)="paginate.review_sort('datePublsihedDesc', capsules)">arrow_downward</mat-icon></th>
           <th>STATUS</th>
           <th>ACTION</th>
         </thead>
-        <tbody *ngFor="let capsule of capsules | searchFaculty: searchCapsule; let i = index">
+        <tbody *ngFor="let capsule of filteredItems | paginate: { itemsPerPage: pageSize, currentPage: currentPage, totalItems: capsules.length } | searchFaculty: searchCapsule; let i = index">
           <tr>
             <td data-label="CAPSULE ID">{{capsule.capsule.id}}</td>
             <td data-label="TITLE">{{capsule.capsule.title}}</td>
@@ -58,6 +54,7 @@
           </tr>
         </tbody>
       </table>
+      <pagination-controls style="text-align: center;" (pageChange)="currentPage = $event"></pagination-controls>
     </div>
 
     <div class="right-side" id="details" *ngIf="showdetails" [ngClass]="theme+'-faculty-right-side'">

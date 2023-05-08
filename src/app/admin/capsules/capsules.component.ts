@@ -17,6 +17,9 @@ export class CapsulesComponent implements OnInit{
   theme: any;
   searchQuery: any = '';
   searchCapsule = '';
+  currentPage = 1; // current page number
+  pageSize = 5; // number of items to be shown per page
+  selectedFilter: string = '-1';
 
   constructor(private capsuleService: CapsuleService,
     public url: UrlService,
@@ -30,6 +33,15 @@ export class CapsulesComponent implements OnInit{
   ngOnInit(): void {
     //this.showCapsules()
     this.theme = this.themeService.getTheme()
+  }
+
+  get filteredItems(): string[] {
+    let capsule = this.capsules
+    if (!this.selectedFilter || this.selectedFilter == '-1') {
+      return this.capsules;
+    }
+
+    return capsule.filter( (item: any) => item.status.toLowerCase().startsWith(this.selectedFilter.toLowerCase()));
   }
 
 

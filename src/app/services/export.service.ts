@@ -102,8 +102,8 @@ export class ExportService {
     for(let f of data){
       let subdata = {
         title: f.capsule.title,
-        author: f.user.fname + ' ' + f.user.lname,
-        authorEmail: f.user.email,
+        author: f.capsule.user.fname + ' ' + f.capsule.user.lname,
+        authorEmail: f.capsule.user.email,
         date: this.formatReqDate(f.capsule.created_at),
         status: this.getStatus(f.capsule.status),
       }
@@ -120,7 +120,6 @@ export class ExportService {
       useBom: false,
       headers: ['Title', 'Author', 'Author Email', 'Date Published', 'Status']
     }
-
   new ngxCsv(capsuleData, name, options);
   }
 

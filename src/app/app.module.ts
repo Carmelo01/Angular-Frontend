@@ -28,6 +28,7 @@ import {ChartModule} from 'angular-highcharts'
 import { ImageCropperModule } from 'ngx-image-cropper';
 import { FacultyResetPasswordComponent } from './auth/faculty-reset-password/faculty-reset-password.component';
 import { ForgotPasswordFacultyComponent } from './auth/forgot-password-faculty/forgot-password-faculty.component';
+import { NgxPaginationModule } from 'ngx-pagination';
 
 
 @NgModule({
@@ -51,6 +52,7 @@ import { ForgotPasswordFacultyComponent } from './auth/forgot-password-faculty/f
     HttpClientModule,
     MatIconModule,
     ImageCropperModule,
+    NgxPaginationModule,
     ButtonsModule,
     NgxExtendedPdfViewerModule,
     ToastrModule.forRoot(),

@@ -43,6 +43,7 @@ import { GetOneCapsuleResolver } from '../resolver/get-one-capsule.resolver';
 import { EditProfileResolver } from '../resolver/edit-profile.resolver';
 import { SearchPipe } from '../pipes/search.pipe';
 import { AdminChangePassComponent } from './modal/admin-change-pass/admin-change-pass.component';
+import { NgxPaginationModule } from 'ngx-pagination';
 
 
 @NgModule({
@@ -81,6 +82,7 @@ import { AdminChangePassComponent } from './modal/admin-change-pass/admin-change
     FormsModule,
     ChartModule,
     SharedModule,
+    NgxPaginationModule,
     ImageCropperModule,
     RouterModule.forChild([
       { path: 'admin', component: AdminComponent, children: [

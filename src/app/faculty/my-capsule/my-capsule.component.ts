@@ -1,7 +1,6 @@
 import { formatDate } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { CreateCapsuleComponent } from '../Modal/create-capsule/create-capsule.component';
 import { CapsuleService } from 'src/app/services/capsule.service';
 import { slideInAnimation } from 'src/app/shared/animations/app.animation';
 import { AddCapsuleComponent } from '../Modal/add-capsule/add-capsule.component';
@@ -10,6 +9,7 @@ import { DeleteCapsuleComponent } from '../Modal/delete-capsule/delete-capsule.c
 import { ExportService } from 'src/app/services/export.service';
 import { ActivatedRoute } from '@angular/router';
 import { ThemeService } from 'src/app/services/theme.service';
+import { PaginateService } from 'src/app/services/paginate.service';
 
 @Component({
   selector: 'app-my-capsule',
@@ -25,14 +25,18 @@ export class MyCapsuleComponent implements OnInit {
   theme : any;
 
   capsules: any;
-
+  searchCapsule = '';
   userSelected: any;
+  currentPage = 1; // current page number
+  pageSize = 5; // number of items to be shown per page
+  selectedFilter: string = '-1';
 
   constructor(public capsuleService: CapsuleService,
     private dialogRef: MatDialog,
     public exportService: ExportService,
     private themeService: ThemeService,
-    private route: ActivatedRoute) {
+    private route: ActivatedRoute,
+    public paginate: PaginateService) {
       this.capsules = this.route.snapshot.data['capsules'];
     }
 
@@ -58,6 +62,15 @@ export class MyCapsuleComponent implements OnInit {
   //   })
   // }
 
+  get filteredItems(): string[] {
+    let capsule = this.capsules.data
+    if (!this.selectedFilter || this.selectedFilter == '-1') {
+      return this.capsules.data;
+    }
+
+    return capsule.filter( (item: any) => item.status.toLowerCase().startsWith(this.selectedFilter.toLowerCase()));
+  }
+
   seeDetails(id:any){
     this.capsuleService.getOneCapsuleSamePage(id).subscribe(capsule => {
       this.userSelected = capsule.data;
@@ -79,6 +92,11 @@ export class MyCapsuleComponent implements OnInit {
       oninit: () => {
         this.capsules = this.capsuleService.getUserCapsules().subscribe(capsule => {
           this.capsules = capsule;
+          if(capsule.data.length > 0){
+            this.noCapsule = false;
+          } else {
+            this.noCapsule = true
+          }
         })
       }
     }})

@@ -29,6 +29,9 @@ import { MycapsuleResolver } from '../resolver/mycapsule.resolver';
 import { GetOneCapsuleResolver } from '../resolver/get-one-capsule.resolver';
 import { GetOneMycapsuleResolver } from '../resolver/get-one-mycapsule.resolver';
 import { UserEditProfileResolver } from '../resolver/user-edit-profile.resolver';
+import { SearchFacultyPipe } from '../pipes/search-faculty.pipe';
+import { ForgetPasswordComponent } from './Modal/forget-password/forget-password.component';
+import { NgxPaginationModule } from 'ngx-pagination';
 
 @NgModule({
   declarations: [
@@ -46,6 +49,8 @@ import { UserEditProfileResolver } from '../resolver/user-edit-profile.resolver'
     DeleteCapsuleComponent,
     AddRevisedComponent,
     ReviewSpecificCapsuleComponent,
+    SearchFacultyPipe,
+    ForgetPasswordComponent
   ],
   imports: [
     CommonModule,
@@ -53,6 +58,7 @@ import { UserEditProfileResolver } from '../resolver/user-edit-profile.resolver'
     MaterialModule,
     SharedModule,
     FormsModule,
+    NgxPaginationModule,
     ImageCropperModule,
     RouterModule.forChild([
       { path: 'faculty', component: FacultyComponent, children: [

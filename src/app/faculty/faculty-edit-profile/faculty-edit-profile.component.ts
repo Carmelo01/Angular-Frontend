@@ -7,6 +7,7 @@ import { ThemeConfirmComponent } from 'src/app/admin/modal/theme-confirm/theme-c
 import { FacultyService } from 'src/app/services/faculty.service';
 import { ThemeService } from 'src/app/services/theme.service';
 import { TokenService } from 'src/app/services/token.service';
+import { ForgetPasswordComponent } from '../Modal/forget-password/forget-password.component';
 
 @Component({
   selector: 'app-faculty-edit-profile',
@@ -55,16 +56,6 @@ export class FacultyEditProfileComponent implements OnInit{
   }
 
   me(){
-    // this.currentUser=this.tokenService.me().subscribe(user=>{
-    //   this.currentUser = user
-    //   this.form.fname = user.fname;
-    //   this.form.mname = user.mname;
-    //   this.form.lname = user.lname;
-    //   this.form.email = user.email;
-    //   this.form.contact = user.contact;
-    //   this.form.image = user.profilePic;
-    //   this.cropImgPreview = user.profilePic;
-    // })
     this.form.fname = this.currentUser.fname;
     this.form.mname = this.currentUser.mname;
     this.form.lname = this.currentUser.lname;
@@ -108,6 +99,12 @@ export class FacultyEditProfileComponent implements OnInit{
     this.loading = false;
     this.me();
   }
+
+  openChangePasswordDialog(){ // change this when build interface
+    this.dialogRef.open(ForgetPasswordComponent, {
+    enterAnimationDuration: '400ms',
+    exitAnimationDuration: '400ms',
+  })}
 
   openThemeDialog(theme: string){ // change this when build interface
     this.dialogRef.open(ThemeConfirmComponent, {

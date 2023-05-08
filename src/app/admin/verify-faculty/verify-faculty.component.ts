@@ -3,6 +3,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute } from '@angular/router';
 import { ExportService } from 'src/app/services/export.service';
 import { FacultyService } from 'src/app/services/faculty.service';
+import { PaginateService } from 'src/app/services/paginate.service';
 import { ThemeService } from 'src/app/services/theme.service';
 import { UrlService } from 'src/app/services/url.service';
 import { ConfirmVerifyComponent } from '../modal/confirm-verify/confirm-verify.component';
@@ -16,13 +17,16 @@ export class VerifyFacultyComponent implements OnInit {
   faculties:any;
   loading: boolean = false
   theme: any;
-
+  searchFaculty = '';
+  currentPage = 1; // current page number
+  pageSize = 5; // number of items to be shown per page
   constructor(private facultyService: FacultyService,
     public url: UrlService,
     private dialogRef: MatDialog,
     public exportService: ExportService,
     private themeService: ThemeService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    public paginate: PaginateService
     ) {
       this.faculties = this.route.snapshot.data['faculty']
     }
@@ -40,7 +44,6 @@ export class VerifyFacultyComponent implements OnInit {
       oninit: () => {
         this.faculties = this.facultyService.allUnverified().subscribe(faculty => {
           this.faculties = faculty;
-
         })
       }
     }})

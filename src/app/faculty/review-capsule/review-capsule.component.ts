@@ -5,6 +5,7 @@ import { ActivatedRoute } from '@angular/router';
 import { CapsuleService } from 'src/app/services/capsule.service';
 import { ExportService } from 'src/app/services/export.service';
 import { FacultyService } from 'src/app/services/faculty.service';
+import { PaginateService } from 'src/app/services/paginate.service';
 import { ThemeService } from 'src/app/services/theme.service';
 
 @Component({
@@ -16,23 +17,35 @@ export class ReviewCapsuleComponent implements OnInit{
   origCapsule: any;
   valid:any;
   theme : any;
+  searchCapsule = ''
+  selectedFilter: string = '-1';
   constructor (public capsuleService: CapsuleService,
     private dialogRef: MatDialog,
     private facultyService: FacultyService,
     public exportService: ExportService,
     private themeService: ThemeService,
+    public paginate: PaginateService,
     private route: ActivatedRoute){
       this.capsules = this.route.snapshot.data['capsules'].msg;
     }
   showdetails : boolean = false;
-
-
-    capsules: any;
-    userSelected:any;
+  capsules: any;
+  userSelected:any;
   // length: any;
+  currentPage = 1; // current page number
+  pageSize = 5; // number of items to be shown per page
 
   ngOnInit(): void {
     this.theme = this.themeService.getTheme()
+  }
+
+  get filteredItems(): string[] {
+    let capsule = this.capsules
+    if (!this.selectedFilter || this.selectedFilter == '-1') {
+      return this.capsules;
+    }
+
+    return capsule.filter( (item: any) => item.capsule.status.toLowerCase().startsWith(this.selectedFilter.toLowerCase()));
   }
 
   seeDetails(id: any){

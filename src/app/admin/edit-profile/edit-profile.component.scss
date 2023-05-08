@@ -82,8 +82,19 @@ image-cropper{
 }
 
 .ep-btn-edit{
-  text-align: center;
   margin-top: 30px;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: space-evenly;
+}
+.change_pass{
+  cursor: pointer;
+  margin: 10px 0 20px 0;
+}
+.change_pass:hover{
+  color: rgb(83, 83, 83);
+  text-decoration: underline;
 }
 
 .ep-btn-save{

@@ -7,6 +7,7 @@ import * as Highcharts from "highcharts";
 import { ExportService } from 'src/app/services/export.service';
 import { ActivatedRoute } from '@angular/router';
 import { ThemeService } from 'src/app/services/theme.service';
+import { PaginateService } from 'src/app/services/paginate.service';
 
 
 @Component({
@@ -22,7 +23,13 @@ export class DashboardComponent implements OnInit{
   faculty:any;
   dashboard: any;
   linechart: any;
- // loading: boolean = false;
+  searchQuery: any = '';
+  searchCapsule = '';
+  // loading: boolean = false;
+  currentPage = 1; // current page number
+  pageSize = 5; // number of items to be shown per page
+
+  selectedFilter: string = '-1';
 
   donutChartOptions: any = {
     chart: {
@@ -34,16 +41,14 @@ export class DashboardComponent implements OnInit{
     },
     plotOptions: {
         pie: {
-          
-
-            innerSize: '85%',
-            borderWidth: 2,
-            borderColor: 'none',
-            borderRadius: '5px',
-            slicedOffset: 20,
-            dataLabels: {
-                connectorWidth: 0
-            }
+          innerSize: '85%',
+          borderWidth: 2,
+          borderColor: 'none',
+          borderRadius: '5px',
+          slicedOffset: 20,
+          dataLabels: {
+              connectorWidth: 0
+          }
         }
     },
     title: {
@@ -57,20 +62,35 @@ export class DashboardComponent implements OnInit{
     series: []
   }
   theme: any;
-
+  atoz: boolean = true
   constructor(private capsuleService: CapsuleService,
     private facultyService: FacultyService,
     public url: UrlService,
     public exportService: ExportService,
     private themeService: ThemeService,
-    private route: ActivatedRoute) {
+    private route: ActivatedRoute,
+    public paginate: PaginateService) {
       this.capsules = this.route.snapshot.data['capsules']
       this.getDashboardData(this.route.snapshot.data['chart'])
     }
 
+  get filteredItems(): string[] {
+    let capsule = this.capsules.data
+    if (!this.selectedFilter || this.selectedFilter == '-1') {
+      return this.capsules.data;
+    }
+
+    return capsule.filter( (item: any) => item.status.toLowerCase().startsWith(this.selectedFilter.toLowerCase()));
+  }
+
   ngOnInit(): void {
     this.getHighCharts()
     this.theme = this.themeService.getTheme()
+  }
+
+  toggleAtoZ(headerName:String, capsules:any){
+    this.atoz = !this.atoz
+    this.paginate.sort(headerName, capsules)
   }
 
   getHighCharts(){

@@ -33,7 +33,7 @@
               <input type="password" name="password" placeholder="Password"
               [(ngModel)]="myModel.password" required>
           </div>
-          <p class="forgot-password"><a href="#" class="frgt-pw-link">Forgot Password?</a></p>
+          <p class="forgot-password"><a [routerLink]="['/faculty/request/password/reset']" class="frgt-pw-link">Forgot Password?</a></p>
           <div class="login">
               <!-- <a href="#" class="login-button">Log In</a> -->
               <button class="login-button" type="submit" [disabled]="!myForm.valid">Login</button>

@@ -17,21 +17,14 @@
         <div class="d-input-parent">
             <div class="d-div-s">
                 <mat-icon class="d-s-icon">search</mat-icon>
-                <input type="text" class="d-custom-input" placeholder="Search for a Faculty">
+                <input class="form-control" name="search" type="text" placeholder="Search for a Faculty" [(ngModel)]="searchFaculty">
             </div>
             <div class="d-div-select">
                 <select class="d-custom-select" id="inputGroupSelect01">
-                    <option selected>Filter by</option>
-                    <option value="1">One</option>
-                    <option value="2">Two</option>
-                    <option value="3">Three</option>
-                </select>
-
-                <select class="d-custom-select" id="inputGroupSelect01">
-                    <option selected>Sort by</option>
-                    <option value="1">One</option>
-                    <option value="2">Two</option>
-                    <option value="3">Three</option>
+                  <option selected>Filter by</option>
+                  <option value="1">One</option>
+                  <option value="2">Two</option>
+                  <option value="3">Three</option>
                 </select>
             </div>
         </div>
@@ -40,14 +33,14 @@
     <table class="d-table-capsule" id="{{theme}}-d-table">
         <thead>
             <th>#</th>
-            <th>First Name</th>
+            <th>First Name <mat-icon (click)="paginate.sort('fnameAsc', faculties.msg)">arrow_upward</mat-icon><mat-icon (click)="paginate.sort('fnameDesc', faculties.msg)">arrow_downward</mat-icon></th>
             <th>Middle Name</th>
-            <th>Last Name</th>
+            <th>Last Name <mat-icon (click)="paginate.sort('lnameAsc', faculties.msg)">arrow_upward</mat-icon><mat-icon (click)="paginate.sort('lnameDesc', faculties.msg)">arrow_downward</mat-icon></th>
             <th>Email</th>
             <th>Contacts</th> <!-- change to status -->
             <th>Action</th>
         </thead>
-        <tbody *ngFor="let faculty of faculties.msg; let i = index">
+        <tbody *ngFor="let faculty of faculties.msg | paginate: { itemsPerPage: pageSize, currentPage: currentPage, totalItems: faculties.msg.length } | search:  searchFaculty; let i = index">
           <tr>
             <td data-label="#">{{i + 1}}</td>
             <td data-label="First Name">{{faculty.fname}}</td>
@@ -61,6 +54,7 @@
           </tr>
         </tbody>
     </table>
+    <pagination-controls style="text-align: center;" (pageChange)="currentPage = $event"></pagination-controls>
     </div>
 </div>
 

@@ -104,6 +104,8 @@ form{
     // text-align: center;
     margin-top: 30px;
     display: flex;
+    align-items: center;
+    flex-direction: column;
     justify-content: space-evenly;
   }
 
@@ -114,6 +116,14 @@ form{
     flex-direction: row;
     justify-content: space-evenly;
     width: 100%;
+  }
+  .change_pass{
+    cursor: pointer;
+    margin: 10px 0 20px 0;
+  }
+  .change_pass:hover{
+    color: rgb(83, 83, 83);
+    text-decoration: underline;
   }
 
 .orange-button{
@@ -144,7 +154,7 @@ form{
     background-color: black;
     display: flex;
     flex-direction: column;
-    
+
 }
 
 input[type="file"]{
@@ -171,7 +181,7 @@ input[type="file"]{
 
 label mat-icon{
   scale: 1.5;
-  
+
 }
 
 .edit-theme{

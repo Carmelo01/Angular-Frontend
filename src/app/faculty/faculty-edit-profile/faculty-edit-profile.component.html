@@ -62,8 +62,10 @@
           </div>
         </div>
 
-        <div class="ep-btn-edit">
-          <button *ngIf="disabledForms" type="button" class="btn orange-button" (click)="editProfile()">Edit Profile</button>
+        <div class="ep-btn-edit" *ngIf="disabledForms">
+          <button type="button" class="btn orange-button" (click)="editProfile()">Edit Profile</button>
+          <!-- <button type="button" class="btn orange-button" (click)="openChangePasswordDialog()">Change Password</button> -->
+          <h6 class="change_pass" (click)="openChangePasswordDialog()">Change Password</h6>
         </div>
         <div class="ep-btn-save" *ngIf="!disabledForms">
           <button type="button" class="btn orange-button" (click)="editProfile()">Cancel</button>

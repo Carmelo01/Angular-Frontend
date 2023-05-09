@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { CapsuleService } from 'src/app/services/capsule.service';
 import { ExportService } from 'src/app/services/export.service';
+import { ExportpdfService } from 'src/app/services/exportpdf.service';
 import { PaginateService } from 'src/app/services/paginate.service';
 import { ThemeService } from 'src/app/services/theme.service';
 import { UrlService } from 'src/app/services/url.service';
@@ -26,6 +27,7 @@ export class CapsulesComponent implements OnInit{
     public exportService: ExportService,
     private themeService: ThemeService,
     private route: ActivatedRoute,
+    public exportpdf: ExportpdfService,
     public paginate: PaginateService) {
       this.capsules = this.route.snapshot.data['capsules'].data
     }

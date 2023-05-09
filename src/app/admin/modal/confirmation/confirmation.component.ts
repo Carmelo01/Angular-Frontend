@@ -21,7 +21,7 @@ export class ConfirmationComponent {
   }
   onSubmit(method:any){
     this.loading = true;
-    if(method == 'Reject'){
+    if(method == 'Reconsider'){
       this.capsuleService.rejectCapsule(this.result.capsuleId).subscribe({
         next: data => this.handleResponse(data),
         error: error => this.handleError(error)

@@ -1,5 +1,5 @@
 import { formatDate } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { AfterContentInit, Component, ElementRef, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { CapsuleService } from 'src/app/services/capsule.service';
 import { slideInAnimation } from 'src/app/shared/animations/app.animation';
@@ -10,6 +10,9 @@ import { ExportService } from 'src/app/services/export.service';
 import { ActivatedRoute } from '@angular/router';
 import { ThemeService } from 'src/app/services/theme.service';
 import { PaginateService } from 'src/app/services/paginate.service';
+import html2pdf from 'html2pdf.js'
+import { TokenService } from 'src/app/services/token.service';
+import { ExportpdfService } from 'src/app/services/exportpdf.service';
 
 @Component({
   selector: 'app-my-capsule',
@@ -30,13 +33,18 @@ export class MyCapsuleComponent implements OnInit {
   currentPage = 1; // current page number
   pageSize = 5; // number of items to be shown per page
   selectedFilter: string = '-1';
+  currentUser:any;
+  currentTitle: any;
+  template: any;
 
   constructor(public capsuleService: CapsuleService,
     private dialogRef: MatDialog,
     public exportService: ExportService,
     private themeService: ThemeService,
     private route: ActivatedRoute,
-    public paginate: PaginateService) {
+    public paginate: PaginateService,
+    private token: TokenService,
+    public exportpdf: ExportpdfService) {
       this.capsules = this.route.snapshot.data['capsules'];
     }
 
@@ -49,18 +57,11 @@ export class MyCapsuleComponent implements OnInit {
       this.noCapsule = true
     }
     this.theme = this.themeService.getTheme()
+    this.currentUser = this.token.me().subscribe(user => {
+      this.currentUser = user
+      this.currentTitle = user.fname+' '+user.mname+' '+user.lname+' Capsule/s'
+    })
   }
-
-  // showCapsules(){
-  //   this.capsules = this.capsuleService.getUserCapsules().subscribe(capsule => {
-  //     this.capsules = capsule;
-  //     if(capsule.data.length > 0){
-  //       this.noCapsule = false;
-  //     } else {
-  //       this.noCapsule = true
-  //     }
-  //   })
-  // }
 
   get filteredItems(): string[] {
     let capsule = this.capsules.data
@@ -145,6 +146,4 @@ export class MyCapsuleComponent implements OnInit {
       window.open(url, '_blank');
     })
   }
-
 }
-

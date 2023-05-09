@@ -14,12 +14,16 @@ export namespace BeforeFacultyLoginGuard {
     const tokenData = token.get();
     let role = ''
     if(tokenData){ role = tokenData.role }
-
     if (!token.loggedIn()){
       return !token.loggedIn()
     } else {
-      router.navigate(['faculty']);
-      return false;
+      if(role === 'admin'){
+        router.navigate(['admin/home']);
+        return false;
+      }else if (role === 'faculty'){
+        router.navigate(['faculty']);
+        return false;
+      }else{ return false; }
     }
   }
 }

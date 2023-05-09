@@ -154,7 +154,7 @@ export class ExportService {
     else if(status == 1){ return 'Assigned'}
     else if(status == 2){ return 'Graded'}
     else if(status == 3){ return 'Under Revision'}
-    else if(status == 4){ return 'Rejected'}
+    else if(status == 4){ return 'Reconsider'}
     else if(status == 5){ return 'Approved'}
     else {return null}
   }

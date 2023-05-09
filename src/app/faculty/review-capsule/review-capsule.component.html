@@ -7,8 +7,7 @@
     <div class="card" *ngIf="capsules?.length > 0" [ngClass]="theme+'-faculty-card'">
       <div class="d-content">
         <div class="d-table-header">
-            <h3>Review Capsule</h3>
-            <button class="btn orange-button" (click)="exportService.exportReviewCapsule(capsules, 'Review Capsule List '+exportService.dateNow(), 'review-capsule-list-'+exportService.dateNow())">Export CSV File</button>
+          <h3>Review Capsule</h3>
         </div>
         <div class="d-impro-hr"></div>
       </div>
@@ -42,7 +41,7 @@
           <th>STATUS</th>
           <th>ACTION</th>
         </thead>
-        <tbody *ngFor="let capsule of filteredItems | paginate: { itemsPerPage: pageSize, currentPage: currentPage, totalItems: capsules.length } | searchFaculty: searchCapsule; let i = index">
+        <tbody *ngFor="let capsule of filteredItems | paginate: { itemsPerPage: pageSize, currentPage: currentPage, totalItems: filteredItems.length } | searchFaculty: searchCapsule; let i = index">
           <tr>
             <td data-label="CAPSULE ID">{{capsule.capsule.id}}</td>
             <td data-label="TITLE">{{capsule.capsule.title}}</td>
@@ -55,6 +54,10 @@
         </tbody>
       </table>
       <pagination-controls style="text-align: center;" (pageChange)="currentPage = $event"></pagination-controls>
+      <div class="export-btn-unique">
+        <button class="btn orange-button" (click)="exportpdf.exportPdfCapsule(currentTitle, capsules, 'review', 'review-capsules.pdf')">Export PDF File</button>
+        <button class="btn orange-button" (click)="exportService.exportReviewCapsule(capsules, 'Review Capsule List '+exportService.dateNow(), 'review-capsule-list-'+exportService.dateNow())">Export CSV File</button>
+      </div>
     </div>
 
     <div class="right-side" id="details" *ngIf="showdetails" [ngClass]="theme+'-faculty-right-side'">

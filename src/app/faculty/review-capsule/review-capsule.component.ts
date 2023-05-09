@@ -1,12 +1,11 @@
-import { formatDate } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute } from '@angular/router';
 import { CapsuleService } from 'src/app/services/capsule.service';
 import { ExportService } from 'src/app/services/export.service';
-import { FacultyService } from 'src/app/services/faculty.service';
+import { ExportpdfService } from 'src/app/services/exportpdf.service';
 import { PaginateService } from 'src/app/services/paginate.service';
 import { ThemeService } from 'src/app/services/theme.service';
+import { TokenService } from 'src/app/services/token.service';
 
 @Component({
   selector: 'app-review-capsule',
@@ -17,15 +16,17 @@ export class ReviewCapsuleComponent implements OnInit{
   origCapsule: any;
   valid:any;
   theme : any;
-  searchCapsule = ''
+  searchCapsule = '';
+  currentTitle: any;
+  currentdata: any
   selectedFilter: string = '-1';
   constructor (public capsuleService: CapsuleService,
-    private dialogRef: MatDialog,
-    private facultyService: FacultyService,
     public exportService: ExportService,
     private themeService: ThemeService,
     public paginate: PaginateService,
-    private route: ActivatedRoute){
+    private route: ActivatedRoute,
+    private token: TokenService,
+    public exportpdf: ExportpdfService){
       this.capsules = this.route.snapshot.data['capsules'].msg;
     }
   showdetails : boolean = false;
@@ -37,6 +38,9 @@ export class ReviewCapsuleComponent implements OnInit{
 
   ngOnInit(): void {
     this.theme = this.themeService.getTheme()
+    this.currentdata = this.token.me().subscribe(user => {
+      this.currentTitle = 'To Review of '+user.fname+' '+user.mname+' '+user.lname
+    })
   }
 
   get filteredItems(): string[] {

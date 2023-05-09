@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { slideInAnimation } from './shared/animations/app.animation';
 
 @Component({
   selector: 'app-root',
@@ -8,4 +7,5 @@ import { slideInAnimation } from './shared/animations/app.animation';
 })
 export class AppComponent {
   // title = 'AngularProject';
+
 }

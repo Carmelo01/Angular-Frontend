@@ -58,7 +58,7 @@ export class ForgotPasswordFacultyComponent {
     this.loading = false;
     console.log(data)
     this.toastr.success("Change Password Successfully!");
-    this.adminAuth.changeAuthStatus(true);
+    // this.adminAuth.changeAuthStatus(true);
     this.router.navigateByUrl('/faculty/login');
   }
 }

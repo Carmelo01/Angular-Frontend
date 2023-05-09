@@ -8,6 +8,7 @@ import { ExportService } from 'src/app/services/export.service';
 import { ActivatedRoute } from '@angular/router';
 import { ThemeService } from 'src/app/services/theme.service';
 import { PaginateService } from 'src/app/services/paginate.service';
+import { ExportpdfService } from 'src/app/services/exportpdf.service';
 
 
 @Component({
@@ -69,7 +70,8 @@ export class DashboardComponent implements OnInit{
     public exportService: ExportService,
     private themeService: ThemeService,
     private route: ActivatedRoute,
-    public paginate: PaginateService) {
+    public paginate: PaginateService,
+    public exportpdf: ExportpdfService) {
       this.capsules = this.route.snapshot.data['capsules']
       this.getDashboardData(this.route.snapshot.data['chart'])
     }
@@ -107,7 +109,7 @@ export class DashboardComponent implements OnInit{
       {name: 'Assigned', y:data.assignedCapsule, color:'#149dac' },
       {name: 'Graded', y:data.gradedCapsule, color:'#F5781C' },
       {name: 'Under Revision', y:data.underRevision, color:'#a66e8b' }, //data.underRevision
-      {name: 'Rejected', y:data.rejectedCapsule, color:'#401721' }, //data.rejectedCapsule
+      {name: 'Reconsider', y:data.rejectedCapsule, color:'#401721' }, //data.rejectedCapsule
       {name: 'Accepted', y:data.approvedCapsule, color:'#2a3439' }, //data.acceptedCapsule
     ]
     dataPie.push({

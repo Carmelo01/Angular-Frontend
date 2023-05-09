@@ -10,6 +10,11 @@ import { ExportService } from 'src/app/services/export.service';
 import { ActivatedRoute } from '@angular/router';
 import { ThemeService } from 'src/app/services/theme.service';
 import { PaginateService } from 'src/app/services/paginate.service';
+import html2pdf from 'html2pdf.js';
+
+
+
+
 
 @Component({
   selector: 'app-my-capsule',
@@ -50,6 +55,74 @@ export class MyCapsuleComponent implements OnInit {
     }
     this.theme = this.themeService.getTheme()
   }
+
+  
+  exportTableAsPdf(template:any): void {
+    console.log(template)
+    const table = document.getElementById('content');
+    // Create a new div element for the table and header, and add the modified CSS to it
+    const tableDiv = document.createElement('div');
+    tableDiv.innerHTML = `
+      <div class="header"><img src="assets/exportpdfHeader.png" style="width: 100%;" /></div>
+      <div class="username" style="text-align:center;">
+        <h3> UserFullName's Capsule/s</h3>
+      </div>     
+      <style>
+        .pdf-table th mat-icon {
+          display: none;
+        }
+        .pdf-table td:last-child,
+        .pdf-table th:last-child {
+          display: none;
+        }
+  
+        .pdf-table {
+          
+          width:80% !important;
+          background-color: transparent;
+          border-collapse: collapse;
+          margin: 5% 10% 0 10% !important;
+        }
+        .pdf-table tbody th,
+        .pdf-table tbody td {
+          background-color: #fff;
+          border: 1px solid black;
+          font-size:10px;
+          width:5%;
+        }
+        
+      </style>
+    `;
+    const footerdiv = document.createElement('div');
+    footerdiv.innerHTML = `
+    <div class="footer" style="position:relative; text-align:right; right:10px;">
+      <span>Created on: ${new Date().toLocaleString()}</span>
+    </div> `;
+  
+    // Add the header and table to the new div element
+    if (table) {
+      tableDiv.appendChild(table.cloneNode(true));
+      tableDiv.appendChild(footerdiv.cloneNode(true));
+    }
+
+
+    // Pass the new div element to html2pdf() instead of the table element
+    const options = {
+      filename: 'my-capsule.pdf',
+      image: { type: 'jpeg', quality: 0.98 },
+      html2canvas: { scale: 2 },
+      jsPDF: { orientation: 'portrait' },
+      multipage: true
+    };
+    html2pdf().set(options).from(tableDiv).save();
+}
+
+  
+
+  
+  
+
+  
 
   // showCapsules(){
   //   this.capsules = this.capsuleService.getUserCapsules().subscribe(capsule => {

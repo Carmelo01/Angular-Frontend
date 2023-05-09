@@ -126,5 +126,8 @@
   .pdf-button{display: flex;margin: 5px 0;background-color: rgb(235, 235, 235);border: 1px solid rgb(180, 177, 177);border-radius: 5px;align-items: center;padding: 8px 10px;cursor: pointer;transition: 0.5s;&:hover{background-color: rgb(197, 194, 194);}}
   .filename{margin-bottom: 0;padding-left: 15px;}
  
-
+  .pdf-table {
+    background-color: transparent !important;
+    font-size: inherit !important;
+  }
 

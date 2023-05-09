@@ -10,6 +10,7 @@
           <div class="d-table-header">
               <h3>My Capsules</h3>
               <div class="btn-div">
+                <button class="btn orange-button" (click)="exportTableAsPdf(myTemplate)">Export PDF File</button>
                 <button class="btn orange-button" (click)="exportService.exportCapsule(capsules.data, 'My Capsule List', 'my-capsule-list')">Export CSV File</button>
                 <button class="btn orange-button" (click)="openAddTitleDialog()">Create New Capsule</button>
               </div>
@@ -37,6 +38,7 @@
           </div>
         </form>
 
+        
         <table class="d-table-capsule" id="d-table" [ngClass]="theme+'-faculty-d-table-capsule'">
           <thead>
             <th>CAPSULE ID</th>
@@ -95,3 +97,25 @@
       </div>
       <!-- <app-loader></app-loader> -->
     </div>
+
+
+    <!-- for pdf export -->
+
+    <ng-template id="content" #myTemplate>
+    <table class="pdf-table" #mytable id="export-table" [ngClass]="theme+'-faculty-d-table-capsule'">
+      <thead>
+        <th>CAPSULE ID</th>
+        <th>TITLE <mat-icon (click)="paginate.sort('titleAsc', capsules.data)">arrow_upward</mat-icon><mat-icon (click)="paginate.sort('titleDesc', capsules.data)">arrow_downward</mat-icon></th>
+        <th>DATE SUBMITTED <mat-icon (click)="paginate.sort('datePublsihedAsc', capsules.data)">arrow_upward</mat-icon><mat-icon (click)="paginate.sort('datePublsihedDesc', capsules.data)">arrow_downward</mat-icon></th>
+        <th>STATUS</th>
+      </thead>
+      <tbody *ngFor="let capsule of capsules.data; let i = index" >
+        <tr [ngClass]="theme+'-faculty-tr'">
+          <td data-label="CAPSULE ID">{{capsule.id}}</td>
+          <td data-label="TITLE">{{capsule.title}}</td>
+          <td data-label="DATE SUBMITTED">{{exportService.formatReqDate(capsule.created_at)}}</td>
+          <td data-label="Status">{{exportService.getStatus(capsule.status)}}</td>
+        </tr>
+      </tbody>
+    </table>
+  </ng-template>

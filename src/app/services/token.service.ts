@@ -13,6 +13,7 @@ interface TokenData {
 export class TokenService {
   data!: TokenData | null;
   header: any;
+  getToken: any;
   constructor(public urlService: UrlService,
     private http:HttpClient) { }
 

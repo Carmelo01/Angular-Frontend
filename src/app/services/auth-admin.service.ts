@@ -67,4 +67,5 @@ export class AuthAdminService {
   forgotPasswordAdmin(data:any){
     return this.http.post(this.urlService.url+`api/admin/ResetPassword`, data);
   }
+
 }

@@ -59,6 +59,7 @@ export class CapsuleDetailsComponent implements OnInit{
       this.form.user_id = admin.id
     })
     this.theme = this.themeService.getTheme()
+    console.log(this.selectedCapsuleData)
   }
 
   getData(){

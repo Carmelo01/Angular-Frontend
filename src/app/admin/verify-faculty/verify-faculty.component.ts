@@ -8,6 +8,7 @@ import { PaginateService } from 'src/app/services/paginate.service';
 import { ThemeService } from 'src/app/services/theme.service';
 import { UrlService } from 'src/app/services/url.service';
 import { ConfirmVerifyComponent } from '../modal/confirm-verify/confirm-verify.component';
+import { DeclineFacultyComponent } from '../modal/decline-faculty/decline-faculty.component';
 
 @Component({
   selector: 'app-verify-faculty',
@@ -43,6 +44,20 @@ export class VerifyFacultyComponent implements OnInit {
     exitAnimationDuration: '400ms',
     data: {
       userData: data,
+      oninit: () => {
+        this.faculties = this.facultyService.allUnverified().subscribe(faculty => {
+          this.faculties = faculty;
+        })
+      }
+    }})
+  }
+
+  openConfirmationDialog(id: any ){ // change this when build interface
+    this.dialogRef.open(DeclineFacultyComponent, {
+    enterAnimationDuration: '400ms',
+    exitAnimationDuration: '400ms',
+    data: {
+      facultyId: id,
       oninit: () => {
         this.faculties = this.facultyService.allUnverified().subscribe(faculty => {
           this.faculties = faculty;

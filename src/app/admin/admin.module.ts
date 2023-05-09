@@ -44,6 +44,7 @@ import { EditProfileResolver } from '../resolver/edit-profile.resolver';
 import { SearchPipe } from '../pipes/search.pipe';
 import { AdminChangePassComponent } from './modal/admin-change-pass/admin-change-pass.component';
 import { NgxPaginationModule } from 'ngx-pagination';
+import { DeclineFacultyComponent } from './modal/decline-faculty/decline-faculty.component';
 
 
 @NgModule({
@@ -74,7 +75,8 @@ import { NgxPaginationModule } from 'ngx-pagination';
     RemoveReviewerComponent,
     ThemeConfirmComponent,
     SearchPipe,
-    AdminChangePassComponent
+    AdminChangePassComponent,
+    DeclineFacultyComponent,
   ],
   imports: [
     CommonModule,

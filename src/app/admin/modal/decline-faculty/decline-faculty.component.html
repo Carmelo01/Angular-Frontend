@@ -1,18 +1,18 @@
 <div class="container">
   <div class="dia-header">
     <div class="d-div-s">
-      <h3>{{result.title}}</h3>
+      <h3>Decline Faculty</h3>
     </div>
   </div>
 
   <div class="dia-content">
-    <p>{{result.method}} this capsule?</p>
-    <textarea *ngIf="result.method == 'Reconsider'" class="capsule-textarea" name="comment" [(ngModel)]="form.comment" placeholder="Enter additional comment"></textarea>
+    <p>Decline this faculty?</p>
+    <textarea class="capsule-textarea" name="comment" [(ngModel)]="form.comment" placeholder="Enter reasons"></textarea>
   </div>
 
   <div class="dia-actions">
     <button class="cancel" mat-dialog-close>Cancel</button>
-    <button class="submit" (click)="onSubmit(result.method)" *ngIf="!loading">Confirm</button>
+    <button class="submit" (click)="onSubmit()" *ngIf="!loading">Confirm</button>
     <button class="submit" style="padding: 5px 20px;" *ngIf="loading"><app-loader-button></app-loader-button></button>
   </div>
 </div>

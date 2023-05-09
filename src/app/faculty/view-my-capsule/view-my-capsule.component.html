@@ -88,7 +88,15 @@
           <div *ngIf="capsule?.status == '3'" class="con-unassign">
             <button class="status revision">Under Revision</button>
           </div>
-          <button *ngIf="capsule?.status == '4'" class="status reject">Reconsider</button>
+          <div *ngIf="capsule?.status == '4'" class="con-recon">
+            <button *ngIf="capsule?.status == '4'" class="status reject">Reconsider</button>
+            <br/>
+            <span class="label" [ngClass]="theme+'-sub-title'" *ngIf="capsule?.admin_comment != null">Comment of the admin</span>
+            <div class="reconsider" *ngIf="capsule?.admin_comment != null">
+              <label class="admin comment">{{capsule.admin_comment}}</label>
+            </div>
+          </div>
+
           <button *ngIf="capsule?.status == '5'" class="status approve">Approved</button>
           <button class="orange-button" (click)="openAddRevisionDialog()" *ngIf="selectedCapsuleData[0].status == '3'"><mat-icon >add_box</mat-icon>Upload Revision</button>
           <br/>

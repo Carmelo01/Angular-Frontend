@@ -29,7 +29,7 @@
             <div class="profile-div">
               <div class="left-div">
                 <img src="../../../assets/default-userpng.png" alt="" width="50px" height="50px" class="logo-header" *ngIf="r.user.profilePic == null">
-                <img src="{{urlService.url}}{{r.user.profilePic}}" alt="" width="50px" height="50px" class="logo-header" *ngIf="r.user.profilePic != null">
+                <img [src]="r.user.profilePic" alt="" width="50px" height="50px" class="logo-header" *ngIf="r.user.profilePic != null">
                 <p class="filename">{{r.user.fname}} {{r.user.lname}}</p>
               </div>
             </div>
@@ -79,14 +79,14 @@
         <div *ngIf="capsule?.status == '0'" class="con-unassign">
           <button class="status unassigned">Unassigned</button>
           <button class="orange-button" (click)="openDialog(capsuleId, capsule)">Assign Reviewers</button>
-          <button class="reject-button" (click)="openConfirmationDialog('Reject Capsule', 'Reject')">Reject</button>
+          <button class="reject-button" (click)="openConfirmationDialog('Reconsider Capsule', 'Reconsider')">Reconsider</button>
         </div>
         <button *ngIf="capsule?.status == '1'" class="status assigned">Under Review</button>
         <div *ngIf="capsule?.status == '2'" class="con-unassign">
           <button class="status graded">Graded</button>
           <button class="revision-button" (click)="openConfirmationDialog('Ask for Revision', 'Revise')">Ask for Revision</button>
           <button class="approve-button" (click)="openConfirmationDialog('Approve Capsule', 'Approve')">Approve</button>
-          <button class="reject-button" (click)="openConfirmationDialog('Reject Capsule', 'Reject')">Reject</button>
+          <button class="reject-button" (click)="openConfirmationDialog('Reconsider Capsule', 'Reconsider')">Reconsider</button>
         </div>
         <div *ngIf="capsule?.status == '3'" class="con-unassign">
           <button class="status revision">Under Revision</button>

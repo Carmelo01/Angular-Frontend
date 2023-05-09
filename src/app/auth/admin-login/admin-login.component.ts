@@ -1,8 +1,10 @@
 import { Component } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { AuthAdminService } from 'src/app/services/auth-admin.service';
 import { TokenService } from 'src/app/services/token.service';
+import { ResetPasswordAdminComponent } from '../modal/reset-password-admin/reset-password-admin.component';
 
 @Component({
   selector: 'app-admin-login',
@@ -23,6 +25,7 @@ export class AdminLoginComponent {
   constructor(private adminAuth: AuthAdminService,
     private token: TokenService,
     private router: Router,
+    private dialogRef: MatDialog,
     private toastr: ToastrService) {}
 
   onSubmit(){
@@ -30,6 +33,13 @@ export class AdminLoginComponent {
     this.adminAuth.login(this.form).subscribe({
       next: data => this.handleResponse(data),
       error: error => this.handleError(error)
+    })
+  }
+
+  openForgorPasswordDialog(){
+    this.dialogRef.open(ResetPasswordAdminComponent, {
+      enterAnimationDuration: '400ms',
+      exitAnimationDuration: '400ms',
     })
   }
 

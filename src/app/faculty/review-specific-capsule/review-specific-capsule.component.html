@@ -27,7 +27,7 @@
             <div class="pdf-button" *ngFor="let r of capsule.assigncapsule">
               <div class="left-div" [ngClass]="theme+'-faculty-status'">
                 <img src="../../../assets/default-userpng.png" alt="" width="50px" height="50px" class="logo-header" *ngIf="r.user.profilePic == null">
-                <img src="{{urlService.url}}{{r.user.profilePic}}" alt="" width="50px" height="50px" class="logo-header" *ngIf="r.user.profilePic != null">
+                <img [src]="r.user.profilePic" alt="" width="50px" height="50px" class="logo-header" *ngIf="r.user.profilePic != null">
                 <p class="filename">{{r.user.fname}} {{r.user.lname}}</p>
               </div>
               <div class="right-div" *ngIf="r.grade != null">
@@ -82,7 +82,7 @@
           <div *ngIf="capsule?.status == '3'" class="con-unassign">
             <button class="status revision">Under Revision</button>
           </div>
-          <button *ngIf="capsule?.status == '4'" class="status reject">Rejected</button>
+          <button *ngIf="capsule?.status == '4'" class="status reject">Reconsider</button>
           <button *ngIf="capsule?.status == '5'" class="status approve">Approved</button>
 
           <div class="revisions-container" [ngClass]="theme+'-faculty-status'">

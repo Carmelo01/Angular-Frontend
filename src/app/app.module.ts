@@ -29,6 +29,7 @@ import { ImageCropperModule } from 'ngx-image-cropper';
 import { FacultyResetPasswordComponent } from './auth/faculty-reset-password/faculty-reset-password.component';
 import { ForgotPasswordFacultyComponent } from './auth/forgot-password-faculty/forgot-password-faculty.component';
 import { NgxPaginationModule } from 'ngx-pagination';
+import { ResetPasswordAdminComponent } from './auth/modal/reset-password-admin/reset-password-admin.component';
 
 
 @NgModule({
@@ -40,6 +41,7 @@ import { NgxPaginationModule } from 'ngx-pagination';
     FacultyRegisterComponent,
     FacultyResetPasswordComponent,
     ForgotPasswordFacultyComponent,
+    ResetPasswordAdminComponent,
   ],
   imports: [
     BrowserModule,
@@ -65,7 +67,7 @@ import { NgxPaginationModule } from 'ngx-pagination';
       { path: 'faculty/request/password/reset', component: FacultyResetPasswordComponent },
       { path: 'faculty/change/password', component: ForgotPasswordFacultyComponent },
       { path: 'admin/login', component: AdminLoginComponent, canActivate: [BeforeAdminLoginGuard.canActivate] },
-      { path: 'admin/forgot/password', component: AdminForgotPasswordComponent },
+      { path: 'admin/change/password', component: AdminForgotPasswordComponent },
       { path: '', redirectTo: 'faculty/login', pathMatch: 'full' },
       { path: '**', redirectTo: 'welcome', pathMatch: 'full' }
     ]),

@@ -6,7 +6,6 @@
     <div class="d-content">
       <div class="d-table-header">
           <h3>Capsules</h3>
-          <button class="btn orange-button" (click)="exportService.exportCapsule(capsules, 'Capsule List', 'capsule-list')">Export CSV File</button>
       </div>
       <div class="d-impro-hr"></div>
     </div>
@@ -15,7 +14,7 @@
         <div class="d-input-parent">
             <div class="d-div-s">
               <mat-icon class="d-s-icon">search</mat-icon>
-              <input class="form-control" name="search" type="text" placeholder="Search for a Capsule" [(ngModel)]="searchCapsule">
+              <input class="form-control" name="search" type="text" placeholder="Search for a Capsule or Author" [(ngModel)]="searchCapsule">
             </div>
             <div class="d-div-select">
               <select class="d-custom-select" id="inputGroupSelect01" name="filter" [(ngModel)]="selectedFilter">
@@ -40,7 +39,7 @@
         <th>Date Published <mat-icon (click)="paginate.sort('datePublsihedAsc', capsules)">arrow_upward</mat-icon><mat-icon (click)="paginate.sort('datePublsihedDesc', capsules)">arrow_downward</mat-icon></th>
         <th>Action</th>
       </thead>
-      <tbody *ngFor="let capsule of filteredItems | paginate: { itemsPerPage: pageSize, currentPage: currentPage, totalItems: capsules.length } | search: searchCapsule; let i = index">
+      <tbody *ngFor="let capsule of filteredItems | paginate: { itemsPerPage: pageSize, currentPage: currentPage, totalItems: filteredItems.length } | search: searchCapsule; let i = index">
         <tr>
           <td data-label="Number">{{i+1}}</td>
           <td data-label="Title">{{capsule.title}}</td>
@@ -52,6 +51,10 @@
       </tbody>
     </table>
     <pagination-controls style="text-align: center;" (pageChange)="currentPage = $event"></pagination-controls>
+    <div class="export-btn-unique">
+      <button class="btn orange-button" (click)="exportpdf.exportPdfCapsule('Submitted Capsule', capsules, 'capsule', 'capsule-list.pdf')">Export PDF File</button>
+      <button class="btn orange-button" (click)="exportService.exportCapsule(capsules, 'Capsule List', 'capsule-list')">Export CSV File</button>
+    </div>
   </div>
 </div>
 

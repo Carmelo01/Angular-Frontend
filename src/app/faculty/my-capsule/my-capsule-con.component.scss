@@ -71,7 +71,7 @@
     }
   }
 
-  
+
   .buttons-container .orange-button{
     background-color: rgb(245, 120, 28);
     border-radius: 10px;
@@ -100,6 +100,11 @@
       transition: .5s;
       width: 95%;
     }
+  }
+
+  .capsule-desc{
+    max-height: 150px;
+    overflow-y: auto;
   }
 
 

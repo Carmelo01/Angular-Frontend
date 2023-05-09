@@ -18,7 +18,7 @@ import { RemoveReviewerComponent } from '../../modal/remove-reviewer/remove-revi
 @Component({
   selector: 'app-capsule-details',
   templateUrl: './capsule-details.component.html',
-  styleUrls: ['./capsule-details.component.scss'],
+  styleUrls: ['./capsule-details.component.scss', './capsule-details-con.component.scss'],
   animations: [ fade ]
 })
 export class CapsuleDetailsComponent implements OnInit{

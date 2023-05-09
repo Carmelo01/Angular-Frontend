@@ -59,4 +59,12 @@ export class AuthAdminService {
     let header = this.token.getHeader()
     return this.http.post(this.urlService.url+`api/admin/change/password`, data, {headers: header})
   }
+
+  sendAdminPasswordResetLink(data:any){
+    return this.http.post(this.urlService.url+`api/admin/SendPasswordResetLink`, data)
+  }
+
+  forgotPasswordAdmin(data:any){
+    return this.http.post(this.urlService.url+`api/admin/ResetPassword`, data);
+  }
 }

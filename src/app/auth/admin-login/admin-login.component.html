@@ -23,10 +23,10 @@
             <div class="mb-3 al-center">
               <button class="btn orange-button" type="submit" [disabled]="!loginForm.valid"
                 >Login</button>
-            
+
             </div>
             <div class="al-center">
-              <a class="al-title al-li">Forgot Password?</a>
+              <a (click)="openForgorPasswordDialog()" class="al-title al-li">Forgot Password?</a>
             </div>
           </form>
         </div>

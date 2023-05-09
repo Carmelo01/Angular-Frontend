@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute } from '@angular/router';
 import { ExportService } from 'src/app/services/export.service';
+import { ExportpdfService } from 'src/app/services/exportpdf.service';
 import { FacultyService } from 'src/app/services/faculty.service';
 import { PaginateService } from 'src/app/services/paginate.service';
 import { ThemeService } from 'src/app/services/theme.service';
@@ -26,7 +27,8 @@ export class VerifyFacultyComponent implements OnInit {
     public exportService: ExportService,
     private themeService: ThemeService,
     private route: ActivatedRoute,
-    public paginate: PaginateService
+    public paginate: PaginateService,
+    public exportpdf: ExportpdfService
     ) {
       this.faculties = this.route.snapshot.data['faculty']
     }

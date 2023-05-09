@@ -10,7 +10,6 @@
           <div class="d-table-header">
               <h3>My Capsules</h3>
               <div class="btn-div">
-                <button class="btn orange-button" (click)="exportService.exportCapsule(capsules.data, 'My Capsule List', 'my-capsule-list')">Export CSV File</button>
                 <button class="btn orange-button" (click)="openAddTitleDialog()">Create New Capsule</button>
               </div>
           </div>
@@ -47,7 +46,7 @@
             <th>STATUS</th>
             <th>ACTION</th>
           </thead>
-          <tbody *ngFor="let capsule of filteredItems | paginate: { itemsPerPage: pageSize, currentPage: currentPage, totalItems: capsules.data.length } | searchFaculty: searchCapsule; let i = index" >
+          <tbody *ngFor="let capsule of filteredItems | paginate: { itemsPerPage: pageSize, currentPage: currentPage, totalItems: filteredItems.length } | searchFaculty: searchCapsule; let i = index" >
             <tr [ngClass]="theme+'-faculty-tr'">
               <td data-label="CAPSULE ID">{{capsule.id}}</td>
               <td data-label="TITLE">{{capsule.title}}</td>
@@ -60,6 +59,11 @@
           </tbody>
         </table>
         <pagination-controls style="text-align: center;" (pageChange)="currentPage = $event"></pagination-controls>
+
+        <div class="export-btn-unique">
+          <button class="btn orange-button" (click)="exportpdf.exportPdfCapsule(currentTitle, capsules.data, 'capsule', 'my-capsule.pdf')">Export PDF File</button>
+          <button class="btn orange-button" (click)="exportService.exportCapsule(capsules.data, 'My Capsule List', 'my-capsule-list')">Export CSV File</button>
+        </div>
       </div>
 
       <div class="right-side" id="details" *ngIf="showdetails" [ngClass]="theme+'-faculty-right-side'">
@@ -74,7 +78,7 @@
           </div>
           <div class="lower">
             <span class="label">Description</span>
-            <p>{{c.description}}</p>
+            <p class="capsule-desc">{{c.description}}</p>
             <!-- <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p> -->
             <span class="label" [ngClass]="theme+'-faculty-status'">Uploaded materials</span>
             <div class="pdf-button" (click)="openPdf(c)" [ngClass]="theme+'-faculty-status'">

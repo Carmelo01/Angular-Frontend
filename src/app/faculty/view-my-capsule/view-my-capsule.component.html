@@ -88,10 +88,11 @@
           <div *ngIf="capsule?.status == '3'" class="con-unassign">
             <button class="status revision">Under Revision</button>
           </div>
-          <button *ngIf="capsule?.status == '4'" class="status reject">Rejected</button>
+          <button *ngIf="capsule?.status == '4'" class="status reject">Reconsider</button>
           <button *ngIf="capsule?.status == '5'" class="status approve">Approved</button>
           <button class="orange-button" (click)="openAddRevisionDialog()" *ngIf="selectedCapsuleData[0].status == '3'"><mat-icon >add_box</mat-icon>Upload Revision</button>
-
+          <br/>
+          <br/>
           <span class="label">Uploaded Revisions</span>
           <div class="revisions-container" [ngClass]="theme+'-faculty-status'">
             <div class="pdf-button-revised" *ngFor="let revision of capsule.revision">

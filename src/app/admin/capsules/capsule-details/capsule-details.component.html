@@ -94,8 +94,11 @@
         </div>
         <div *ngIf="capsule?.status == '4'" class="con-recon">
           <button  class="status reject">Reconsider</button>
-          <div class="reconsider">
-            <label class="admin comment">Comment of the admin</label>
+          <br/>
+          <span class="label" [ngClass]="theme+'-sub-title'" *ngIf="capsule?.admin_comment != null">Comment of the admin</span>
+          <div class="reconsider" *ngIf="capsule?.admin_comment != null">
+            <!-- <label class="admin comment">Comment of the admin</label> -->
+            <label class="admin comment">{{capsule.admin_comment}}</label>
           </div>
         </div>
         <button *ngIf="capsule?.status == '5'" class="status approve">Approved</button>

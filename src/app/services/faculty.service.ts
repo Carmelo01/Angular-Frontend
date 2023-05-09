@@ -28,6 +28,10 @@ export class FacultyService {
     return this.http.post(this.urlService.url + `api/admin/verify/faculty/${id}`, {})
   }
 
+  declineFaculty(data: any, id: any){
+    return this.http.post(this.urlService.url + `api/admin/decline/faculty/${id}`, data)
+  }
+
   editProfile(data: any){
     let header = this.token.getHeader()
     return this.http.post(this.urlService.url+`api/faculty/edit/profile`, data, {headers: header})

@@ -58,8 +58,8 @@ export class CapsuleService {
     return this.http.post(this.urlService.url+`api/comment/post/${id}`, data)
   }
 
-  rejectCapsule(id: any){
-    return this.http.post(this.urlService.url+`api/capsule/reject/${id}`, {})
+  rejectCapsule(data: any, id: any){
+    return this.http.post(this.urlService.url+`api/capsule/reject/${id}`, data)
   }
 
   approveCapsule(id: any){

@@ -20,7 +20,7 @@
 
 .d-container{
     margin: 10px 20px;
-  
+
   }
   .d-header {
     display: flex;
@@ -29,7 +29,7 @@
   .d-header h3{
     margin: 0;
   }
-  
+
   .card{
     display: flex;
     flex-direction: column;
@@ -41,7 +41,7 @@
     overflow-y: auto;
     overflow-x: hidden;
   }
-  
+
   .d-table-header{
     display: flex;
     flex-direction: row;
@@ -65,7 +65,7 @@
     width: 100%;
     margin: 10px 0 10px 0 ;
   }
-  
+
   .d-table-capsule th{
     border-bottom: 1px solid rgb(245, 120, 28);
     text-align: center;
@@ -74,7 +74,7 @@
     text-align: center;
   }
   // #d-table tbody:nth-child(even){background-color: #e4dede;}
-  
+
   .d-div-s{
     width: 50%;
   }
@@ -94,7 +94,7 @@
   mat-icon{
     margin: 8px;
   }
-  
+
   .d-div-select{
     display: flex;
     flex-direction: row;
@@ -114,7 +114,7 @@
     justify-content: space-between;
     margin: 20px 0;
   }
-  
+
   .d-graph-container{
     display: flex;
     text-align: center;
@@ -130,14 +130,21 @@
     min-height: 250px;
     margin-top: 30px;
   }
-  
+  .rejectbtn{
+    background-color: rgb(223,23,23);
+    border-radius: 20px;
+    color: white;
+    padding: 5px 20px;
+    transition: .5s;
+    &:hover{ opacity: .5; }
+  }
   .orange-button{
   background-color: rgb(245, 120, 28);
   border-radius: 20px;
   color: white;
   padding: 5px 20px;
   }
-  
+
   .orange-button:hover{
     transition: .5s;
     background-color: rgb(172, 75, 5);
@@ -148,7 +155,7 @@
       margin-left: 0px !important;
     }
   }
-  
+
   @media only screen and (max-width: 970px) {
     .d-graph-container{
       flex-direction: column;
@@ -206,4 +213,3 @@
       width: 100%;
     }
   }
-  

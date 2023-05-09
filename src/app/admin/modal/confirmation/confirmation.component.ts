@@ -11,6 +11,9 @@ import { CapsuleService } from 'src/app/services/capsule.service';
 export class ConfirmationComponent {
   result: any;
   loading: boolean = false
+  public form = {
+    comment: null
+  }
   constructor(@Inject(MAT_DIALOG_DATA) public data: any,
     private capsuleService: CapsuleService,
     private dialogRef: MatDialogRef<ConfirmationComponent>,
@@ -22,7 +25,7 @@ export class ConfirmationComponent {
   onSubmit(method:any){
     this.loading = true;
     if(method == 'Reconsider'){
-      this.capsuleService.rejectCapsule(this.result.capsuleId).subscribe({
+      this.capsuleService.rejectCapsule(this.form ,this.result.capsuleId).subscribe({
         next: data => this.handleResponse(data),
         error: error => this.handleError(error)
       })

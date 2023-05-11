@@ -37,9 +37,7 @@ export class DashboardComponent implements OnInit{
         type: 'pie',
         plotShadow: false,
     },
-    credits: {
-        enabled: false
-    },
+    credits: {enabled: false},
     plotOptions: {
         pie: {
           innerSize: '85%',
@@ -57,15 +55,55 @@ export class DashboardComponent implements OnInit{
         floating: true,
         text: 'Capsules'
     },
-    legend: {
-        enabled: false,
-    },
+    legend: {enabled: false,},
     series: []
+  }
+  areaChartOptions: any = {
+    chart: {styledMode: true,},
+    plotOptions: {
+      series: {
+          marker: {
+              enabled: false,
+          }
+      }
+    },
+    legend: {enabled: false},
+    credits: {enabled: false,},
+    title: {text: 'Capsule Monthly Uploads'},
+    yAxis: {visible: true,},
+    xAxis: {
+      visible: true,
+      categories: [
+          'January','February','March','April','May','June','July','August','October','November', 'December',
+      ]
+    },
+    defs: {
+      gradient0: {
+          tagName: 'linearGradient',
+          id: 'gradient-0',
+          x1: 0,
+          y1: 0,
+          x2: 0,
+          y2: 1,
+          children: [
+            {
+              tagName: 'stop',
+              offset: 0
+            },
+            {
+              tagName: 'stop',
+              offset: 0
+            }
+          ]
+      }
+    } as any,
+    series:[]
   }
   theme: any;
   atoz: boolean = true
+  datachart: any;
+  datalinechart: any;
   constructor(private capsuleService: CapsuleService,
-    private facultyService: FacultyService,
     public url: UrlService,
     public exportService: ExportService,
     private themeService: ThemeService,
@@ -86,6 +124,7 @@ export class DashboardComponent implements OnInit{
   }
 
   ngOnInit(): void {
+    this.getLineChartData();
     this.getHighCharts()
     this.theme = this.themeService.getTheme()
   }
@@ -112,6 +151,7 @@ export class DashboardComponent implements OnInit{
       {name: 'Reconsider', y:data.rejectedCapsule, color:'#401721' }, //data.rejectedCapsule
       {name: 'Accepted', y:data.approvedCapsule, color:'#2a3439' }, //data.acceptedCapsule
     ]
+    this.datachart = datas
     dataPie.push({
       type: 'pie',
       data: datas,
@@ -119,5 +159,30 @@ export class DashboardComponent implements OnInit{
     this.donutChartOptions.series = dataPie;
   }
 
-
+  getLineChartData(){
+    this.linechart = this.capsuleService.getLineChartData().subscribe(data => {
+      const dataLine = [];
+      this.datalinechart = [
+        {month: 'January',count: data.janCapsule}, {month: 'February',count: data.febCapsule}, {month: 'March',count: data.marCapsule}, {month: 'April',count: data.aprCapsule},
+        {month: 'May',count: data.mayCapsule}, {month: 'June',count: data.juneCapsule}, {month: 'July',count: data.julyCapsule}, {month: 'August',count: data.augCapsule},
+        {month: 'September',count: data.septCapsule}, {month: 'October',count: data.octCapsule}, {month: 'November',count: data.novCapsule}, {month: 'December',count: data.decCapsule},
+      ]
+      const dataInLine = [
+        [data.janCapsule, false], [data.febCapsule, false],
+        [data.marCapsule, false], [data.aprCapsule, false],
+        [data.mayCapsule, false], [data.juneCapsule, false],
+        [data.julyCapsule, false], [data.augCapsule, false],
+        [data.septCapsule, false], [data.octCapsule, false],
+        [data.novCapsule, false], [data.decCapsule, false],
+      ];
+      dataLine.push({
+        color: 'red',
+        type: 'areaspline',
+        keys: ['y', 'selected'],
+        data: dataInLine
+      })
+      this.areaChartOptions.series = dataLine;
+      Highcharts.chart('lineChart', this.areaChartOptions);
+    })
+  }
 }

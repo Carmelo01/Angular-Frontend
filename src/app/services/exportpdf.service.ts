@@ -176,4 +176,94 @@ export class ExportpdfService {
     html2pdf().set(options).from(tableDiv).save();
   }
 
+  exportChart2Pdf(data: any, linedata: any){
+    const lineChartData = linedata
+    const chartData = data
+    const tableDiv = document.createElement('div');
+    tableDiv.innerHTML = `
+      <div class="header"><img src="assets/exportpdfHeader.png" style="width: 100%;" /></div>
+      <div class="username" style="text-align:center;">
+        <h3>Dashboard Chart</h3>
+      </div>
+      <h5>Capsule Uploads</h5>
+      <style>
+        .pdf-table {
+          opacity: 1;
+          width:60% !important;
+          background-color: transparent;
+          border-collapse: collapse;
+          margin: 1% 20% 0 20% !important;
+          text-align: center;
+        }
+        .pdf-table tbody th,
+        .pdf-table tbody td {
+          background-color: #fff;
+          border: 1px solid black;
+          font-size:14px;
+          width:5%;
+        }
+        h5{
+          text-align:center;
+          margin-top:15px;
+        }
+      </style>
+    `;
+    const table = document.createElement('table')
+    table.classList.add('pdf-table')
+    table.innerHTML=`
+      <thead>
+        <th>STATUS</th>
+        <th>CAPSULE COUNT</th>
+      </thead>`;
+    const tbody = document.createElement('tbody')
+    chartData.forEach((chart: any) => {
+      const tr = document.createElement('tr')
+      tr.innerHTML = `
+      <tr [ngClass]="theme+'-faculty-tr'">
+        <td data-label="FIRST NAME">${chart.name}</td>
+        <td data-label="MIDDLE NAME">${chart.y}</td>
+      </tr>`
+      tbody.appendChild(tr.cloneNode(true))
+    })
+    table.appendChild(tbody.cloneNode(true))
+    tableDiv.appendChild(table.cloneNode(true))
+
+    const tableHeader = document.createElement('h5')
+    tableHeader.innerHTML = `Monthly Capsule Upload`
+    const table2 = document.createElement('table')
+    tableDiv.appendChild(tableHeader.cloneNode(true))
+    table2.classList.add('pdf-table')
+    table2.innerHTML=`
+      <thead>
+        <th>MONTH</th>
+        <th>CAPSULE COUNT</th>
+      </thead>`;
+    const tbody2 = document.createElement('tbody')
+    lineChartData.forEach((chart: any) => {
+      const tr = document.createElement('tr')
+      tr.innerHTML = `
+      <tr [ngClass]="theme+'-faculty-tr'">
+        <td data-label="MONTH">${chart.month}</td>
+        <td data-label="CAPSULE COUNT">${chart.count}</td>
+      </tr>`
+      tbody2.appendChild(tr.cloneNode(true))
+    })
+    table2.appendChild(tbody2.cloneNode(true))
+    tableDiv.appendChild(table2.cloneNode(true))
+    const footerdiv = document.createElement('div');
+    footerdiv.innerHTML = `
+    <div class="footer" style="position:relative; text-align:right; right:10px; margin:10% 10% 0 0">
+      <span>Created on: ${new Date().toLocaleString()}</span>
+    </div> `;
+    tableDiv.appendChild(footerdiv.cloneNode(true));
+    const options = {
+      filename: 'charts-data.pdf',
+      image: { type: 'jpeg', quality: 0.98 },
+      html2canvas: { scale: 2 },
+      jsPDF: { orientation: 'portrait' },
+      multipage: true
+    };
+    html2pdf().set(options).from(tableDiv).save();
+  }
+
 }

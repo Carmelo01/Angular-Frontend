@@ -1,8 +1,8 @@
 .con{
   width: 100%;
-  height: 100%;
+  height: 100vh;
   font-family: CenturyGothic;
-  overflow: auto;
+  overflow: hidden;
 }
 
 .row{
@@ -103,6 +103,10 @@ label{
   z-index: 1;
 }
 @media only screen and (max-width: 600px){
+
+  .row{
+    overflow: auto;
+  }
   .al-header{
     font-size: 18px;
   }

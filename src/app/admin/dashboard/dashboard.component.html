@@ -5,17 +5,18 @@
     </div>
     <div class="card" [ngClass]="theme+'-card'">
       <div class="d-content">
+        <button class="btn orange-button" style="float: right; margin-right: 30px;" (click)="exportpdf.exportChart2Pdf(datachart, datalinechart)">Export PDF File</button>
         <div class="d-graph-container">
           <div class="d-graph">
             <div class="pie" id="pieChart"></div>
           </div>
           <div class="d-graph">
-            <app-line-chart></app-line-chart>
+            <!-- <app-line-chart></app-line-chart> -->
+            <div class="area" id="lineChart"></div>
           </div>
       </div>
         <div class="d-table-header">
             <h3>Capsules</h3>
-            <button class="btn orange-button" (click)="exportService.exportCapsule(capsules.data, 'Capsule List', 'capsule-list')">Export CSV File</button>
         </div>
         <div class="d-impro-hr"></div>
       </div>

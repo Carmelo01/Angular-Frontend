@@ -12,9 +12,7 @@ export class LineChartComponent implements OnInit{
   linechart: any;
 
   areaChartOptions: any = {
-    chart: {
-      styledMode: true,
-    },
+    chart: {styledMode: true,},
     plotOptions: {
       series: {
           marker: {
@@ -22,33 +20,14 @@ export class LineChartComponent implements OnInit{
           }
       }
     },
-    legend: {
-      enabled: false
-    },
-    credits: {
-      enabled: false,
-    },
-    title: {
-      text: 'Capsule Monthly Uploads'
-    },
-    yAxis: {
-      visible: true,
-    },
+    legend: {enabled: false},
+    credits: {enabled: false,},
+    title: {text: 'Capsule Monthly Uploads'},
+    yAxis: {visible: true,},
     xAxis: {
       visible: true,
       categories: [
-          'January',
-          'February',
-          'March',
-          'April',
-          'May',
-          'June',
-          'July',
-          'August',
-          'September',
-          'October',
-          'November',
-          'December',
+          'January','February','March','April','May','June','July','August','October','November', 'December',
       ]
     },
     defs: {
@@ -60,14 +39,14 @@ export class LineChartComponent implements OnInit{
           x2: 0,
           y2: 1,
           children: [
-              {
-                  tagName: 'stop',
-                  offset: 0
-              },
-              {
-                  tagName: 'stop',
-                  offset: 0
-              }
+            {
+              tagName: 'stop',
+              offset: 0
+            },
+            {
+              tagName: 'stop',
+              offset: 0
+            }
           ]
       }
     } as any,
@@ -84,18 +63,12 @@ export class LineChartComponent implements OnInit{
     this.linechart = this.capsuleService.getLineChartData().subscribe(data => {
       const dataLine = [];
       const dataInLine = [
-        [data.janCapsule, false],
-        [data.febCapsule, false],
-        [data.marCapsule, false],
-        [data.aprCapsule, false],
-        [data.mayCapsule, false],
-        [data.juneCapsule, false],
-        [data.julyCapsule, false],
-        [data.augCapsule, false],
-        [data.septCapsule, false],
-        [data.octCapsule, false],
-        [data.novCapsule, false],
-        [data.decCapsule, false],
+        [data.janCapsule, false], [data.febCapsule, false],
+        [data.marCapsule, false], [data.aprCapsule, false],
+        [data.mayCapsule, false], [data.juneCapsule, false],
+        [data.julyCapsule, false], [data.augCapsule, false],
+        [data.septCapsule, false], [data.octCapsule, false],
+        [data.novCapsule, false], [data.decCapsule, false],
       ];
       dataLine.push({
         color: 'red',

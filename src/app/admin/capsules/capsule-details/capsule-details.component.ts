@@ -36,6 +36,9 @@ export class CapsuleDetailsComponent implements OnInit{
     user_id: null
   }
 
+  //show grade
+  showGrade: any = 'Show Grade'
+
   constructor(public generalService: GeneralService,
     private capsuleService: CapsuleService,
     private dialogRef: MatDialog,
@@ -59,7 +62,6 @@ export class CapsuleDetailsComponent implements OnInit{
       this.form.user_id = admin.id
     })
     this.theme = this.themeService.getTheme()
-    console.log(this.selectedCapsuleData)
   }
 
   getData(){
@@ -96,6 +98,15 @@ export class CapsuleDetailsComponent implements OnInit{
     // this.exportService.exportGradedRubric(user_id )
     this.rubricService.getGradedRubric(data).subscribe(datas => {
       this.exportService.exportGradedRubric(datas, datas);
+    })
+  }
+  calculateGrade(user_id: any, grade: any){
+    let data ={
+      reviewer_id: user_id,
+      capsule_id: this.capsuleId
+    }
+    this.rubricService.getGradedRubric(data).subscribe((datas:any) => {
+      this.showGrade = grade+'/'+datas.data.length * 5;
     })
   }
 

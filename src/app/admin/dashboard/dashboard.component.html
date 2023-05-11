@@ -43,17 +43,14 @@
 
       <table class="d-table-capsule" id="{{theme}}-d-table">
         <thead>
-            <th>Number</th>
-            <!-- <mat-icon (click)="paginate.sort('titleAsc', capsules.data)">arrow_upward</mat-icon><mat-icon (click)="paginate.sort('titleDesc', capsules.data)">arrow_downward</mat-icon> -->
-            <th>Title
-              <mat-icon (click)="paginate.sort('titleAsc', capsules.data)">arrow_upward</mat-icon><mat-icon (click)="paginate.sort('titleDesc', capsules.data)">arrow_downward</mat-icon>
-              <!-- <button *ngIf="atoz" (click)="toggleAtoZ('titleAsc', capsules.data)">A-Z</button>
-              <button *ngIf="!atoz" (click)="toggleAtoZ('titleDesc', capsules.data)">Z-A</button> -->
-            </th>
-            <th>Author <mat-icon (click)="paginate.sort('authorAsc', capsules.data)">arrow_upward</mat-icon><mat-icon (click)="paginate.sort('authorDesc', capsules.data)">arrow_downward</mat-icon></th>
-            <th>Status</th>
-            <th>Date Published <mat-icon (click)="paginate.sort('datePublsihedAsc', capsules.data)">arrow_upward</mat-icon><mat-icon (click)="paginate.sort('datePublsihedDesc', capsules.data)">arrow_downward</mat-icon></th>
-        </thead>
+          <th>Number</th>
+          <th><div class="title-unique">Title
+            <mat-icon class="mat-arrows" (click)="paginate.sort('titleAsc', capsules.data)">arrow_upward</mat-icon><mat-icon class="mat-arrows" (click)="paginate.sort('titleDesc', capsules.data)">arrow_downward</mat-icon>
+          </div></th>
+          <th><div class="title-unique">Author <mat-icon class="mat-arrows" (click)="paginate.sort('authorAsc', capsules.data)">arrow_upward</mat-icon><mat-icon class="mat-arrows" (click)="paginate.sort('authorDesc', capsules.data)">arrow_downward</mat-icon></div></th>
+          <th>Status</th>
+          <th><div class="title-unique">Date Published <mat-icon class="mat-arrows" (click)="paginate.sort('datePublsihedAsc', capsules.data)">arrow_upward</mat-icon><mat-icon class="mat-arrows" (click)="paginate.sort('datePublsihedDesc', capsules.data)">arrow_downward</mat-icon></div></th>
+      </thead>
         <tbody *ngFor="let capsule of filteredItems | paginate: { itemsPerPage: pageSize, currentPage: currentPage, totalItems: filteredItems.length } | search: searchCapsule ; let i = index">
           <tr>
             <td data-label="Number">{{i+1}}</td>

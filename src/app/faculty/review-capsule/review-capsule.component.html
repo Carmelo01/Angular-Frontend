@@ -35,9 +35,9 @@
       <table class="d-table-capsule" id="d-table" [ngClass]="theme+'-faculty-d-table-capsule'">
         <thead>
           <th>CAPSULE ID</th>
-          <th>TITLE <mat-icon (click)="paginate.review_sort('titleAsc', capsules)">arrow_upward</mat-icon><mat-icon (click)="paginate.review_sort('titleDesc', capsules)">arrow_downward</mat-icon></th>
-          <th>AUTHOR <mat-icon (click)="paginate.review_sort('authorAsc', capsules)">arrow_upward</mat-icon><mat-icon (click)="paginate.review_sort('authorDesc', capsules)">arrow_downward</mat-icon></th>
-          <th>DATE SUBMITTED <mat-icon (click)="paginate.review_sort('datePublsihedAsc', capsules)">arrow_upward</mat-icon><mat-icon (click)="paginate.review_sort('datePublsihedDesc', capsules)">arrow_downward</mat-icon></th>
+          <th><div class="title-unique">TITLE <mat-icon (click)="paginate.review_sort('titleAsc', capsules)">arrow_upward</mat-icon><mat-icon (click)="paginate.review_sort('titleDesc', capsules)">arrow_downward</mat-icon></div></th>
+          <th><div class="title-unique">AUTHOR <mat-icon (click)="paginate.review_sort('authorAsc', capsules)">arrow_upward</mat-icon><mat-icon (click)="paginate.review_sort('authorDesc', capsules)">arrow_downward</mat-icon></div></th>
+          <th><div class="title-unique">DATE SUBMITTED <mat-icon (click)="paginate.review_sort('datePublsihedAsc', capsules)">arrow_upward</mat-icon><mat-icon (click)="paginate.review_sort('datePublsihedDesc', capsules)">arrow_downward</mat-icon></div></th>
           <th>STATUS</th>
           <th>ACTION</th>
         </thead>

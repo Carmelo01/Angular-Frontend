@@ -26,6 +26,8 @@ export class GradeCapsuleComponent implements OnInit {
   rubricData: any;
   selectedOption: any;
 
+  capsule_type: any;
+
 
   constructor(public generalService: GeneralService,
     private capsuleService: CapsuleService,
@@ -39,15 +41,16 @@ export class GradeCapsuleComponent implements OnInit {
     this.activatedRoute.paramMap.subscribe((param) => {
       this.capsuleId = param.get('id');
     });
-    this.getCategory()
     this.capsuleService.getOneCapsule(this.capsuleId).subscribe(capsule => {
       this.selectedCapsuleData = capsule.data[0];
+      this.capsule_type = capsule.data[0].capsule_type
 
       this.fileurl=this.urlService.url+capsule.data[0].file_path;
       this.capsuleService.getFile(capsule.data[0].file_path).subscribe(data=>{
         this.urlmain = data;
       })
     })
+    this.getCategory()
   }
 
   onSubmit(){
@@ -63,8 +66,7 @@ export class GradeCapsuleComponent implements OnInit {
 
   handleResponse(data: any){
     this.loading = false;
-    console.log(data)
-    this.toastr.success("Update Successfully!");
+    this.toastr.success("Graded Successfully!");
   }
 
   handleError(error: any){
@@ -84,7 +86,7 @@ export class GradeCapsuleComponent implements OnInit {
 
   selectedValues: any[] = [];
   updateValue(questionId: number, rubric: string, value: number) {
-    const index = this.selectedValues.findIndex(item => item.questionId === questionId);
+    const index = this.selectedValues.findIndex(item => item.rubricId === questionId);
     const obj = { rubricId: questionId, rubric: rubric, grade: value };
     if (index > -1) {
       this.selectedValues[index] = obj;
@@ -92,6 +94,37 @@ export class GradeCapsuleComponent implements OnInit {
       this.selectedValues.push(obj);
     }
   }
+  // selectedValues: any[] = []; // Updated to be a one-dimensional array
+
+  // updateValue(questionId: number, rubric: string, value: number, categoryId: number) {
+  //   const categoryIndex = this.selectedValues.findIndex(item => item.categoryId === categoryId);
+
+  //   // Create the object for the question
+  //   const questionObj = { questionId: questionId, rubric: rubric, grade: value };
+
+  //   if (categoryIndex > -1) {
+  //     // Category exists in the selectedValues array
+  //     const category = this.selectedValues[categoryIndex];
+  //     const questionIndex = category.questions.findIndex((item: any) => item.questionId === questionId);
+
+  //     if (questionIndex > -1) {
+  //       // Update existing question object
+  //       category.questions[questionIndex] = questionObj;
+  //     } else {
+  //       // Add new question object to existing category
+  //       category.questions.push(questionObj);
+  //     }
+  //   } else {
+  //     // Category does not exist in the selectedValues array
+  //     const newCategory = {
+  //       categoryId: categoryId,
+  //       questions: [questionObj]
+  //     };
+  //     this.selectedValues.push(newCategory);
+  //   }
+
+  //   console.log(this.selectedValues);
+  // }
   openPdf() {
     this.capsuleService.getFile(this.selectedCapsuleData.file_path).subscribe(data=>{
        // Create a blob object from the ArrayBuffer data

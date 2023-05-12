@@ -13,8 +13,20 @@ export class RubricService {
     private token: TokenService) { }
 
   //category api
+  getDefaults(){
+    return this.http.get<any>(this.urlService.url+`api/category/generate/default`);
+  }
+
   getCategory(){
     return this.http.get<any>(this.urlService.url+`api/category/index`);
+  }
+
+  getCategoryforFunded(){
+    return this.http.get<any>(this.urlService.url+`api/rubrics/funded`);
+  }
+
+  getCategoryforNotFunded(){
+    return this.http.get<any>(this.urlService.url+`api/rubrics/not/funded`);
   }
 
   getOneCategory(id: any){
@@ -30,12 +42,12 @@ export class RubricService {
   }
 
   removeCategory(id:any){
-    return this.http.delete(this.urlService.url+`api/category/soft_delete/${id}`)
+    return this.http.delete(this.urlService.url+`api/category/delete/${id}`)
   }
 
   //rubric api
   removeRubric(id:any){
-    return this.http.delete(this.urlService.url+`api/rubrics/soft_delete/${id}`)
+    return this.http.delete(this.urlService.url+`api/rubrics/delete/${id}`)
   }
 
   editRubric(data: any, id:any){

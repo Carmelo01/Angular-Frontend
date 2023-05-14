@@ -14,8 +14,50 @@
             </div>
             <form #gradecapsule=ngForm (ngSubmit)="onSubmit()">
             <table>
-              
               <tbody *ngFor="let category of categories; let i = index">
+                <!-- <ng-container *ngIf="capsule_type == '1'">
+                  <tr class="t-head" *ngIf="category.title != 'Budget'">
+                    <th class="t-cat">{{category.title}}
+                      <span>(50%)</span>
+                    </th>
+                    <td>1</td>
+                    <td>2</td>
+                    <td>3</td>
+                    <td>4</td>
+                    <td>5</td>
+                  </tr>
+                  <ng-container *ngIf="category.title != 'Budget'">
+                    <tr *ngFor="let subcat of category.rubric;let j = index" [ngClass]="j % 2 === 0 ? 'even-row' : 'odd-row'">
+                      <th class="t-subcat"><h6 class="t-subcat-text">{{subcat.rubric}}</h6></th>
+                      <td><input type="radio" name='{{subcat.rubric}}' value="1" (change)="updateValue(subcat.id, subcat.rubric, 1, category.id)" id="rb1">{{selectedOption}}</td>
+                      <td><input type="radio" name='{{subcat.rubric}}' value="2" (change)="updateValue(subcat.id, subcat.rubric, 2, category.id)" id="rb2"></td>
+                      <td><input type="radio" name='{{subcat.rubric}}' value="3" (change)="updateValue(subcat.id, subcat.rubric, 3, category.id)" id="rb3"></td>
+                      <td><input type="radio" name='{{subcat.rubric}}' value="4" (change)="updateValue(subcat.id, subcat.rubric, 4, category.id)" id="rb4"></td>
+                      <td><input type="radio" name='{{subcat.rubric}}' value="5" (change)="updateValue(subcat.id, subcat.rubric, 5, category.id)" id="rb5"></td>
+                    </tr>
+                  </ng-container>
+                </ng-container>
+                <ng-container *ngIf="capsule_type == '0'">
+                  <tr class="t-head">
+                    <th class="t-cat">{{category.title}}
+                      <span *ngIf="category.title != 'Budget'">(40%)</span>
+                      <span *ngIf="category.title == 'Budget'">(20%)</span>
+                    </th>
+                    <td>1</td>
+                    <td>2</td>
+                    <td>3</td>
+                    <td>4</td>
+                    <td>5</td>
+                  </tr>
+                  <tr *ngFor="let subcat of category.rubric;let j = index" [ngClass]="j % 2 === 0 ? 'even-row' : 'odd-row'">
+                    <th class="t-subcat"><h6 class="t-subcat-text">{{subcat.rubric}}</h6></th>
+                    <td><input type="radio" name='{{subcat.rubric}}' value="1" (change)="updateValue(subcat.id, subcat.rubric, 1, category.id)" id="rb1">{{selectedOption}}</td>
+                    <td><input type="radio" name='{{subcat.rubric}}' value="2" (change)="updateValue(subcat.id, subcat.rubric, 2, category.id)" id="rb2"></td>
+                    <td><input type="radio" name='{{subcat.rubric}}' value="3" (change)="updateValue(subcat.id, subcat.rubric, 3, category.id)" id="rb3"></td>
+                    <td><input type="radio" name='{{subcat.rubric}}' value="4" (change)="updateValue(subcat.id, subcat.rubric, 4, category.id)" id="rb4"></td>
+                    <td><input type="radio" name='{{subcat.rubric}}' value="5" (change)="updateValue(subcat.id, subcat.rubric, 5, category.id)" id="rb5"></td>
+                  </tr>
+                </ng-container> -->
                 <tr class="t-head">
                   <th class="t-cat">{{category.title}}</th>
                   <td>1</td>
@@ -26,24 +68,24 @@
                 </tr>
                 <tr *ngFor="let subcat of category.rubric;let j = index" [ngClass]="j % 2 === 0 ? 'even-row' : 'odd-row'">
                   <th class="t-subcat"><h6 class="t-subcat-text">{{subcat.rubric}}</h6></th>
-                  <td><input type="radio" name='{{subcat.rubric}}' value="1" (change)="updateValue(subcat.id, subcat.rubric, 1)" id="rb1">{{selectedOption}}</td>
-                  <td><input type="radio" name='{{subcat.rubric}}' value="2" (change)="updateValue(subcat.id, subcat.rubric, 2)" id="rb2"></td>
-                  <td><input type="radio" name='{{subcat.rubric}}' value="3" (change)="updateValue(subcat.id, subcat.rubric, 3)" id="rb3"></td>
-                  <td><input type="radio" name='{{subcat.rubric}}' value="4" (change)="updateValue(subcat.id, subcat.rubric, 4)" id="rb4"></td>
-                  <td><input type="radio" name='{{subcat.rubric}}' value="5" (change)="updateValue(subcat.id, subcat.rubric, 5)" id="rb5"></td>
+                  <td><input type="radio" name='{{subcat.rubric}}' value="1" (change)="updateValue(subcat.id, subcat.rubric, 1, category.id)" id="rb1">{{selectedOption}}</td>
+                  <td><input type="radio" name='{{subcat.rubric}}' value="2" (change)="updateValue(subcat.id, subcat.rubric, 2, category.id)" id="rb2"></td>
+                  <td><input type="radio" name='{{subcat.rubric}}' value="3" (change)="updateValue(subcat.id, subcat.rubric, 3, category.id)" id="rb3"></td>
+                  <td><input type="radio" name='{{subcat.rubric}}' value="4" (change)="updateValue(subcat.id, subcat.rubric, 4, category.id)" id="rb4"></td>
+                  <td><input type="radio" name='{{subcat.rubric}}' value="5" (change)="updateValue(subcat.id, subcat.rubric, 5, category.id)" id="rb5"></td>
                 </tr>
                 </tbody>
 
             </table>
             <div class="comment-box-container">
               <h5 class="comment-box-text">Comment Box:</h5>
-              <textarea class="grade-capsule-textarea" name="comment" id="commentbox" rows="4" [(ngModel)]="commentRubrics" placeholder="Input your comment here:"></textarea>
+              <textarea class="grade-capsule-textarea" name="comment" id="commentbox" rows="4" [(ngModel)]="commentRubrics" placeholder="Input your comment here:" required></textarea>
             </div>
-            <button class="btn submit" role="button" type="submit">Submit Grade</button>
+            <button class="btn submit" role="button" type="submit" [disabled]="!gradecapsule.valid">Submit Grade</button>
 
 
           </form>
-          </div>         
+          </div>
         </div>
 </div>
 

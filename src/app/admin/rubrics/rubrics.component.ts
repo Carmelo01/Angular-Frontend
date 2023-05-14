@@ -39,6 +39,7 @@ export class RubricsComponent implements OnInit{
 
   ngOnInit(): void {
     this.theme = this.themeService.getTheme()
+    this.rubricService.getDefaults().subscribe(data=>{})
   }
 
   //event: any, 1st parameter if error

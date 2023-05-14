@@ -26,6 +26,5 @@ export namespace AfterAdminLoginGuard {
       router.navigate(['admin/login']);
       return false;
     }
-
   }
 }

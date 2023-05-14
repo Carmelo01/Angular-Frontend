@@ -34,6 +34,7 @@
               </div>
             </div>
             <div class="right-div" *ngIf="r.grade != null">
+              <p style="cursor: pointer;" (click)="calculateGrade(r.user.id, r.grade)">{{showGrade}}</p>
               <button class="btn orange-button" (click)="exportToService(r.user.id)">Export CSV</button>
             </div>
             <div class="delete-btn" *ngIf="r.grade == null">

@@ -127,8 +127,8 @@ export class ExportService {
     let rubricData: any[] = []
     for(let f of data.data){
       let subdata = {
-        title: f.rubric.category.title,
-        rubric: f.rubric.rubric,
+        title: f.category,
+        rubric: f.rubric,
         space: '',
         grade: f.grade
       }

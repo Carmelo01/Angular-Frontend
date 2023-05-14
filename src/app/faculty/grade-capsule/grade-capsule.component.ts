@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { CapsuleService } from 'src/app/services/capsule.service';
 import { UrlService } from 'src/app/services/url.service';
 import { GeneralService } from 'src/app/shared/services/general.service';
@@ -26,23 +26,26 @@ export class GradeCapsuleComponent implements OnInit {
   rubricData: any;
   selectedOption: any;
 
+  capsule_type: any;
 
+  counter: number = 0;
   constructor(public generalService: GeneralService,
     private capsuleService: CapsuleService,
     private dialogRef: MatDialog,
     private activatedRoute: ActivatedRoute,
     public urlService: UrlService,
     private rubricService: RubricService,
-    private toastr: ToastrService) {}
+    private toastr: ToastrService,
+    private router: Router) {}
 
   ngOnInit(): void {
     this.activatedRoute.paramMap.subscribe((param) => {
       this.capsuleId = param.get('id');
     });
-    this.getCategory()
     this.capsuleService.getOneCapsule(this.capsuleId).subscribe(capsule => {
       this.selectedCapsuleData = capsule.data[0];
-
+      this.capsule_type = capsule.data[0].capsule_type
+      this.getCategory(capsule.data[0].capsule_type)
       this.fileurl=this.urlService.url+capsule.data[0].file_path;
       this.capsuleService.getFile(capsule.data[0].file_path).subscribe(data=>{
         this.urlmain = data;
@@ -53,7 +56,8 @@ export class GradeCapsuleComponent implements OnInit {
   onSubmit(){
     let capsuledata = {
       data: this.selectedValues,
-      comment: this.commentRubrics
+      comment: this.commentRubrics,
+      type: this.capsule_type
     }
     this.capsuleService.gradeCapsule(capsuledata, this.capsuleId).subscribe({
       next: data => this.handleResponse(data),
@@ -63,8 +67,8 @@ export class GradeCapsuleComponent implements OnInit {
 
   handleResponse(data: any){
     this.loading = false;
-    console.log(data)
-    this.toastr.success("Update Successfully!");
+    this.toastr.success("Graded Successfully!");
+    this.router.navigateByUrl('/faculty/review/capsule');
   }
 
   handleError(error: any){
@@ -72,25 +76,67 @@ export class GradeCapsuleComponent implements OnInit {
     this.loading = false;
   }
 
-  getCategory(){
-    this.categories = this.rubricService.getCategory().subscribe(category => {
-      this.categories = category.data
-    })
+  getCategory(type: any){
+    if(type == 0){
+      this.categories = this.rubricService.getCategoryforFunded().subscribe(category => {
+        this.categories = category.data
+      })
+    } else if (type == 1){
+      this.categories = this.rubricService.getCategoryforNotFunded().subscribe(category => {
+        this.categories = category.data
+      })
+    } else {
+      this.categories = this.rubricService.getCategory().subscribe(category => {
+        this.categories = category.data
+      })
+    }
   }
 
   seeDetails(){
     this.showdetails = !this.showdetails;
   }
 
-  selectedValues: any[] = [];
-  updateValue(questionId: number, rubric: string, value: number) {
-    const index = this.selectedValues.findIndex(item => item.questionId === questionId);
-    const obj = { rubricId: questionId, rubric: rubric, grade: value };
-    if (index > -1) {
-      this.selectedValues[index] = obj;
+  // selectedValues: any[] = [];
+  // updateValue(questionId: number, rubric: string, value: number) {
+  //   const index = this.selectedValues.findIndex(item => item.rubricId === questionId);
+  //   const obj = { rubricId: questionId, rubric: rubric, grade: value };
+  //   if (index > -1) {
+  //     this.selectedValues[index] = obj;
+  //   } else {
+  //     this.selectedValues.push(obj);
+  //   }
+  // }
+  selectedValues: any[] = []; // Updated to be a one-dimensional array
+
+  updateValue(questionId: number, rubric: string, value: number, categoryId: number) {
+    const categoryIndex = this.selectedValues.findIndex(item => item.categoryId === categoryId);
+
+    // Create the object for the question
+    const questionObj = { questionId: questionId, rubric: rubric, grade: value };
+
+    if (categoryIndex > -1) {
+      // Category exists in the selectedValues array
+      const category = this.selectedValues[categoryIndex];
+      const questionIndex = category.questions.findIndex((item: any) => item.questionId === questionId);
+
+      if (questionIndex > -1) {
+        // Update existing question object
+        category.questions[questionIndex] = questionObj;
+      } else {
+        // Add new question object to existing category
+        category.questions.push(questionObj);
+        this.counter+=1;
+      }
     } else {
-      this.selectedValues.push(obj);
+      // Category does not exist in the selectedValues array
+      const newCategory = {
+        categoryId: categoryId,
+        questions: [questionObj]
+      };
+      this.selectedValues.push(newCategory);
+      this.counter+=1; // set up for validation
     }
+    console.log(this.selectedValues, this.counter);
   }
   openPdf() {
     this.capsuleService.getFile(this.selectedCapsuleData.file_path).subscribe(data=>{

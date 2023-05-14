@@ -18,7 +18,13 @@
       placeholder="Enter Capsule Description" required></textarea>
       <br>
       Capsule File:
-      <input type="file" class="form-control d-custom-input" (change)="getFile($event)" required>
+      <input type="file" class="form-control mb-3 d-custom-input" (change)="getFile($event)" required>
+      Capsule Type:
+      <select class="form-select d-custom-input" name="capsule_type" [(ngModel)]="form.capsule_type" required>
+        <option value="0" selected>Funded</option>
+        <option value="1">Not Funded</option>
+        <option value="2">Custom</option>
+      </select>
     </div>
 
     <div class="dia-actions">

@@ -890,6 +890,19 @@ background: linear-gradient(281deg, rgba(34,193,195,1) 0%, rgba(253,187,45,1) 10
   gap: 20px;
 }
 
+.title-unique {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+}
+
+.mat-arrows{
+  margin:0!important;
+  scale:.8;
+  cursor: pointer;
+}
+
 @media only screen and (max-width: 970px) {
   .export-btn-unique{
     flex-direction: column;

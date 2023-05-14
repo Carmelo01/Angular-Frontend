@@ -14,6 +14,7 @@ export class AddCapsuleComponent {
   public form = {
     title: '',
     description: '',
+    capsule_type: '0'
   }
 
   file: any;
@@ -34,6 +35,7 @@ export class AddCapsuleComponent {
     formData.append("title", this.form.title);
     formData.append("description", this.form.description);
     formData.append("file_path", this.file);
+    formData.append("capsule_type", this.form.capsule_type);
 
     this.capsuleService.addCapusle(formData).subscribe({
       next: data => this.handleResponse(data),

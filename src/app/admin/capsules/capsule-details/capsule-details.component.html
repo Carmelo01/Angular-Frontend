@@ -34,8 +34,9 @@
               </div>
             </div>
             <div class="right-div" *ngIf="r.grade != null">
-              <p style="cursor: pointer;" (click)="calculateGrade(r.user.id, r.grade)">{{showGrade}}</p>
-              <button class="btn orange-button" (click)="exportToService(r.user.id)">Export CSV</button>
+              <span>{{r.grade}}%</span>
+              <button class="btn orange-button" (click)="exportToService(r.user.id, 'pdf')">Export PDF</button>
+              <button class="btn orange-button" (click)="exportToService(r.user.id, 'csv')">Export CSV</button>
             </div>
             <div class="delete-btn" *ngIf="r.grade == null">
               <button *ngIf="capsule?.status == '1'" class="btn send-btn" (click)="openRemoveReviewerDialog(r.user, r.id)"><mat-icon>delete</mat-icon></button>

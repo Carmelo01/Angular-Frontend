@@ -33,7 +33,9 @@
                 <p class="filename">{{r.user.fname}} {{r.user.lname}}</p> -->
               </div>
               <div class="right-div" *ngIf="r.grade != null">
-                <button class="btn orange-button" (click)="exportToService(r.user.id)">Export CSV</button>
+                <span>{{r.grade}}</span>
+                <button class="btn orange-button" (click)="exportToService(r.user.id, 'pdf')">Export PDF</button>
+                <button class="btn orange-button" (click)="exportToService(r.user.id, 'csv')">Export CSV</button>
               </div>
             </div>
           </div>

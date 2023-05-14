@@ -41,7 +41,7 @@
       </thead>
       <tbody *ngFor="let capsule of filteredItems | paginate: { itemsPerPage: pageSize, currentPage: currentPage, totalItems: filteredItems.length } | search: searchCapsule; let i = index">
         <tr>
-          <td data-label="Number">{{i+1}}</td>
+          <td data-label="Number">{{(pageSize * (currentPage-1))+i+1}}</td>
           <td data-label="Title">{{capsule.title}}</td>
           <td data-label="Author">{{capsule.user.fname}} {{capsule.user.lname}}</td>
           <td data-label="Status">{{exportService.getStatus(capsule.status)}}</td>

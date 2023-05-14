@@ -38,7 +38,7 @@ export class LogoutComponent {
     this.loading = false;
     this.dialogRef.close();
     this.toastr.success("Logout Successfully!");
-    this.router.navigate([`/admin/login`])
+    window.location.reload();
   }
 
   handleError(error: any){

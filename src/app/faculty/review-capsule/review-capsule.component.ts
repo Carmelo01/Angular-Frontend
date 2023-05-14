@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { CapsuleService } from 'src/app/services/capsule.service';
 import { ExportService } from 'src/app/services/export.service';
 import { ExportpdfService } from 'src/app/services/exportpdf.service';
@@ -26,6 +26,7 @@ export class ReviewCapsuleComponent implements OnInit{
     public paginate: PaginateService,
     private route: ActivatedRoute,
     private token: TokenService,
+    private router: Router,
     public exportpdf: ExportpdfService){
       this.capsules = this.route.snapshot.data['capsules'].msg;
     }
@@ -35,12 +36,14 @@ export class ReviewCapsuleComponent implements OnInit{
   // length: any;
   currentPage = 1; // current page number
   pageSize = 5; // number of items to be shown per page
+  show: boolean = false;
 
   ngOnInit(): void {
     this.theme = this.themeService.getTheme()
     this.currentdata = this.token.me().subscribe(user => {
       this.currentTitle = 'To Review of '+user.fname+' '+user.mname+' '+user.lname
     })
+    this.show = false;
   }
 
   get filteredItems(): string[] {
@@ -59,6 +62,7 @@ export class ReviewCapsuleComponent implements OnInit{
       this.showdetails = true;
       this.capsuleService.checkIfValid(capsule.data[0].id).subscribe((isValid) => {
         this.valid = isValid
+        this.show = true;
       })
     })
   }

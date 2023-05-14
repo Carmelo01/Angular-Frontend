@@ -11,7 +11,7 @@
 
   <div class="dia-actions">
     <button class="cancel" mat-dialog-close>Cancel</button>
-    <a href="#" class="btn submit" (click)="logout($event)" *ngIf="!loading">Logout</a>
+    <a class="btn submit" (click)="logout($event)" *ngIf="!loading">Logout</a>
     <button class="btn submit" style="padding: 5px 20px;" *ngIf="loading"><app-loader-button></app-loader-button></button>
   </div>
 </div>

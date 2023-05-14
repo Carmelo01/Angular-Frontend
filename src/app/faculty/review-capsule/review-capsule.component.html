@@ -79,9 +79,9 @@
             <mat-icon>insert_drive_file</mat-icon>
             <p class="filename">{{c.title}}.pdf</p>
           </div>
-          <p *ngIf="!valid" style="text-align: center; margin: 15px 0 0 0">You already graded this capsule</p>
+          <p *ngIf="!valid && show" style="text-align: center; margin: 15px 0 0 0">You already graded this capsule</p>
           <div class="buttons-container">
-            <button class="button-newtab" *ngIf="valid"><a [routerLink]="['/faculty/grade_capsule', c.id]" target="_blank"> Grade this Capsule</a></button>
+            <button class="button-newtab" *ngIf="valid && show"><a [routerLink]="['/faculty/grade_capsule', c.id]" target="_blank"> Grade this Capsule</a></button>
             <button class="button-expand-newtab"><a [routerLink]="['/faculty/expand_capsule_details', c.id]" target="_blank"> Expand Details</a></button>
           </div>
         </div>

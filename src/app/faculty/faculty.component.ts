@@ -37,4 +37,5 @@ export class FacultyComponent implements OnInit {
   ngOnInit(): void {
   }
 
+
 }

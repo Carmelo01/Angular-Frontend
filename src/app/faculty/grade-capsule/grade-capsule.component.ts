@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { CapsuleService } from 'src/app/services/capsule.service';
 import { UrlService } from 'src/app/services/url.service';
 import { GeneralService } from 'src/app/shared/services/general.service';
@@ -35,7 +35,8 @@ export class GradeCapsuleComponent implements OnInit {
     private activatedRoute: ActivatedRoute,
     public urlService: UrlService,
     private rubricService: RubricService,
-    private toastr: ToastrService) {}
+    private toastr: ToastrService,
+    private router: Router) {}
 
   ngOnInit(): void {
     this.activatedRoute.paramMap.subscribe((param) => {
@@ -67,7 +68,7 @@ export class GradeCapsuleComponent implements OnInit {
   handleResponse(data: any){
     this.loading = false;
     this.toastr.success("Graded Successfully!");
-    console.log(data)
+    this.router.navigateByUrl('/faculty/review/capsule');
   }
 
   handleError(error: any){

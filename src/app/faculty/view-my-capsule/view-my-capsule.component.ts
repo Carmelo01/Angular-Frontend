@@ -115,14 +115,17 @@ export class ViewMyCapsuleComponent implements OnInit{
     return formatDate(dateReq, 'yyyy-MM-dd', 'en_PH')
   }
 
-  exportToService(user_id: any){
+  exportToService(user_id: any, type: string){
     let data ={
       reviewer_id: user_id,
       capsule_id: this.capsuleId
     }
-    // this.exportService.exportGradedRubric(user_id )
     this.rubricService.getGradedRubric(data).subscribe(datas => {
-      this.exportService.exportGradedRubric(datas, datas);
+      if(type == 'pdf'){
+        this.exportService.exportpdfGradedCapsule(datas, datas);
+      }else{
+        this.exportService.exportGradedRubric(datas, datas);
+      }
     })
   }
 

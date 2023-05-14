@@ -90,14 +90,17 @@ export class CapsuleDetailsComponent implements OnInit{
     })
   }
 
-  exportToService(user_id: any){
+  exportToService(user_id: any, type: string){
     let data ={
       reviewer_id: user_id,
       capsule_id: this.capsuleId
     }
-    // this.exportService.exportGradedRubric(user_id )
     this.rubricService.getGradedRubric(data).subscribe(datas => {
-      this.exportService.exportGradedRubric(datas, datas);
+      if(type == 'pdf'){
+        this.exportService.exportpdfGradedCapsule(datas, datas);
+      }else{
+        this.exportService.exportGradedRubric(datas, datas);
+      }
     })
   }
   calculateGrade(user_id: any, grade: any){

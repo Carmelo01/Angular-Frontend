@@ -1,6 +1,7 @@
 import { formatDate } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import html2pdf from 'html2pdf.js';
 import { ngxCsv } from 'ngx-csv';
 import { CapsuleService } from './capsule.service';
 import { UrlService } from './url.service';
@@ -147,6 +148,78 @@ export class ExportService {
     }
 
     new ngxCsv(rubricData, "Graded Rubrics", options);
+  }
+
+  exportpdfGradedCapsule(data: any, user: any){
+    const rubricData = data.data
+    const grade = data.grade
+    const tableDiv = document.createElement('div');
+    tableDiv.innerHTML = `
+      <div class="header"><img src="assets/exportpdfHeader.png" style="width: 100%;" /></div>
+      <div class="username" style="text-align:center;">
+        <h3>Graded Rubrics</h3>
+      </div>
+      <style>
+        .pdf-table {
+          opacity: 1;
+          width:80% !important;
+          background-color: transparent;
+          border-collapse: collapse;
+          margin: 5% 10% 0 10% !important;
+          text-align: center;
+        }
+        .pdf-table tbody th,
+        .pdf-table tbody td {
+          background-color: #fff;
+          border: 1px solid black;
+          font-size:14px;
+          width:5%;
+        }
+      </style>
+    `;
+    const table = document.createElement('table')
+    table.innerHTML=`
+      <thead>
+        <th>CATEGORY</th>
+        <th>RUBRIC</th>
+        <th>GRADE</th>
+      </thead>
+    `
+    const tbody = document.createElement('tbody')
+    rubricData.forEach((user: any) => {
+      const tr = document.createElement('tr')
+      tr.innerHTML = `
+      <tr [ngClass]="theme+'-faculty-tr'">
+        <td data-label="FIRST NAME">${user.category}</td>
+        <td data-label="MIDDLE NAME">${user.rubric}</td>
+        <td data-label="LAST NAME">${user.grade}</td>
+      </tr>`
+      tbody.appendChild(tr.cloneNode(true))
+    })
+
+    const p = document.createElement('p')
+      p.innerHTML = `
+        <p style="float: right; margin: 20px 10% 0 0">Total Grade Percentage: ${grade.grade}%</p>
+      `
+    const footerdiv = document.createElement('div');
+    footerdiv.innerHTML = `
+    <div class="footer" style="position:relative; text-align:right; right:10px; margin:10% 10% 0 0">
+      <span>Created on: ${new Date().toLocaleString()}</span>
+    </div> `;
+    table.appendChild(tbody.cloneNode(true))
+    table.classList.add('pdf-table')
+    tableDiv.appendChild(table.cloneNode(true))
+    tableDiv.appendChild(p.cloneNode(true))
+    tableDiv.appendChild(footerdiv.cloneNode(true));
+    const options = {
+      filename: 'graded-rubric.pdf',
+      image: { type: 'jpeg', quality: 0.98 },
+      html2canvas: { scale: 2 },
+      jsPDF: { orientation: 'portrait' },
+      multipage: true
+    };
+    html2pdf().set(options).from(tableDiv).save();
+    //console.log(rubricData, grade)
   }
 
   getStatus(status: any){

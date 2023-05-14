@@ -4,7 +4,7 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class UrlService {
-  //url: string = 'http://localhost:8000/'
-  url: string = 'https://apicapsule.bjmpbaliwag.com/'
+  url: string = 'http://localhost:8000/'
+  //url: string = 'https://apicapsule.bjmpbaliwag.com/'
   constructor() { }
 }

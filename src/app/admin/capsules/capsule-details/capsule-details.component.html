@@ -103,8 +103,11 @@
             <label class="admin comment">{{capsule.admin_comment}}</label>
           </div>
         </div>
-        <button *ngIf="capsule?.status == '5'" class="status approve">Approved</button>
-
+        <div *ngIf="capsule?.status == '5'" class="con-unassign">
+          <button class="status approve">Approved</button>
+          <button class="approve-button" (click)="openConfirmationDialog('Submitted Capsule', 'Submit')">Submitted to RIO</button>
+        </div>
+        <button *ngIf="capsule?.status == '6'" class="status approve">Submitted to RIO</button>
         <div class="revisions-container" [ngClass]="theme+'-faculty-status'">
           <span class="label" [ngClass]="theme+'-sub-title'">Uploaded Revisions</span>
 

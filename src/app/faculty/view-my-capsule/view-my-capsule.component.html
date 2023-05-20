@@ -100,6 +100,7 @@
           </div>
 
           <button *ngIf="capsule?.status == '5'" class="status approve">Approved</button>
+          <button *ngIf="capsule?.status == '6'" class="status approve">Submitted to RIO</button>
           <button class="orange-button" (click)="openAddRevisionDialog()" *ngIf="selectedCapsuleData[0].status == '3'"><mat-icon >add_box</mat-icon>Upload Revision</button>
           <br/>
           <br/>

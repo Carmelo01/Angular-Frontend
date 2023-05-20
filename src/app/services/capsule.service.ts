@@ -66,6 +66,10 @@ export class CapsuleService {
     return this.http.post(this.urlService.url+`api/capsule/approve/${id}`, {})
   }
 
+  submitCapsule(id: any){
+    return this.http.post(this.urlService.url+`api/capsule/submitTo/${id}`, {})
+  }
+
   reviseCapsule(id: any){
     return this.http.post(this.urlService.url+`api/capsule/revise/${id}`, {})
   }

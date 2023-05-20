@@ -229,6 +229,7 @@ export class ExportService {
     else if(status == 3){ return 'Under Revision'}
     else if(status == 4){ return 'Reconsider'}
     else if(status == 5){ return 'Approved'}
+    else if(status == 6){ return 'Submitted to RIO'}
     else {return null}
   }
 

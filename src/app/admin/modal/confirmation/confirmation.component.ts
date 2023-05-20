@@ -34,6 +34,11 @@ export class ConfirmationComponent {
         next: data => this.handleResponse(data),
         error: error => this.handleError(error)
       })
+    } else if(method == 'Submit'){
+      this.capsuleService.submitCapsule(this.result.capsuleId).subscribe({
+        next: data => this.handleResponse(data),
+        error: error => this.handleError(error)
+      })
     } else {
       this.capsuleService.reviseCapsule(this.result.capsuleId).subscribe({
         next: data => this.handleResponse(data),
